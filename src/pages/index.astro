@@ -1,17 +1,17 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Klyn - Suministros de Limpieza y Papelería" bodyClass="">
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:60vh; text-align:center; padding:2rem;">
+    <h1>Bienvenido a Klyn</h1>
+    <p>Selecciona una plantilla para revisar:</p>
+    <ul style="list-style:none; padding:0; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1rem;">
+      <li><a href="/agency" class="btn btn-primary">Agency</a></li>
+      <li><a href="/contact" class="btn btn-outline-primary">Contact</a></li>
+      <li><a href="/framework" class="btn btn-outline-primary">Framework</a></li>
+      <li><a href="/portfolio-grid-rows" class="btn btn-outline-primary">Portfolio Grid</a></li>
+      <li><a href="/coworking" class="btn btn-outline-primary">Coworking</a></li>
+    </ul>
+  </div>
+</Layout>

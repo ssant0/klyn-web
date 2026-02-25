@@ -8,7 +8,7 @@ interface Props {
 const { title = 'Klyn', bodyClass = '' } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -453,12 +453,10 @@ const { title = 'Klyn', bodyClass = '' } = Astro.props;
       <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand" href="/">
-          <img src="/assets/img/brand.svg" class="navbar-brand-img" alt="...">
-        </a>
+        <a class="navbar-brand fw-bold fs-3" href="/">Klyn</a>
 
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Abrir navegación">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -466,26 +464,23 @@ const { title = 'Klyn', bodyClass = '' } = Astro.props;
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
           <!-- Toggler -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Cerrar navegación">
             <i class="fe fe-x"></i>
           </button>
 
           <!-- Navigation -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/agency">Agency</a>
+              <a class="nav-link" href="/">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link" href="/nosotros">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/framework">Framework</a>
+              <a class="nav-link" href="/productos">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/portfolio-grid-rows">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/coworking">Coworking</a>
+              <a class="nav-link" href="/contacto">Contacto</a>
             </li>
           </ul>
         </div>

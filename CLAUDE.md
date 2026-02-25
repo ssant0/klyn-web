@@ -40,10 +40,37 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 **Key integrations:**
 - `@astrojs/cloudflare` — wraps the Astro build as a Cloudflare Worker; the entry point is `dist/_worker.js/index.js`
 - `@astrojs/sitemap` — generates a sitemap at build time
-- `@tailwindcss/vite` — Tailwind CSS v4 via Vite plugin (no `tailwind.config.*` file; configured through CSS)
+- ~~`@tailwindcss/vite`~~ — **eliminado**. No usar Tailwind CSS; el proyecto usa Bootstrap 5 exclusivamente.
+
+**CSS Framework: Bootstrap 5**
+- Bootstrap se carga vía archivos bundle en `public/assets/css/libs.bundle.css` y `public/assets/css/theme.bundle.css`
+- JS en `public/assets/js/vendor.bundle.js` y `public/assets/js/theme.bundle.js`
+- NO agregar Tailwind ni ningún otro framework CSS — conflicto con Bootstrap
+- `src/styles/global.css` existe pero está vacío (Tailwind fue removido)
 
 **Deployment:** Targets **Cloudflare Pages** (not Workers). `wrangler.jsonc` sets `pages_build_output_dir: ./dist`. Deploy with `wrangler pages deploy` or via the Cloudflare Pages Git integration. The adapter uses `mode: 'directory'` which outputs a `_worker.js` inside `dist/` for Pages to pick up automatically.
 
-**Pages/routing:** Files in `src/pages/` become routes (Astro file-based routing). Currently only `src/pages/index.astro` exists.
+**Layout:** `src/layouts/Layout.astro` es el layout base. Incluye navbar, footer y modales. Props: `title`, `bodyClass`.
 
-**Styles:** `src/styles/global.css` holds global styles. Import it in layouts/pages as needed.
+**Pages/routing:** Archivos en `src/pages/` son las rutas. Estado actual:
+- `src/pages/index.astro` — Home (contenido de Klyn, tema claro)
+- `src/pages/contact.astro` → `/contacto` (en español, con datos reales)
+- Pendientes por crear: `/nosotros`, `/productos`
+- El navbar apunta a: `/`, `/nosotros`, `/productos`, `/contacto`
+
+**Datos de contacto reales:**
+- Email: `contacto@klyn.com.mx`
+- Teléfono / WhatsApp: `+52 668 162 9654`
+- WhatsApp link: `https://wa.me/526681629654`
+- Tel link: `tel:+526681629654`
+
+**Assets pendientes del cliente:**
+- Logo en SVG (reemplazar texto "Klyn" en navbar por `<img>`)
+- Fotos de productos reales
+- Logos de clientes/empresas colaboradoras (reemplazar SVGs placeholder en home)
+- Copy/texto definitivo
+
+**Convenciones de color en código:**
+- Azul marca: `style="color: #6cace3"` o `style="background-color: #6cace3"`
+- Amarillo marca: `style="color: #fab60a"`
+- No hay custom Bootstrap theme configurado; usar inline styles para colores de marca

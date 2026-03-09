@@ -46,7 +46,7 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - Bootstrap se carga vía archivos bundle en `public/assets/css/libs.bundle.css` y `public/assets/css/theme.bundle.css`
 - JS en `public/assets/js/vendor.bundle.js` y `public/assets/js/theme.bundle.js`
 - NO agregar Tailwind ni ningún otro framework CSS — conflicto con Bootstrap
-- `src/styles/global.css` existe pero está vacío (Tailwind fue removido)
+- `src/styles/global.css` contiene utilidades custom: `.shadow-soft` (sombra discreta), estilos de `.accordion-button`, `.accordion-icon`, `.accordion-chevron`
 
 **Deployment:** Targets **Cloudflare Pages** (not Workers). `wrangler.jsonc` sets `pages_build_output_dir: ./dist`. Deploy with `wrangler pages deploy` or via the Cloudflare Pages Git integration. The adapter uses `mode: 'directory'` which outputs a `_worker.js` inside `dist/` for Pages to pick up automatically.
 
@@ -55,7 +55,7 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 **Pages/routing:** Archivos en `src/pages/` son las rutas. Estado actual:
 - `src/pages/index.astro` — Home (contenido de Klyn, tema claro)
 - `src/pages/contact.astro` → `/contacto` (en español, con datos reales)
-- Pendientes por crear: `/nosotros`, `/productos`
+- Todas las páginas ya existen: `/`, `/nosotros`, `/productos`, `/contacto`
 - El navbar apunta a: `/`, `/nosotros`, `/productos`, `/contacto`
 
 **Datos de contacto reales:**
@@ -69,6 +69,8 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - Fotos de productos reales
 - Logos de clientes/empresas colaboradoras (reemplazar SVGs placeholder en home)
 - Copy/texto definitivo
+
+**Convención de sombras:** Usar `.shadow-soft` para profundidad sutil. No combinar con la clase `border` de Bootstrap — produce doble contorno visual indeseado. Usar `border-0` cuando se aplique sombra.
 
 **Convenciones de color en código:**
 - Azul marca: `style="color: #6cace3"` o `style="background-color: #6cace3"`

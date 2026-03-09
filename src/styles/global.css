@@ -1,0 +1,30 @@
+.shadow-soft {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Accordion personalizado */
+.accordion-button::after {
+  display: none;
+}
+
+.accordion-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accordion-icon {
+  flex-shrink: 0;
+  color: #6cace3;
+}
+
+.accordion-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: #6cace3;
+  transition: transform 0.2s ease;
+}
+
+.accordion-button:not(.collapsed) .accordion-chevron {
+  transform: rotate(180deg);
+}

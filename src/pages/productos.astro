@@ -3,10 +3,39 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Productos - Klyn"
+  title="Catálogo de Productos de Limpieza y Papelería - Klyn"
   description="Catálogo de productos de limpieza, herramientas y papelería para empresas. Cloro, detergentes, trapeadores, papel bond y más. Pide tu cotización."
   bodyClass="bg-light"
 >
+  <script slot="head-schema" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.klyn.com.mx/productos#webpage",
+    "url": "https://www.klyn.com.mx/productos",
+    "name": "Catálogo de Productos — Klyn",
+    "description": "Catálogo de suministros de limpieza, herramientas y papelería para empresas. Cloro, detergentes, trapeadores, papel bond y más.",
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
+    "provider": { "@id": "https://www.klyn.com.mx/#business" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Productos", "item": "https://www.klyn.com.mx/productos" }
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Catálogo Klyn",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "item": { "@type": "OfferCatalog", "name": "Químicos de Limpieza", "url": "https://www.klyn.com.mx/productos#quimicos" } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "OfferCatalog", "name": "Herramientas de Limpieza", "url": "https://www.klyn.com.mx/productos#herramientas" } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "OfferCatalog", "name": "Papelería y Oficina", "url": "https://www.klyn.com.mx/productos#papeleria" } }
+      ]
+    }
+  }
+  </script>
   <!-- HERO -->
   <section
     class="pt-12 pt-md-14 pb-10 pb-md-12"
@@ -482,7 +511,7 @@ import Layout from "../layouts/Layout.astro";
             <a
               href="https://wa.me/526681629654"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               class="btn btn-light fw-bold lift text-dark"
             >
               <i class="fe fe-message-circle me-2"></i> WhatsApp

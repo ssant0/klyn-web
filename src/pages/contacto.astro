@@ -3,20 +3,41 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Contacto - Klyn"
+  title="Contacto - Klyn | WhatsApp y Teléfono en Los Mochis"
   description="Contacta a Klyn por WhatsApp, teléfono o correo para solicitar tu cotización personalizada de suministros de limpieza y papelería."
-  bodyClass="bg-light">
+  bodyClass="bg-light"
+>
+  <script slot="head-schema" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://www.klyn.com.mx/contacto#webpage",
+    "url": "https://www.klyn.com.mx/contacto",
+    "name": "Contacto — Klyn",
+    "description": "Contacta a Klyn por WhatsApp, teléfono o correo para solicitar cotización personalizada de suministros de limpieza y papelería.",
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
+    "about": { "@id": "https://www.klyn.com.mx/#business" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://www.klyn.com.mx/contacto" }
+      ]
+    }
+  }
+  </script>
     <!-- WELCOME -->
     <section
         class="py-10 py-md-14 overlay overlay-black overlay-60 bg-cover"
-        style="background-image: url(assets/img/covers/cover-5.jpg);"
+        style="background-image: url(/assets/img/covers/cover-5.jpg);"
     >
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8 text-center">
                     <!-- Heading -->
                     <h1 class="display-2 fw-bold text-white">
-                        Estamos para Apoyarte!
+                        ¡Estamos para Apoyarte!
                     </h1>
 
                     <!-- Text -->
@@ -66,7 +87,7 @@ import Layout from "../layouts/Layout.astro";
                     class="col-12 col-md-4 text-center border-end border-gray-300"
                 >
                     <!-- Heading -->
-                    <h6 class="text-uppercase text-gray-700 mb-1">WhatsApp</h6>
+                    <h2 class="h6 text-uppercase text-gray-700 mb-1">WhatsApp</h2>
 
                     <!-- Link -->
                     <div class="mb-5 mb-md-0">
@@ -84,7 +105,7 @@ import Layout from "../layouts/Layout.astro";
                     class="col-12 col-md-4 text-center border-end border-gray-300"
                 >
                     <!-- Heading -->
-                    <h6 class="text-uppercase text-gray-700 mb-1">Llámanos</h6>
+                    <h2 class="h6 text-uppercase text-gray-700 mb-1">Llámanos</h2>
 
                     <!-- Link -->
                     <div class="mb-5 mb-md-0">
@@ -95,9 +116,9 @@ import Layout from "../layouts/Layout.astro";
                 </div>
                 <div class="col-12 col-md-4 text-center">
                     <!-- Heading -->
-                    <h6 class="text-uppercase text-gray-700 mb-1">
+                    <h2 class="h6 text-uppercase text-gray-700 mb-1">
                         Correo electrónico
-                    </h6>
+                    </h2>
 
                     <!-- Link -->
                     <a href="mailto:contacto@klyn.com.mx" class="h4">
@@ -112,7 +133,7 @@ import Layout from "../layouts/Layout.astro";
                 <div class="col-12 col-md-8 col-lg-6 text-center">
                     <div class="p-5 rounded bg-white shadow-soft">
                         <i class="fe fe-clock" style="font-size: 1.5rem; color: #6cace3;"></i>
-                        <h6 class="text-uppercase text-gray-700 mt-2 mb-1">Horario de atención</h6>
+                        <h2 class="h6 text-uppercase text-gray-700 mt-2 mb-1">Horario de atención</h2>
                         <p class="h5 mb-1">Lunes a sábado, 9:00 am – 6:00 pm</p>
                         <p class="text-body-secondary mb-0 fs-sm">Respondemos en menos de 24 horas</p>
                     </div>

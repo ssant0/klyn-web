@@ -15,8 +15,6 @@ import Layout from "../layouts/Layout.astro";
           <!-- Heading -->
           <h1
             class="display-1 fw-bold text-dark"
-            data-aos="fade-up"
-            data-aos-delay="50"
           >
             El <b>Aliado</b> que tu negocio necesita.
           </h1>
@@ -24,8 +22,6 @@ import Layout from "../layouts/Layout.astro";
           <!-- Text -->
           <p
             class="lead text-body-secondary mb-6 mx-auto"
-            data-aos="fade-up"
-            data-aos-delay="100"
             style="max-width: 560px;"
           >
             Limpieza, herramientas e insumos de oficina para empresas, hoteles,
@@ -275,8 +271,10 @@ import Layout from "../layouts/Layout.astro";
           >
             <img
               class="position-relative w-100 rounded-4"
-              src="assets/img/botes-cloro-imagen.png"
-              alt="Suministros Klyn"
+              src="/assets/img/botes-cloro-imagen.webp"
+              alt="Botes de cloro y suministros de limpieza de Klyn"
+              width="800"
+              height="600"
             />
           </div>
         </div>
@@ -321,8 +319,11 @@ import Layout from "../layouts/Layout.astro";
             >
               <img
                 class="position-relative w-100 float-end rounded-4"
-                src="assets/img/contacto-imagen.png"
-                alt="Proceso de pedido Klyn"
+                src="/assets/img/contacto-imagen.webp"
+                alt="Proceso de cotización y pedido en Klyn"
+                width="800"
+                height="600"
+                loading="lazy"
               />
             </div>
           </div>
@@ -713,7 +714,7 @@ import Layout from "../layouts/Layout.astro";
     class="py-14 py-lg-16 jarallax"
     data-jarallax
     data-speed=".8"
-    style="background-image: url(assets/img/parallax-footer-image.png);"
+    style="background-image: url(/assets/img/parallax-footer-image.webp);"
   >
     <!-- Shape -->
     <div class="shape shape-top shape-fluid-x text-white">
@@ -743,10 +744,9 @@ import Layout from "../layouts/Layout.astro";
           </h6>
 
           <!-- Heading -->
-          <h1 class="display-2 fw-bold text-white">
+          <h2 class="display-2 fw-bold text-white">
             ¡Tu negocio nos necesita!
-          </h1>
-          <h1 class="display-2 fw-bold text-white">Limpieza & Papelería</h1>
+          </h2>
           <!-- Text -->
           <p class="fs-lg text-white text-opacity-75 mb-6 mb-md-8">
             Contáctanos por WhatsApp o teléfono y recibe una cotización

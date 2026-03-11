@@ -3,14 +3,34 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Nosotros - Klyn"
+  title="Quiénes Somos - Klyn, Proveedor de Suministros en Los Mochis"
   description="Conoce a Klyn, empresa sinaloense especializada en abastecimiento B2B de suministros de limpieza y papelería. Con sede en Los Mochis, Sinaloa."
   bodyClass=""
 >
+  <script slot="head-schema" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.klyn.com.mx/nosotros#webpage",
+    "url": "https://www.klyn.com.mx/nosotros",
+    "name": "Quiénes Somos — Klyn",
+    "description": "Conoce a Klyn, empresa sinaloense especializada en abastecimiento B2B de suministros de limpieza y papelería, con sede en Los Mochis, Sinaloa.",
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
+    "about": { "@id": "https://www.klyn.com.mx/#business" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Nosotros", "item": "https://www.klyn.com.mx/nosotros" }
+      ]
+    }
+  }
+  </script>
   <!-- HERO -->
   <section
     class="py-10 py-md-14 overlay overlay-black overlay-60 bg-cover"
-    style="background-image: url(assets/img/covers/cover-5.jpg);"
+    style="background-image: url(/assets/img/covers/cover-5.jpg);"
   >
     <div class="container">
       <div class="row justify-content-center">
@@ -91,8 +111,11 @@ import Layout from "../layouts/Layout.astro";
             </div>
             <img
               class="position-relative w-100"
-              src="assets/img/photos/photo-4.jpg"
-              alt="Equipo Klyn"
+              src="/assets/img/photos/photo-4.jpg"
+              alt="Equipo Klyn en Los Mochis, Sinaloa"
+              width="700"
+              height="467"
+              loading="lazy"
             />
           </div>
         </div>
@@ -124,7 +147,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="col-12 col-md-4 mt-6" data-aos="fade-up">
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #6cace3;">✅</div>
-            <h4 class="fw-bold text-dark">Confiabilidad</h4>
+            <h3 class="fw-bold text-dark">Confiabilidad</h3>
             <p class="text-body-secondary mb-0">
               Cumplimos con lo que prometemos. Cada pedido, cada entrega, cada
               cotización — sin sorpresas ni pretextos.
@@ -140,7 +163,7 @@ import Layout from "../layouts/Layout.astro";
         >
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #6cace3;">🚚</div>
-            <h4 class="fw-bold text-dark">Puntualidad</h4>
+            <h3 class="fw-bold text-dark">Puntualidad</h3>
             <p class="text-body-secondary mb-0">
               Tu operación no puede detenerse por falta de suministros. Nos
               comprometemos con los tiempos acordados.
@@ -156,7 +179,7 @@ import Layout from "../layouts/Layout.astro";
         >
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #6cace3;">🤝</div>
-            <h4 class="fw-bold text-dark">Relación a largo plazo</h4>
+            <h3 class="fw-bold text-dark">Relación a largo plazo</h3>
             <p class="text-body-secondary mb-0">
               No buscamos vender una vez. Queremos ser tu proveedor de cabecera,
               conocer tu negocio y servirte mejor con cada pedido.
@@ -168,7 +191,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="col-12 col-md-4 mt-6" data-aos="fade-up">
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #fab60a;">💼</div>
-            <h4 class="fw-bold text-dark">Enfoque B2B</h4>
+            <h3 class="fw-bold text-dark">Enfoque B2B</h3>
             <p class="text-body-secondary mb-0">
               Entendemos las necesidades de empresas, no de consumidores
               individuales. Volúmenes, frecuencias y condiciones adaptadas a ti.
@@ -184,7 +207,7 @@ import Layout from "../layouts/Layout.astro";
         >
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #fab60a;">🌟</div>
-            <h4 class="fw-bold text-dark">Calidad probada</h4>
+            <h3 class="fw-bold text-dark">Calidad probada</h3>
             <p class="text-body-secondary mb-0">
               Trabajamos con productos y marcas que ya demostraron su desempeño.
               Nada que no le recomendaríamos a nuestra propia empresa.
@@ -200,7 +223,7 @@ import Layout from "../layouts/Layout.astro";
         >
           <div class="card h-100 shadow-soft border-0 rounded-4 p-5">
             <div class="display-5 mb-4" style="color: #fab60a;">📍</div>
-            <h4 class="fw-bold text-dark">Orgullo sinaloense</h4>
+            <h3 class="fw-bold text-dark">Orgullo sinaloense</h3>
             <p class="text-body-secondary mb-0">
               Somos de Los Mochis y lo llevamos con orgullo. Apoyamos la
               economía local mientras servimos a clientes en todo el país.

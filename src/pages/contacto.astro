@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
 <Layout
@@ -165,8 +166,7 @@ import Layout from "../layouts/Layout.astro";
 
           <!-- Subtext -->
           <p style="color: rgba(255,255,255,0.72); font-size: 1.1rem; max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.65;">
-            Escríbenos por WhatsApp, llámanos o manda un correo —
-            No dejes que las bases de tu operación detengan el resultado de tus metas.
+            Escríbenos por WhatsApp. No dejes que las bases de tu operación detengan el resultado de tus metas.
           </p>
 
           <!-- Stats row -->
@@ -311,17 +311,10 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="wave-divider" style="background: #f5f9ff;">
-    <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0H1440V20C1200 40 960 40 720 40C480 40 240 40 0 20V0Z" fill="#fffcf0"/>
-    </svg>
-  </div>
-
   <!-- ═══════════════════════════════════
        HORARIO + UBICACIÓN
   ═══════════════════════════════════ -->
-  <section class="py-10 py-md-13" style="background: #fffcf0;">
+  <section class="py-10 py-md-13" style="background: #f5f9ff;">
     <div class="container">
 
       <!-- Section header -->
@@ -406,102 +399,7 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="wave-divider" style="background: #fffcf0;">
-    <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0H1440V20C1200 40 960 40 720 40C480 40 240 40 0 20V0Z" fill="#ffffff"/>
-    </svg>
-  </div>
-
-  <!-- ═══════════════════════════════════
-       FAQ RÁPIDO
-  ═══════════════════════════════════ -->
-  <section class="py-10 py-md-13 bg-white">
-    <div class="container">
-
-      <div class="row mb-8">
-        <div class="col-12 col-lg-7">
-          <span
-            class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
-            style="background: rgba(108,172,227,0.12); color: #6cace3; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
-          >
-            Preguntas frecuentes
-          </span>
-          <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
-            Antes de escribirnos.
-          </h2>
-        </div>
-      </div>
-
-      <div class="row g-4">
-
-        <div class="col-12 col-md-6" data-aos="fade-up">
-          <div class="card contact-card contact-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-md icon-box-blue">
-                <i class="fe fe-help-circle" style="color: #6cace3; font-size: 1.3rem;"></i>
-              </div>
-              <h5 class="fw-bold text-dark mb-2">¿Venden al público en general?</h5>
-              <p class="text-body-secondary mb-0">
-                Principalmente somos proveedor B2B: empresas, hoteles, escuelas
-                y comercios. Sin embargo, atendemos pedidos de cualquier tamaño.
-                Contáctanos y buscamos la mejor opción para ti.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="60">
-          <div class="card contact-card contact-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-md icon-box-blue">
-                <i class="fe fe-tag" style="color: #6cace3; font-size: 1.3rem;"></i>
-              </div>
-              <h5 class="fw-bold text-dark mb-2">¿Por qué no hay precios en el catálogo?</h5>
-              <p class="text-body-secondary mb-0">
-                Los precios varían según volumen, frecuencia y producto.
-                Ofrecemos cotizaciones personalizadas para que obtengas la mejor
-                tarifa según las necesidades de tu negocio.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="120">
-          <div class="card contact-card contact-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-md icon-box-blue">
-                <i class="fe fe-truck" style="color: #6cace3; font-size: 1.3rem;"></i>
-              </div>
-              <h5 class="fw-bold text-dark mb-2">¿Hacen entregas a domicilio?</h5>
-              <p class="text-body-secondary mb-0">
-                Sí. Realizamos entregas presenciales en Los Mochis y enviamos
-                a todo México vía paquetería. El costo y tiempo de entrega se
-                coordinan al momento de cotizar.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="180">
-          <div class="card contact-card contact-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-md icon-box-blue">
-                <i class="fe fe-repeat" style="color: #6cace3; font-size: 1.3rem;"></i>
-              </div>
-              <h5 class="fw-bold text-dark mb-2">¿Manejan pedidos recurrentes?</h5>
-              <p class="text-body-secondary mb-0">
-                Sí, trabajamos con varios clientes en esquemas de abastecimiento
-                periódico. Cuéntanos tu frecuencia y volumen para ofrecerte
-                condiciones preferenciales.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <FAQ />
 
   <!-- ═══════════════════════════════════
        CTA FINAL

@@ -23,7 +23,7 @@ El sitio es **informativo B2B** — sin e-commerce ni precios visibles. El objet
 
 **Identidad visual:**
 - Colores de marca: `#6cace3` (azul), `#ffffff` (blanco), `#fab60a` (amarillo/dorado)
-- Logo disponible (buscar versión SVG)
+- Logo SVG disponible en `public/assets/logo/klyn-logotipo.svg` (viewBox 536×301). Usado en navbar (`height="72" width="128"`) y footer (ídem + `filter: brightness(0) invert(1)` para fondo oscuro).
 
 **Páginas planeadas:** Inicio, Nosotros, Productos (showcase por categorías, sin precios), Contacto
 
@@ -65,7 +65,7 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - Tel link: `tel:+526681629654`
 
 **Assets pendientes del cliente:**
-- Logo en SVG (reemplazar texto "Klyn" en navbar por `<img>`)
+- ~~Logo en SVG~~ — recibido e integrado (`klyn-logotipo.svg`)
 - Fotos de productos reales
 - Logos de clientes/empresas colaboradoras (reemplazar SVGs placeholder en home)
 - Copy/texto definitivo

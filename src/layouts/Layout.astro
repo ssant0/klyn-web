@@ -87,10 +87,10 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
       "image": "https://www.klyn.com.mx/assets/img/og/og-image.png",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Melchor Ocampo 1054, Colonia Álamos 1",
+        "streetAddress": "Melchor Ocampo 1054, Colonia Romanillo",
         "addressLocality": "Los Mochis",
         "addressRegion": "Sinaloa",
-        "postalCode": "81200",
+        "postalCode": "81285",
         "addressCountry": "MX"
       },
       "geo": {
@@ -101,11 +101,18 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "09:00",
           "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:30",
+          "closes": "13:30"
         }
       ],
+      "foundingDate": "2025",
       "areaServed": {
         "@type": "Country",
         "name": "México",

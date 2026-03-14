@@ -1,0 +1,217 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+  footerContent?: string;
+}
+
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const { title = 'Klyn', description = 'Proveedor de suministros de limpieza y papelería para empresas. Entregas en Los Mochis, Sinaloa, y envíos a todo México.', bodyClass = '' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon/favicon-144.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#6cace3">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="/assets/css/libs.bundle.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/assets/css/theme.bundle.css">
+
+    <!-- Title -->
+    <title>{title}</title>
+
+    <!-- Meta description -->
+    <meta name="description" content={description}>
+
+    <!-- Canonical + hreflang -->
+    <link rel="canonical" href={canonicalURL.href}>
+    <link rel="alternate" hreflang="es-MX" href={canonicalURL.href}>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content="https://www.klyn.com.mx/assets/img/og/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Klyn — Proveedor de suministros de limpieza y papelería para empresas en Los Mochis, Sinaloa">
+    <meta property="og:url" content={canonicalURL.href}>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Klyn">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content="https://www.klyn.com.mx/assets/img/og/og-image.png">
+
+    <!-- Per-page schema slot -->
+    <slot name="head-schema" />
+
+    <!-- Schema.org — WholesaleStore -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WholesaleStore",
+      "@id": "https://www.klyn.com.mx/#business",
+      "name": "Klyn",
+      "description": "Proveedor B2B de suministros de limpieza y papelería para empresas, hoteles, escuelas y comercios. Entregas locales en Los Mochis, Sinaloa, y envíos a todo México.",
+      "url": "https://www.klyn.com.mx",
+      "telephone": "+526681629654",
+      "email": "contacto@klyn.com.mx",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.klyn.com.mx/assets/logo/klyn-logotipo.svg"
+      },
+      "image": "https://www.klyn.com.mx/assets/img/og/og-image.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Melchor Ocampo 1054, Colonia Romanillo",
+        "addressLocality": "Los Mochis",
+        "addressRegion": "Sinaloa",
+        "postalCode": "81285",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.7728083,
+        "longitude": -108.9850052
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:30",
+          "closes": "13:30"
+        }
+      ],
+      "foundingDate": "2025",
+      "areaServed": {
+        "@type": "Country",
+        "name": "México",
+        "sameAs": "https://www.wikidata.org/wiki/Q96"
+      },
+      "currenciesAccepted": "MXN",
+      "priceRange": "$$",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Schema.org — Organization -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://www.klyn.com.mx/#organization",
+      "name": "Klyn",
+      "url": "https://www.klyn.com.mx",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.klyn.com.mx/assets/logo/klyn-logotipo.svg"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+526681629654",
+        "contactType": "sales",
+        "availableLanguage": "Spanish",
+        "areaServed": "MX"
+      },
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Schema.org — WebSite -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.klyn.com.mx/#website",
+      "name": "Klyn",
+      "url": "https://www.klyn.com.mx",
+      "inLanguage": "es-MX",
+      "publisher": {
+        "@id": "https://www.klyn.com.mx/#organization"
+      }
+    }
+    </script>
+  </head>
+  <body class={bodyClass}>
+
+    <!-- NAVBAR -->
+    <Navbar />
+
+    <slot />
+
+    <slot name="footer">
+      <!-- FOOTER -->
+      <Footer />
+    </slot>
+
+    <!-- WhatsApp Flotante -->
+    <a
+      href="https://wa.me/526681629654?text=Hola%2C+me+interesa+cotizar+suministros+para+mi+negocio."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Cotizar por WhatsApp"
+      style="
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #25d366;
+        color: #ffffff;
+        text-decoration: none;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      "
+      onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 18px rgba(0,0,0,0.3)';"
+      onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.25)';"
+    >
+      <!-- Icono WhatsApp SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <!-- Vendor JS -->
+    <script defer is:inline src="/assets/js/vendor.bundle.js"></script>
+
+    <!-- Theme JS -->
+    <script defer is:inline src="/assets/js/theme.bundle.js"></script>
+
+  </body>
+</html>

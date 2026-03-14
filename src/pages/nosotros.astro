@@ -1,0 +1,458 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Quiénes Somos - Klyn, Proveedor de Suministros en Los Mochis"
+  description="Conoce a Klyn, empresa sinaloense especializada en abastecimiento B2B de suministros de limpieza y papelería. Con sede en Los Mochis, Sinaloa."
+  bodyClass=""
+>
+  <script slot="head-schema" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.klyn.com.mx/nosotros#webpage",
+    "url": "https://www.klyn.com.mx/nosotros",
+    "name": "Quiénes Somos — Klyn",
+    "description": "Conoce a Klyn, empresa sinaloense especializada en abastecimiento B2B de suministros de limpieza y papelería, con sede en Los Mochis, Sinaloa.",
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
+    "about": { "@id": "https://www.klyn.com.mx/#business" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Nosotros", "item": "https://www.klyn.com.mx/nosotros" }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    /* ── Cards ───────────────────────────────────── */
+    .value-card {
+      border-radius: 1rem !important;
+      border: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .value-card:hover { transform: translateY(-5px); }
+    .value-card-blue {
+      box-shadow: 0 2px 18px rgba(108,172,227,0.10);
+      border-left: 4px solid #6cace3 !important;
+    }
+    .value-card-blue:hover { box-shadow: 0 10px 32px rgba(108,172,227,0.22) !important; }
+    .value-card-gold {
+      box-shadow: 0 2px 18px rgba(250,182,10,0.10);
+      border-left: 4px solid #fab60a !important;
+    }
+    .value-card-gold:hover { box-shadow: 0 10px 32px rgba(250,182,10,0.22) !important; }
+
+    /* ── Icon boxes ──────────────────────────────── */
+    .icon-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      margin-bottom: 1rem;
+    }
+    .icon-box-lg { width: 64px; height: 64px; font-size: 1.9rem; }
+    .icon-box-md { width: 52px; height: 52px; font-size: 1.5rem; border-radius: 12px; }
+    .icon-box-blue { background: rgba(108,172,227,0.12); }
+    .icon-box-gold { background: rgba(250,182,10,0.12); }
+
+    /* ── Section eyebrow ─────────────────────────── */
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.75rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .eyebrow-blue { background: rgba(108,172,227,0.12); color: #6cace3; }
+    .eyebrow-gold { background: rgba(250,182,10,0.14); color: #c98b00; }
+
+    /* ── Hero (keeps photo, branded overlay) ─────── */
+    .hero-nosotros {
+      margin-top: -87px;
+      padding-top: 150px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+      background-image: url(/assets/img/covers/cover-5.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-nosotros::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(150deg,
+        rgba(13, 35, 65, 0.88) 0%,
+        rgba(30, 74, 124, 0.78) 55%,
+        rgba(108, 172, 227, 0.55) 100%
+      );
+    }
+    /* Dot grid on top of overlay */
+    .hero-nosotros::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    /* ── Client type cards ───────────────────────── */
+    .client-card {
+      border-radius: 1rem !important;
+      border: none;
+      box-shadow: 0 2px 18px rgba(108,172,227,0.08);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .client-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(108,172,227,0.18) !important;
+    }
+
+    /* ── About image ─────────────────────────────── */
+    .about-img {
+      border-radius: 1.25rem;
+      width: 100%;
+      display: block;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    }
+
+    /* ── Hero stat ───────────────────────────────── */
+    .hero-stat-num {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #fab60a;
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+      margin-top: 5px;
+    }
+    .hero-divider {
+      width: 1px;
+      height: 42px;
+      background: rgba(255,255,255,0.18);
+    }
+  </style>
+
+  <!-- ═══════════════════════════════════
+       HERO — imagen de fondo del negocio
+  ═══════════════════════════════════ -->
+  <section class="hero-nosotros">
+    <div class="container position-relative" style="z-index: 1;">
+      <div class="row justify-content-center text-center">
+        <div class="col-12 col-lg-7">
+
+          <!-- Eyebrow -->
+          <div class="mb-4">
+            <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(250,182,10,0.18); color: #fab60a; padding: 6px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fab60a;"></span>
+              Quiénes somos
+            </span>
+          </div>
+
+          <!-- Heading -->
+          <h1 class="fw-bold text-white mb-4" style="font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em;">
+            Tu proveedor de<br>confianza en Los Mochis.
+          </h1>
+
+          <!-- Subtext -->
+          <p style="color: rgba(255,255,255,0.78); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.65;">
+            Somos Klyn, una empresa sinaloense dedicada a abastecer a negocios
+            con suministros de limpieza y papelería de calidad, con entregas
+            puntuales y servicio personalizado.
+          </p>
+
+          <!-- Stats -->
+          <div class="d-flex justify-content-center align-items-center gap-4">
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">Los Mochis</span>
+              <span class="hero-stat-label">Sede central</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">B2B</span>
+              <span class="hero-stat-label">Enfoque</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">MX</span>
+              <span class="hero-stat-label">Cobertura</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       MISIÓN / HISTORIA
+  ═══════════════════════════════════ -->
+  <section class="py-10 py-md-13 bg-white">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-md-6" data-aos="fade-right">
+          <span class="section-eyebrow eyebrow-blue">Nuestra historia</span>
+          <h2 class="fw-bold text-dark mb-5" style="font-size: clamp(1.9rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+            Nacimos en Los Mochis para servir a los negocios locales y de todo México.
+          </h2>
+          <p class="text-body-secondary mb-4" style="font-size: 1.05rem; line-height: 1.75;">
+            Klyn nació en <strong style="color: #1a2e4a;">2025</strong> de la necesidad que tienen empresas, hoteles, escuelas y
+            comercios de contar con un proveedor confiable que entienda sus
+            tiempos y sus volúmenes. No somos una tienda genérica: somos un
+            aliado de abastecimiento B2B.
+          </p>
+          <p class="text-body-secondary mb-0" style="font-size: 1.05rem; line-height: 1.75;">
+            Con sede en <strong style="color: #1a2e4a;">Los Mochis, Sinaloa</strong>, atendemos clientes
+            en todo el país, combinando entregas presenciales en la ciudad con
+            envíos a cualquier parte de la república.
+          </p>
+        </div>
+        <div class="col-12 col-md-6" data-aos="fade-left">
+          <div class="position-relative" style="padding: 20px 0 0 20px;">
+            <!-- Decorative accent -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 1.25rem; background: linear-gradient(135deg, rgba(108,172,227,0.18) 0%, rgba(250,182,10,0.12) 100%);"></div>
+            <img
+              class="about-img position-relative"
+              src="/assets/img/photos/nosotros-1.webp"
+              alt="Equipo Klyn en Los Mochis, Sinaloa"
+              width="700"
+              height="467"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       VALORES
+  ═══════════════════════════════════ -->
+  <section class="py-10 py-md-13" style="background: #f5f9ff;">
+    <div class="container">
+
+      <div class="row mb-8">
+        <div class="col-12 col-lg-7">
+          <span class="section-eyebrow eyebrow-gold">Nuestros valores</span>
+          <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+            Lo que nos mueve cada día.
+          </h2>
+          <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 480px;">
+            Estos principios guían cada pedido, cada entrega y cada relación con nuestros clientes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Featured row: 2 large -->
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-md-6" data-aos="fade-up">
+          <div class="card value-card value-card-blue h-100">
+            <div class="card-body p-5">
+              <div class="icon-box icon-box-lg icon-box-blue">✅</div>
+              <h4 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Confiabilidad</h4>
+              <p class="text-body-secondary mb-0">
+                Cumplimos con lo que prometemos. Cada pedido, cada entrega, cada
+                cotización — sin sorpresas ni pretextos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="80">
+          <div class="card value-card value-card-blue h-100">
+            <div class="card-body p-5">
+              <div class="icon-box icon-box-lg icon-box-blue">🚚</div>
+              <h4 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Puntualidad</h4>
+              <p class="text-body-secondary mb-0">
+                Tu operación no puede detenerse por falta de suministros. Nos
+                comprometemos con los tiempos acordados en cada entrega.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary row: 4 compact -->
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up">
+          <div class="card value-card value-card-gold h-100">
+            <div class="card-body p-4">
+              <div class="icon-box icon-box-md icon-box-gold">🤝</div>
+              <h6 class="fw-bold text-dark mb-2 h5">Relación a largo plazo</h6>
+              <p class="text-body-secondary small mb-0">
+                No buscamos vender una vez. Queremos ser tu proveedor de cabecera y servirte mejor con cada pedido.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
+          <div class="card value-card value-card-gold h-100">
+            <div class="card-body p-4">
+              <div class="icon-box icon-box-md icon-box-gold">💼</div>
+              <h6 class="fw-bold text-dark mb-2 h5">Enfoque B2B</h6>
+              <p class="text-body-secondary small mb-0">
+                Entendemos las necesidades de empresas. Volúmenes, frecuencias y condiciones adaptadas a ti.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+          <div class="card value-card value-card-gold h-100">
+            <div class="card-body p-4">
+              <div class="icon-box icon-box-md icon-box-gold">🌟</div>
+              <h6 class="fw-bold text-dark mb-2 h5">Calidad probada</h6>
+              <p class="text-body-secondary small mb-0">
+                Trabajamos con productos y marcas que ya demostraron su desempeño. Nada que no usaríamos nosotros.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
+          <div class="card value-card value-card-gold h-100">
+            <div class="card-body p-4">
+              <div class="icon-box icon-box-md icon-box-gold">📍</div>
+              <h6 class="fw-bold text-dark mb-2 h5">Orgullo sinaloense</h6>
+              <p class="text-body-secondary small mb-0">
+                Somos de Los Mochis y lo llevamos con orgullo, apoyando la economía local.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       QUIÉNES ATENDEMOS
+  ═══════════════════════════════════ -->
+  <section class="py-10 py-md-13" style="background: #f5f9ff;">
+    <div class="container">
+
+      <div class="row mb-8">
+        <div class="col-12 col-lg-7">
+          <span class="section-eyebrow eyebrow-blue">A quién servimos</span>
+          <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+            Empresas que confían en Klyn.
+          </h2>
+          <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 480px;">
+            Atendemos a todo tipo de negocios que necesitan abastecerse de forma
+            regular y sin complicaciones.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up">
+          <div class="card client-card bg-white h-100">
+            <div class="card-body p-5 text-center">
+              <div class="icon-box icon-box-lg icon-box-blue mx-auto">🏨</div>
+              <h5 class="fw-bold text-dark mb-2">Hoteles</h5>
+              <p class="text-body-secondary small mb-0">
+                Limpieza de habitaciones, pasillos y áreas comunes con suministros de volumen.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="card client-card bg-white h-100">
+            <div class="card-body p-5 text-center">
+              <div class="icon-box icon-box-lg icon-box-blue mx-auto">🏢</div>
+              <h5 class="fw-bold text-dark mb-2">Oficinas</h5>
+              <p class="text-body-secondary small mb-0">
+                Papelería, insumos de limpieza y consumibles del día a día para equipos de trabajo.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+          <div class="card client-card bg-white h-100">
+            <div class="card-body p-5 text-center">
+              <div class="icon-box icon-box-lg icon-box-blue mx-auto">🏫</div>
+              <h5 class="fw-bold text-dark mb-2">Escuelas</h5>
+              <p class="text-body-secondary small mb-0">
+                Suministros para mantenimiento de aulas, baños y áreas administrativas.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+          <div class="card client-card bg-white h-100">
+            <div class="card-body p-5 text-center">
+              <div class="icon-box icon-box-lg icon-box-blue mx-auto">🛒</div>
+              <h5 class="fw-bold text-dark mb-2">Comercios</h5>
+              <p class="text-body-secondary small mb-0">
+                Tiendas, restaurantes y locales con necesidades regulares de limpieza e insumos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CTA FINAL
+  ═══════════════════════════════════ -->
+  <section
+    style="
+      background: linear-gradient(150deg, #0d2341 0%, #1e4a7c 55%, #6cace3 100%);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    "
+  >
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px); background-size: 32px 32px; pointer-events: none;"></div>
+
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-7 text-center">
+          <p class="mb-4" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #fab60a;">
+            ¿Listo para empezar?
+          </p>
+          <h2 class="fw-bold text-white mb-4" style="font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; line-height: 1.15;">
+            Hablemos de lo que tu negocio necesita.
+          </h2>
+          <p class="mb-8" style="color: rgba(255,255,255,0.68); font-size: 1.05rem;">
+            Contáctanos por WhatsApp o teléfono y te preparamos una cotización
+            personalizada sin compromiso.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a
+              href="https://wa.me/526681629654?text=Hola%2C+me+interesa+cotizar+suministros+para+mi+negocio."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-light fw-bold lift"
+              style="border-radius: 999px; padding: 14px 28px; color: #1a2e4a;"
+            >
+              <i class="fe fe-message-circle me-2"></i> WhatsApp
+            </a>
+            <a
+              href="/contacto"
+              class="btn btn-outline-light fw-bold lift"
+              style="border-radius: 999px; padding: 14px 28px;"
+            >
+              Ver opciones de contacto <i class="fe fe-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

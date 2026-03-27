@@ -13,8 +13,6 @@ npm run astro      # Run Astro CLI commands
 
 No test or lint commands are configured.
 
-## Architecture
-
 ## Project Context
 
 **Klyn** es una empresa mexicana de venta y entrega de suministros de limpieza y papelería (cloro, limpiadores, papel, plumas, etc.), con sede en Los Mochis, Sinaloa. Realiza envíos a todo México y entregas presenciales en Los Mochis.
@@ -25,9 +23,7 @@ El sitio es **informativo B2B** — sin e-commerce ni precios visibles. El objet
 - Colores de marca: `#6cace3` (azul), `#ffffff` (blanco), `#fab60a` (amarillo/dorado)
 - Logo SVG disponible en `public/assets/logo/klyn-logotipo.svg` (viewBox 536×301). Usado en navbar (`height="72" width="128"`) y footer (ídem + `filter: brightness(0) invert(1)` para fondo oscuro).
 
-**Páginas planeadas:** Inicio, Nosotros, Productos (showcase por categorías, sin precios), Contacto
-
-**Pendientes del cliente:** template de diseño, logo en SVG, copy/texto, fotos de productos
+**Páginas activas:** `/` Inicio · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad`
 
 **Dominio:** www.klyn.com.mx
 
@@ -54,8 +50,9 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 
 **Pages/routing:** Archivos en `src/pages/` son las rutas. Estado actual:
 - `src/pages/index.astro` — Home (contenido de Klyn, tema claro)
-- `src/pages/contact.astro` → `/contacto` (en español, con datos reales)
-- Todas las páginas ya existen: `/`, `/nosotros`, `/productos`, `/contacto`
+- `src/pages/contacto.astro` → `/contacto`
+- `src/pages/aviso-de-privacidad.astro` → `/aviso-de-privacidad` (LFPDPPP, enlazada desde footer)
+- Todas las páginas existen: `/`, `/nosotros`, `/productos`, `/contacto`, `/aviso-de-privacidad`
 - El navbar apunta a: `/`, `/nosotros`, `/productos`, `/contacto`
 
 **Datos de contacto reales:**
@@ -68,6 +65,12 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - ~~Logo en SVG~~ — recibido e integrado (`klyn-logotipo.svg`)
 - Fotos de productos reales
 - Logos de clientes/empresas colaboradoras (reemplazar SVGs placeholder en home)
+
+**Analytics & tracking:**
+- GTM ID: `GTM-MD6LZ974` — instalado en `Layout.astro` (script `<head>` + noscript `<body>`)
+- GA4 y Meta Pixel se gestionan desde GTM — sin base code directo en HTML
+- CSP y headers de seguridad en `public/_headers` — modificar ahí para nuevos orígenes
+- El noscript de GTM requiere `frame-src https://www.googletagmanager.com` en el CSP
 
 **Convención de sombras:** Usar `.shadow-soft` para profundidad sutil. No combinar con la clase `border` de Bootstrap — produce doble contorno visual indeseado. Usar `border-0` cuando se aplique sombra.
 

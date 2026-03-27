@@ -68,7 +68,6 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - ~~Logo en SVG~~ — recibido e integrado (`klyn-logotipo.svg`)
 - Fotos de productos reales
 - Logos de clientes/empresas colaboradoras (reemplazar SVGs placeholder en home)
-- Copy/texto definitivo
 
 **Convención de sombras:** Usar `.shadow-soft` para profundidad sutil. No combinar con la clase `border` de Bootstrap — produce doble contorno visual indeseado. Usar `border-0` cuando se aplique sombra.
 

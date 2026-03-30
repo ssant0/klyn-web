@@ -1,0 +1,384 @@
+---
+// Linktree page — klyn.com.mx/links
+// No usa Layout.astro para mantener diseño minimalista sin navbar/footer
+const canonicalURL = 'https://www.klyn.com.mx/links';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>//@ts-expect-error
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MD6LZ974');
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+
+    <title>Klyn — Links</title>
+    <meta name="description" content="Contacta a Klyn por WhatsApp, teléfono, correo o síguenos en redes sociales.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href={canonicalURL}>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Klyn — Links">
+    <meta property="og:description" content="Todos los canales para contactarnos o seguirnos.">
+    <meta property="og:url" content={canonicalURL}>
+    <meta property="og:image" content="https://www.klyn.com.mx/assets/img/og/og-image.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/libs.bundle.css">
+    <link rel="stylesheet" href="/assets/css/theme.bundle.css">
+  </head>
+
+  <body style="margin: 0; padding: 0; min-height: 100vh; background: linear-gradient(160deg, #0d2341 0%, #1e4a7c 50%, #6cace3 100%);">
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD6LZ974" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <style>
+      /* ── Layout ──────────────────────────────── */
+      .lt-wrapper {
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 48px 20px 64px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ── Dot grid background ─────────────────── */
+      .lt-bg-dots {
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+        background-size: 30px 30px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── Logo ────────────────────────────────── */
+      .lt-logo {
+        width: 120px;
+        height: auto;
+        filter: brightness(0) invert(1);
+        margin-bottom: 12px;
+      }
+
+      /* ── Tagline ─────────────────────────────── */
+      .lt-tagline {
+        color: rgba(255,255,255,0.65);
+        font-size: 0.88rem;
+        text-align: center;
+        margin-bottom: 40px;
+        line-height: 1.5;
+      }
+
+      /* ── Link buttons ────────────────────────── */
+      .lt-links {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 40px;
+      }
+
+      .lt-btn {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 16px 20px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.97rem;
+        color: #fff;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lt-btn:hover {
+        transform: translateY(-2px);
+        opacity: 0.93;
+        color: #fff;
+      }
+
+      .lt-btn:active {
+        transform: translateY(0);
+      }
+
+      /* Variantes de color */
+      .lt-btn-whatsapp {
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      }
+      .lt-btn-phone {
+        background: rgba(255,255,255,0.14);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .lt-btn-email {
+        background: rgba(255,255,255,0.14);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .lt-btn-facebook {
+        background: #1877f2;
+        box-shadow: 0 4px 20px rgba(24,119,242,0.35);
+      }
+      .lt-btn-instagram {
+        background: linear-gradient(45deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
+        box-shadow: 0 4px 20px rgba(221,42,123,0.35);
+      }
+      .lt-btn-maps {
+        background: rgba(255,255,255,0.14);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .lt-btn-linkedin {
+        background: #0a66c2;
+        box-shadow: 0 4px 20px rgba(10,102,194,0.35);
+      }
+      .lt-btn-website {
+        background: rgba(108,172,227,0.25);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(108,172,227,0.35);
+        box-shadow: 0 4px 16px rgba(108,172,227,0.2);
+      }
+
+      /* Icono wrapper */
+      .lt-btn-icon {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.18);
+      }
+
+      /* Texto */
+      .lt-btn-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .lt-btn-label {
+        font-size: 0.97rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .lt-btn-sublabel {
+        font-size: 0.78rem;
+        font-weight: 400;
+        opacity: 0.75;
+        line-height: 1.3;
+      }
+
+      /* ── Divider ─────────────────────────────── */
+      .lt-divider {
+        width: 100%;
+        height: 1px;
+        background: rgba(255,255,255,0.12);
+        margin: 8px 0 4px;
+      }
+
+      /* ── Footer ──────────────────────────────── */
+      .lt-footer {
+        color: rgba(255,255,255,0.38);
+        font-size: 0.75rem;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .lt-footer a {
+        color: rgba(255,255,255,0.55);
+        text-decoration: none;
+      }
+      .lt-footer a:hover {
+        color: #fff;
+      }
+    </style>
+
+    <div class="lt-bg-dots"></div>
+
+    <div class="lt-wrapper" style="position: relative; z-index: 1;">
+
+      <!-- Logo -->
+      <img
+        src="/assets/logo/klyn-logotipo.svg"
+        alt="Klyn"
+        class="lt-logo"
+        width="120"
+        height="68"
+      />
+
+      <!-- Tagline -->
+      <p class="lt-tagline">
+        Suministros de limpieza y papelería<br>
+        <strong style="color: rgba(255,255,255,0.85);">Los Mochis, Sinaloa · Todo México</strong>
+      </p>
+
+      <!-- Links -->
+      <div class="lt-links">
+
+        <!-- WhatsApp -->
+        <a
+          href="https://wa.me/526681629654?text=Hola%2C+me+interesa+cotizar+suministros+para+mi+negocio."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lt-btn lt-btn-whatsapp"
+        >
+          <div class="lt-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">WhatsApp</span>
+            <span class="lt-btn-sublabel">+52 668 162 9654 · Cotiza aquí</span>
+          </div>
+        </a>
+
+        <!-- Teléfono -->
+        <a
+          href="tel:+526681629654"
+          class="lt-btn lt-btn-phone"
+        >
+          <div class="lt-btn-icon">
+            <i class="fe fe-phone" style="font-size: 1.2rem;"></i>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Teléfono</span>
+            <span class="lt-btn-sublabel">668 162 9654</span>
+          </div>
+        </a>
+
+        <!-- Email -->
+        <a
+          href="mailto:contacto@klyn.com.mx"
+          class="lt-btn lt-btn-email"
+        >
+          <div class="lt-btn-icon">
+            <i class="fe fe-mail" style="font-size: 1.2rem;"></i>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Correo electrónico</span>
+            <span class="lt-btn-sublabel">contacto@klyn.com.mx</span>
+          </div>
+        </a>
+
+        <!-- Divider: Redes sociales -->
+        <div class="lt-divider"></div>
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com/share/1DqQxgT3Zk/?mibextid=wwXIfr"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lt-btn lt-btn-facebook"
+        >
+          <div class="lt-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Facebook</span>
+            <span class="lt-btn-sublabel">Klyn Solutions</span>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/klyn.com.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lt-btn lt-btn-instagram"
+        >
+          <div class="lt-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Instagram</span>
+            <span class="lt-btn-sublabel">@klyn.com.mx</span>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/company/klyn-solutions/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lt-btn lt-btn-linkedin"
+        >
+          <div class="lt-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">LinkedIn</span>
+            <span class="lt-btn-sublabel">Klyn Solutions</span>
+          </div>
+        </a>
+
+        <!-- Divider: Más -->
+        <div class="lt-divider"></div>
+
+        <!-- Google Maps -->
+        <a
+          href="https://share.google/7RC0N9AkTWpyH5JYr"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="lt-btn lt-btn-maps"
+        >
+          <div class="lt-btn-icon">
+            <i class="fe fe-map-pin" style="font-size: 1.2rem;"></i>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Ubicación en Maps</span>
+            <span class="lt-btn-sublabel">Melchor Ocampo 1054, Los Mochis</span>
+          </div>
+        </a>
+
+        <!-- Sitio web -->
+        <a
+          href="https://www.klyn.com.mx"
+          class="lt-btn lt-btn-website"
+        >
+          <div class="lt-btn-icon">
+            <i class="fe fe-globe" style="font-size: 1.2rem;"></i>
+          </div>
+          <div class="lt-btn-text">
+            <span class="lt-btn-label">Sitio web</span>
+            <span class="lt-btn-sublabel">www.klyn.com.mx</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="lt-footer">
+        <p style="margin: 0 0 4px;">Lun–Vie 9:00–18:00 · Sáb 9:30–13:30</p>
+        <p style="margin: 0;">
+          <a href="https://www.klyn.com.mx/aviso-de-privacidad">Aviso de privacidad</a>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- JS -->
+    <script defer is:inline src="/assets/js/vendor.bundle.js"></script>
+    <script defer is:inline src="/assets/js/theme.bundle.js"></script>
+  </body>
+</html>

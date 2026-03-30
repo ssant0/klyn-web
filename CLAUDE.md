@@ -23,7 +23,7 @@ El sitio es **informativo B2B** — sin e-commerce ni precios visibles. El objet
 - Colores de marca: `#6cace3` (azul), `#ffffff` (blanco), `#fab60a` (amarillo/dorado)
 - Logo SVG disponible en `public/assets/logo/klyn-logotipo.svg` (viewBox 536×301). Usado en navbar (`height="72" width="128"`) y footer (ídem + `filter: brightness(0) invert(1)` para fondo oscuro).
 
-**Páginas activas:** `/` Inicio · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad`
+**Páginas activas:** `/` Inicio · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links` Linktree
 
 **Dominio:** www.klyn.com.mx
 
@@ -52,7 +52,8 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - `src/pages/index.astro` — Home (contenido de Klyn, tema claro)
 - `src/pages/contacto.astro` → `/contacto`
 - `src/pages/aviso-de-privacidad.astro` → `/aviso-de-privacidad` (LFPDPPP, enlazada desde footer)
-- Todas las páginas existen: `/`, `/nosotros`, `/productos`, `/contacto`, `/aviso-de-privacidad`
+- `src/pages/links.astro` → `/links` — Linktree standalone (sin navbar/footer, fondo gradiente de marca). Incluye WhatsApp, teléfono, email, Facebook, Instagram, LinkedIn, Google Maps y sitio web. Tiene `noindex`.
+- Todas las páginas existen: `/`, `/nosotros`, `/productos`, `/contacto`, `/aviso-de-privacidad`, `/links`
 - El navbar apunta a: `/`, `/nosotros`, `/productos`, `/contacto`
 
 **Datos de contacto reales:**
@@ -60,6 +61,13 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - Teléfono / WhatsApp: `+52 668 162 9654`
 - WhatsApp link: `https://wa.me/526681629654`
 - Tel link: `tel:+526681629654`
+
+**Redes sociales:**
+- Facebook: `https://www.facebook.com/share/1DqQxgT3Zk/?mibextid=wwXIfr`
+- Instagram: `https://www.instagram.com/klyn.com.mx/` (`@klyn.com.mx`)
+- LinkedIn: `https://www.linkedin.com/company/klyn-solutions/`
+- Google Business Profile: `https://share.google/7RC0N9AkTWpyH5JYr`
+- Los íconos SVG de estas redes ya están integrados en `Footer.astro` y `src/pages/links.astro`
 
 **Assets pendientes del cliente:**
 - ~~Logo en SVG~~ — recibido e integrado (`klyn-logotipo.svg`)

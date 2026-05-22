@@ -1,216 +1,166 @@
-<!-- ═══════════════════════════════════
-     FAQ
-═══════════════════════════════════ -->
+---
+interface Props {
+  pageUrl?: string;
+}
+
+const { pageUrl = 'https://www.klyn.com.mx' } = Astro.props;
+
+interface FaqItem {
+  id: string;
+  icon: string;
+  question: string;
+  answer: string;
+}
+
+const faqItems: FaqItem[] = [
+  {
+    id: 'drop1',
+    icon: 'fe fe-shopping-bag',
+    question: '¿Tienen pedido mínimo?',
+    answer: 'Sí. El pedido mínimo es de $599.00 MXN para envíos a cualquier parte del país con flete incluido. Para entregas locales en Los Mochis el mínimo puede variar — contáctanos y lo coordinamos sin problema.',
+  },
+  {
+    id: 'drop2',
+    icon: 'fe fe-truck',
+    question: '¿Envían a toda la república?',
+    answer: 'Sí, enviamos a todos los estados de México. Los tiempos de entrega y el costo de flete dependen de tu ubicación y del volumen del pedido. Al cotizar te indicamos exactamente cuánto tiempo tomará y el detalle del envío.',
+  },
+  {
+    id: 'drop3',
+    icon: 'fe fe-message-circle',
+    question: '¿Cómo solicito una cotización?',
+    answer: 'Muy sencillo: envíanos por WhatsApp, teléfono o correo la lista de productos que necesitas (nombre, cantidad y presentación). Te respondemos con precios y disponibilidad en menos de 24 horas en días hábiles.',
+  },
+  {
+    id: 'drop4',
+    icon: 'fe fe-repeat',
+    question: '¿Aceptan pedidos recurrentes?',
+    answer: 'Sí, trabajamos con varios clientes en esquemas de abastecimiento periódico — semanal, quincenal o mensual. Cuéntanos tu frecuencia y volumen habitual y te ofrecemos descuentos por volumen y condiciones preferenciales para pedidos continuos.',
+  },
+  {
+    id: 'drop5',
+    icon: 'fe fe-file-text',
+    question: '¿Facturan?',
+    answer: 'Por supuesto. Emitimos CFDI 4.0 timbrado ante el SAT para todas tus compras. Solo compártenos tu RFC y datos fiscales al momento de pedir y te enviamos la factura electrónica a tu correo.',
+  },
+  {
+    id: 'drop6',
+    icon: 'fe fe-help-circle',
+    question: '¿Venden al público en general?',
+    answer: 'Nuestro enfoque principal es B2B — empresas, hoteles, escuelas y comercios — pero atendemos pedidos de cualquier tamaño. Si eres particular y necesitas suministros, contáctanos y buscamos la mejor opción para ti.',
+  },
+  {
+    id: 'drop7',
+    icon: 'fe fe-credit-card',
+    question: '¿Aceptan pago con tarjeta?',
+    answer: 'Aceptamos transferencia bancaria y depósito. Para conocer los métodos de pago disponibles según tu pedido, contáctanos directamente y te indicamos las opciones.',
+  },
+  {
+    id: 'drop8',
+    icon: 'fe fe-calendar',
+    question: '¿Dan crédito?',
+    answer: 'Las condiciones de crédito se evalúan caso a caso. Si eres cliente frecuente y te interesa explorar esta opción, háblanos por WhatsApp y con gusto lo platicamos.',
+  },
+];
+
+const leftItems = faqItems.slice(0, 4);
+const rightItems = faqItems.slice(4);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
+  url: pageUrl,
+  inLanguage: 'es-MX',
+  isPartOf: { '@id': 'https://www.klyn.com.mx/#website' },
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<Fragment set:html={`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`} />
+
 <section class="py-10 py-md-13" style="background: #f5f9ff;">
-	<div class="container">
+  <div class="container">
 
-		<!-- Header split: título izquierda, intro derecha -->
-		<div class="row align-items-end mb-8">
-			<div class="col-12 col-lg-6">
-				<span class="section-eyebrow eyebrow-blue">Resolvemos tus dudas</span>
-				<h2 class="fw-bold text-dark mt-2 mb-0" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
-					Preguntas<br>frecuentes.
-				</h2>
-			</div>
-			<div class="col-12 col-lg-5 offset-lg-1 mt-4 mt-lg-0">
-				<p class="text-body-secondary mb-4" style="font-size: 1.05rem; line-height: 1.7;">
-					¿Tienes dudas antes de contactarnos? Aquí resolvemos las más comunes. Si no encuentras lo que buscas,
-					<a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Revis%C3%A9+sus+preguntas+frecuentes+y+tengo+una+duda+que+no+encontr%C3%A9+ah%C3%AD.+%C2%BFMe+pueden+ayudar%3F" target="_blank" rel="noopener noreferrer" style="color: #6cace3; font-weight: 600;">escríbenos por WhatsApp.</a>
-				</p>
-			</div>
-		</div>
+    <!-- Header split: título izquierda, intro derecha -->
+    <div class="row align-items-end mb-8">
+      <div class="col-12 col-lg-6">
+        <span class="section-eyebrow eyebrow-blue">Resolvemos tus dudas</span>
+        <h2 class="fw-bold text-dark mt-2 mb-0" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+          Preguntas<br>frecuentes.
+        </h2>
+      </div>
+      <div class="col-12 col-lg-5 offset-lg-1 mt-4 mt-lg-0">
+        <p class="text-body-secondary mb-4" style="font-size: 1.05rem; line-height: 1.7;">
+          ¿Tienes dudas antes de contactarnos? Aquí resolvemos las más comunes. Si no encuentras lo que buscas,
+          <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Revis%C3%A9+sus+preguntas+frecuentes+y+tengo+una+duda+que+no+encontr%C3%A9+ah%C3%AD.+%C2%BFMe+pueden+ayudar%3F" target="_blank" rel="noopener noreferrer" style="color: #6cace3; font-weight: 600;">escríbenos por WhatsApp.</a>
+        </p>
+      </div>
+    </div>
 
-		<!-- Dropdowns: 2 columnas en desktop -->
-		<div class="row g-3" id="faqAccordion">
+    <!-- Dropdowns: 2 columnas en desktop -->
+    <div class="row g-3" id="faqAccordion">
 
-			<!-- Columna izquierda -->
-			<div class="col-12 col-lg-6 d-flex flex-column gap-3">
+      <!-- Columna izquierda -->
+      <div class="col-12 col-lg-6 d-flex flex-column gap-3">
+        {leftItems.map((item) => (
+          <div class="faq-drop" id={item.id}>
+            <button
+              class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
+              data-bs-toggle="collapse"
+              data-bs-target={`#${item.id}body`}
+              aria-expanded="false"
+              aria-controls={`${item.id}body`}
+            >
+              <span class="faq-drop-icon">
+                <i class={item.icon}></i>
+              </span>
+              <span class="faq-drop-label">{item.question}</span>
+              <span class="faq-drop-chevron ms-auto">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </button>
+            <div id={`${item.id}body`} class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
+              <div class="faq-drop-inner">{item.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
 
-				<!-- P1 -->
-				<div class="faq-drop" id="drop1">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop1body"
-						aria-expanded="false"
-						aria-controls="drop1body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-shopping-bag"></i>
-						</span>
-						<span class="faq-drop-label">¿Tienen pedido mínimo?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop1body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Sí. El pedido mínimo es de <strong>$599.00 MXN</strong> para envíos a cualquier parte del país con flete incluido. Para entregas locales en Los Mochis el mínimo puede variar — contáctanos y lo coordinamos sin problema.</div>
-					</div>
-				</div>
+      <!-- Columna derecha -->
+      <div class="col-12 col-lg-6 d-flex flex-column gap-3">
+        {rightItems.map((item) => (
+          <div class="faq-drop" id={item.id}>
+            <button
+              class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
+              data-bs-toggle="collapse"
+              data-bs-target={`#${item.id}body`}
+              aria-expanded="false"
+              aria-controls={`${item.id}body`}
+            >
+              <span class="faq-drop-icon">
+                <i class={item.icon}></i>
+              </span>
+              <span class="faq-drop-label">{item.question}</span>
+              <span class="faq-drop-chevron ms-auto">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </button>
+            <div id={`${item.id}body`} class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
+              <div class="faq-drop-inner">{item.answer}</div>
+            </div>
+          </div>
+        ))}
+      </div>
 
-				<!-- P2 -->
-				<div class="faq-drop" id="drop2">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop2body"
-						aria-expanded="false"
-						aria-controls="drop2body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-truck"></i>
-						</span>
-						<span class="faq-drop-label">¿Envían a toda la república?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop2body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Sí, enviamos a todos los estados de México. Los tiempos de entrega y el costo de flete dependen de tu ubicación y del volumen del pedido. Al cotizar te indicamos exactamente cuánto tiempo tomará y el detalle del envío.</div>
-					</div>
-				</div>
-
-				<!-- P3 -->
-				<div class="faq-drop" id="drop3">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop3body"
-						aria-expanded="false"
-						aria-controls="drop3body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-message-circle"></i>
-						</span>
-						<span class="faq-drop-label">¿Cómo solicito una cotización?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop3body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Muy sencillo: envíanos por <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Me+interesa+solicitar+una+cotizaci%C3%B3n.+%C2%BFQu%C3%A9+informaci%C3%B3n+necesitan+para+prepararla%3F" target="_blank" rel="noopener noreferrer" style="color: #6cace3; font-weight: 600;">WhatsApp</a>, teléfono o correo la lista de productos que necesitas (nombre, cantidad y presentación). Te respondemos con precios y disponibilidad en menos de 24 horas en días hábiles.</div>
-					</div>
-				</div>
-
-				<!-- P7 -->
-				<div class="faq-drop" id="drop7">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop7body"
-						aria-expanded="false"
-						aria-controls="drop7body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-credit-card"></i>
-						</span>
-						<span class="faq-drop-label">¿Aceptan pago con tarjeta?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop7body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Aceptamos transferencia bancaria y depósito. Para conocer los métodos de pago disponibles según tu pedido, <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Me+gustar%C3%ADa+saber+cu%C3%A1les+son+los+m%C3%A9todos+de+pago+disponibles+para+mis+pedidos." target="_blank" rel="noopener noreferrer" style="color: #6cace3; font-weight: 600;">contáctanos directamente</a> y te indicamos las opciones.</div>
-					</div>
-				</div>
-
-			</div>
-
-			<!-- Columna derecha -->
-			<div class="col-12 col-lg-6 d-flex flex-column gap-3">
-
-				<!-- P4 -->
-				<div class="faq-drop" id="drop4">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop4body"
-						aria-expanded="false"
-						aria-controls="drop4body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-repeat"></i>
-						</span>
-						<span class="faq-drop-label">¿Aceptan pedidos recurrentes?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop4body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Sí, trabajamos con varios clientes en esquemas de abastecimiento periódico — semanal, quincenal o mensual. Cuéntanos tu frecuencia y volumen habitual y te ofrecemos <strong>descuentos por volumen y condiciones preferenciales</strong> para pedidos continuos.</div>
-					</div>
-				</div>
-
-				<!-- P5 -->
-				<div class="faq-drop" id="drop5">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop5body"
-						aria-expanded="false"
-						aria-controls="drop5body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-file-text"></i>
-						</span>
-						<span class="faq-drop-label">¿Facturan?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop5body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Por supuesto. Emitimos CFDI 4.0 timbrado ante el SAT para todas tus compras. Solo compártenos tu RFC y datos fiscales al momento de pedir y te enviamos la factura electrónica a tu correo.</div>
-					</div>
-				</div>
-
-				<!-- P6 -->
-				<div class="faq-drop" id="drop6">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop6body"
-						aria-expanded="false"
-						aria-controls="drop6body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-help-circle"></i>
-						</span>
-						<span class="faq-drop-label">¿Venden al público en general?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop6body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Nuestro enfoque principal es B2B — empresas, hoteles, escuelas y comercios — pero atendemos pedidos de cualquier tamaño. Si eres particular y necesitas suministros, contáctanos y buscamos la mejor opción para ti.</div>
-					</div>
-				</div>
-
-				<!-- P8 -->
-				<div class="faq-drop" id="drop8">
-					<button
-						class="faq-drop-btn w-100 d-flex align-items-center gap-3 text-start"
-						data-bs-toggle="collapse"
-						data-bs-target="#drop8body"
-						aria-expanded="false"
-						aria-controls="drop8body"
-					>
-						<span class="faq-drop-icon">
-							<i class="fe fe-calendar"></i>
-						</span>
-						<span class="faq-drop-label">¿Dan crédito?</span>
-						<span class="faq-drop-chevron ms-auto">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-						</span>
-					</button>
-					<div id="drop8body" class="collapse faq-drop-body" data-bs-parent="#faqAccordion">
-						<div class="faq-drop-inner">Las condiciones de crédito se evalúan caso a caso. Si eres cliente frecuente y te interesa explorar esta opción, <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Soy+cliente+frecuente+y+me+interesa+explorar+las+condiciones+de+cr%C3%A9dito.+%C2%BFPodemos+platicarlo%3F" target="_blank" rel="noopener noreferrer" style="color: #6cace3; font-weight: 600;">háblanos por WhatsApp</a> y con gusto lo platicamos.</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
+    </div>
+  </div>
 </section>
 
 <style>

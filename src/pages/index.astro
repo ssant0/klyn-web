@@ -117,6 +117,7 @@ import FAQ from "../components/FAQ.astro";
       display: block;
       box-shadow: 0 8px 40px rgba(0,0,0,0.10);
     }
+
   </style>
 
   <!-- ═══════════════════════════════════
@@ -135,14 +136,14 @@ import FAQ from "../components/FAQ.astro";
     <!-- Dot grid -->
     <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.5px); background-size: 30px 30px; pointer-events: none;"></div>
     <!-- Glow blob -->
-    <div style="position: absolute; top: -80px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: rgba(108,172,227,0.15); filter: blur(80px); pointer-events: none;"></div>
+    <div class="hero-blob" style="position: absolute; top: -80px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: rgba(108,172,227,0.15); filter: blur(80px); pointer-events: none;"></div>
 
     <div class="container position-relative">
       <div class="row justify-content-center text-center">
         <div class="col-12 col-lg-8">
 
           <!-- Eyebrow -->
-          <div class="mb-4">
+          <div class="mb-4 hero-eyebrow">
             <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(250,182,10,0.18); color: #fab60a; padding: 6px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
               <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fab60a;"></span>
               Los Mochis, Sinaloa · Todo México
@@ -150,18 +151,18 @@ import FAQ from "../components/FAQ.astro";
           </div>
 
           <!-- Heading -->
-          <h1 class="fw-bold text-white mb-4" style="font-size: clamp(2.8rem, 6.5vw, 5rem); line-height: 1.04; letter-spacing: -0.035em;">
+          <h1 class="fw-bold text-white mb-4 hero-heading" style="font-size: clamp(2.8rem, 6.5vw, 5rem); line-height: 1.04; letter-spacing: -0.035em;">
             El aliado que tu<br>negocio necesita.
           </h1>
 
           <!-- Subtext -->
-          <p style="color: rgba(255,255,255,0.72); font-size: 1.15rem; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;">
+          <p class="hero-subtext" style="color: rgba(255,255,255,0.72); font-size: 1.15rem; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;">
             Limpieza, herramientas e insumos de oficina para empresas, hoteles,
             escuelas y comercios. Entregas en Los Mochis y envíos a todo México.
           </p>
 
           <!-- CTAs -->
-          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mb-10">
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mb-10 hero-ctas">
             <a
               href="/contacto"
               class="btn btn-light fw-bold lift"
@@ -179,7 +180,7 @@ import FAQ from "../components/FAQ.astro";
           </div>
 
           <!-- Stats -->
-          <div class="d-flex justify-content-center align-items-center gap-4">
+          <div class="d-flex justify-content-center align-items-center gap-4 hero-stats">
             <div class="d-flex flex-column align-items-center">
               <span class="hero-stat-num">200+</span>
               <span class="hero-stat-label">Clientes</span>

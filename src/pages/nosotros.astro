@@ -146,6 +146,7 @@ import Layout from "../layouts/Layout.astro";
       height: 42px;
       background: rgba(255,255,255,0.18);
     }
+
   </style>
 
   <!-- ═══════════════════════════════════
@@ -157,7 +158,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="col-12 col-lg-7">
 
           <!-- Eyebrow -->
-          <div class="mb-4">
+          <div class="mb-4 hero-eyebrow">
             <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(250,182,10,0.18); color: #fab60a; padding: 6px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
               <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fab60a;"></span>
               Quiénes somos
@@ -165,19 +166,19 @@ import Layout from "../layouts/Layout.astro";
           </div>
 
           <!-- Heading -->
-          <h1 class="fw-bold text-white mb-4" style="font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em;">
+          <h1 class="fw-bold text-white mb-4 hero-heading" style="font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em;">
             Tu proveedor de<br>confianza en Los Mochis.
           </h1>
 
           <!-- Subtext -->
-          <p style="color: rgba(255,255,255,0.78); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.65;">
+          <p class="hero-subtext" style="color: rgba(255,255,255,0.78); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.65;">
             Somos Klyn, una empresa sinaloense dedicada a abastecer a negocios
             con suministros de limpieza y papelería de calidad, con entregas
             puntuales y servicio personalizado.
           </p>
 
           <!-- Stats -->
-          <div class="d-flex justify-content-center align-items-center gap-4">
+          <div class="d-flex justify-content-center align-items-center gap-4 hero-stats">
             <div class="d-flex flex-column align-items-center">
               <span class="hero-stat-num">Los Mochis</span>
               <span class="hero-stat-label">Sede central</span>

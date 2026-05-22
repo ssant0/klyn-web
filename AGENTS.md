@@ -20,7 +20,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 ## Page structure
 
 - Layout: `src/layouts/Layout.astro` — navbar, footer, GTM (`GTM-MD6LZ974`), schema.org JSON-LD (WholesaleStore, Organization, WebSite), floating WhatsApp button.
-- `src/pages/links.astro` is **standalone** (no Layout, no navbar/footer, `noindex`). Has its own GTM + Bootstrap bundles.
+- `src/pages/links.astro` is **standalone** (no Layout, no navbar/footer). Has its own GTM + Bootstrap bundles.
 - Footer rendered via `<slot name="footer">` — can be overridden per page.
 - Active route in Navbar: exact match for `/`, `startsWith` for others.
 - Pages: `/` · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links`

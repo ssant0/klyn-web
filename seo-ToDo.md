@@ -27,7 +27,7 @@
 
 ## 🟡 Medio (1 mes)
 
-- [ ] **`links.astro` en sitemap pero es `noindex`** — Inconsistente. Excluir del sitemap o quitar noindex.
+- [x] **`links.astro` tenía `noindex` inconsistente con sitemap** — Cambiado a `index, follow`.
 - [ ] **Sin páginas de producto individuales** — `/productos` solo tiene categorías. Sin URLs únicas para "cloro industrial", "papel bond", etc. — se pierde long-tail SEO.
 - [ ] **Misma OG image en todas las páginas** — Usar OG image específica por página para mejor preview en redes.
 - [ ] **Inline event handlers** (`onmouseover`, `onmouseout`) — Violan CSP y son mala práctica.

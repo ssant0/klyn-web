@@ -23,7 +23,7 @@
 
 - [ ] **H1 sin keyword principal** — Homepage: `"El aliado que tu negocio necesita."` — no incluye "suministros de limpieza", "proveedor B2B", "Los Mochis".
 - [ ] **Sin blog / contenido** — 6 páginas total. Sin capacidad de rankear keywords informativas.
-- [ ] **Sin `x-default` hreflang** — Solo `es-MX` presente. Agregar `x-default` apuntando a la misma URL.
+- [x] **`x-default` hreflang** — Agregado `<link rel="alternate" hreflang="x-default">` en Layout
 
 ## 🟡 Medio (1 mes)
 

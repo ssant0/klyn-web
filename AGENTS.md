@@ -54,6 +54,14 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - WhatsApp: `https://wa.me/526681629654` · Tel: `+526681629654` · Email: `contacto@klyn.com.mx`
 - Social: Facebook / Instagram (`@klyn.com.mx`) / LinkedIn / Google Maps
 
+## Content Strategy
+
+- `seo-ToDo.md` tiene el plan de 12 artículos (3 completados, 9 pendientes).
+- Patrón de contenido blog: frontmatter → `<div class="key-takeaway">` (respuesta directa, < 50 palabras, extractable por AI) → H2/H3 con tablas comparativas y listas → FAQ inline (3-5 Q&A) → Conclusión + CTA WhatsApp.
+- Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
+- **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
+- **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; Article + BreadcrumbList schema vía BlogLayout.
+
 ## Misc
 
 - `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `package-lock.json` also present.

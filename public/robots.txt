@@ -1,4 +1,8 @@
+# AI crawlers — allowed via blanket Allow below
 User-agent: *
 Allow: /
+
+# AI search readiness
+Allow: /llms.txt
 
 Sitemap: https://www.klyn.com.mx/sitemap-index.xml

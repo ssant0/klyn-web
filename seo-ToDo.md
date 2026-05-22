@@ -35,7 +35,7 @@
 
 ## 🟢 Bajo (nice to have)
 
-- [ ] **Sin llms.txt** — Para AI search readiness (GEO / AI Overviews).
+- [x] **llms.txt** — Creado `public/llms.txt` con site info, páginas, categorías, contacto y horarios
 - [ ] **Sin Google Business Profile visible en la web** — Conectar reseñas y SEO local.
 - [ ] **Sin testimonios / casos de éxito** — Falta social proof (E-E-A-T).
 - [ ] **Sin `Product` schema** — Categorías no tienen datos estructurados de producto.

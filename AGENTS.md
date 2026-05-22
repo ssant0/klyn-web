@@ -20,10 +20,21 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 ## Page structure
 
 - Layout: `src/layouts/Layout.astro` — navbar, footer, GTM (`GTM-MD6LZ974`), schema.org JSON-LD (WholesaleStore, Organization, WebSite), floating WhatsApp button.
+- Blog layout: `src/layouts/BlogLayout.astro` — wraps Layout, adds Article + BreadcrumbList schema per post.
 - `src/pages/links.astro` is **standalone** (no Layout, no navbar/footer). Has its own GTM + Bootstrap bundles.
 - Footer rendered via `<slot name="footer">` — can be overridden per page.
 - Active route in Navbar: exact match for `/`, `startsWith` for others.
-- Pages: `/` · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links`
+- Pages: `/` · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links` · `/blog/` · `/blog/posts/[slug]/`
+
+## Blog
+
+- Content collection built with `@astrojs/mdx` + `astro/loaders` (glob loader).
+- Posts: `src/content/blog/*.mdx` — frontmatter: title, description, datePublished, author, tags, category.
+- `src/content.config.ts` defines the blog collection schema.
+- Blog post page: `src/pages/blog/posts/[slug].astro` — renders MDX with `<Content />` via `render()` from `astro:content`.
+- Blog listing: `src/pages/blog/index.astro` — sorted by date desc.
+- On each post: Article JSON-LD + BreadcrumbList, SEO meta, OG/Twitter, canonical, hreflang es-MX + x-default.
+- Blog link added to Navbar and Footer.
 
 ## Conventions
 

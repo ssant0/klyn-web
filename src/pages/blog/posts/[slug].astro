@@ -1,0 +1,73 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogLayout
+  title={`${post.data.title} - Blog Klyn`}
+  description={post.data.description}
+  article={{
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.datePublished.toISOString(),
+    author: post.data.author,
+    image: post.data.image,
+    tags: post.data.tags,
+  }}
+>
+  <section class="py-10 py-md-13" style="background: #f5f9ff;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <p class="small text-body-secondary mb-2">
+            {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {post.data.tags && post.data.tags.length > 0 && (
+              <> · {post.data.tags.map((t) => <span class="badge bg-light text-dark me-1">{t}</span>)}</>
+            )}
+          </p>
+          <h1 class="fw-bold text-dark mb-4" style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.02em;">
+            {post.data.title}
+          </h1>
+
+          <div class="blog-content">
+            <Content />
+          </div>
+
+          <hr class="my-6" />
+
+          <div class="text-center">
+            <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-5" style="border-radius: 999px;">
+              <i class="fe fe-arrow-left me-2"></i> Volver al blog
+            </a>
+            <a href="/contacto" class="btn fw-bold text-white ms-2 rounded-pill px-5" style="background-color: #6cace3; border-radius: 999px;">
+              Cotizar productos <i class="fe fe-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BlogLayout>
+
+<style is:global>
+  .blog-content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #1a2e4a; }
+  .blog-content h3 { font-size: 1.2rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #1a2e4a; }
+  .blog-content p { font-size: 1rem; line-height: 1.8; color: #6c757d; margin-bottom: 1.25rem; }
+  .blog-content ul, .blog-content ol { margin-bottom: 1.25rem; color: #6c757d; line-height: 1.8; }
+  .blog-content li { margin-bottom: 0.5rem; }
+  .blog-content a { color: #6cace3; font-weight: 600; }
+  .blog-content blockquote { border-left: 4px solid #6cace3; padding-left: 1rem; margin: 1.5rem 0; color: #5a6880; font-style: italic; }
+  .blog-content .key-takeaway { background: rgba(108,172,227,0.08); border-radius: 1rem; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-left: 4px solid #6cace3; }
+  .blog-content .key-takeaway p:last-child { margin-bottom: 0; }
+</style>

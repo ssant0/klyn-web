@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.datePublished.getTime() - a.data.datePublished.getTime());
+---
+
+<Layout
+  title="Blog de Suministros de Limpieza y Papelería - Klyn"
+  description="Artículos, guías y consejos sobre suministros de limpieza, papelería y abastecimiento B2B para empresas en México."
+  bodyClass=""
+>
+  <section class="py-10 py-md-13" style="background: #f5f9ff;">
+    <div class="container">
+      <div class="row mb-8">
+        <div class="col-12 col-lg-8">
+          <h1 class="fw-bold text-dark mb-3" style="font-size: clamp(2rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+            Blog Klyn
+          </h1>
+          <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+            Guías, consejos y recursos sobre suministros de limpieza, papelería y abastecimiento B2B para tu negocio.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        {posts.length === 0 && (
+          <div class="col-12 text-center py-10">
+            <p class="text-body-secondary">Próximamente artículos. Vuelve pronto.</p>
+          </div>
+        )}
+        {posts.map((post) => (
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href={`/blog/posts/${post.id}/`} style="text-decoration: none; color: inherit;">
+              <div class="card h-100" style="border-radius: 1rem; border: none; box-shadow: 0 2px 18px rgba(108,172,227,0.1); transition: transform 0.22s ease, box-shadow 0.22s ease;">
+                <div class="card-body p-5">
+                  <p class="small text-body-secondary mb-2">
+                    {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </p>
+                  <h2 class="fw-bold text-dark mb-2" style="font-size: 1.15rem;">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-body-secondary small mb-0">
+                    {post.data.description}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

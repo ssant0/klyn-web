@@ -37,6 +37,9 @@ const isActive = (href: string) =>
           <a class={`nav-link${isActive("/productos") ? " active" : ""}`} href="/productos" aria-current={isActive("/productos") ? "page" : undefined}>Productos</a>
         </li>
         <li class="nav-item">
+          <a class={`nav-link${isActive("/blog") ? " active" : ""}`} href="/blog" aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
+        </li>
+        <li class="nav-item">
           <a class={`nav-link${isActive("/contacto") ? " active" : ""}`} href="/contacto" aria-current={isActive("/contacto") ? "page" : undefined}>Contacto</a>
         </li>
       </ul>

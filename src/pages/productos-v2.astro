@@ -1,0 +1,1258 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FAQ from "../components/FAQ.astro";
+---
+
+<Layout
+  title="Catálogo Interactivo de Productos — Klyn"
+  description="Explora nuestro catálogo de limpieza, higiene, herramientas y papelería. Filtra productos, selecciona los que necesitas y recibe una cotización por WhatsApp."
+  bodyClass=""
+>
+  <script slot="head-schema" type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.klyn.com.mx/productos-v2#webpage",
+    "url": "https://www.klyn.com.mx/productos-v2",
+    "name": "Catálogo Interactivo — Klyn",
+    "description": "Catálogo de suministros de limpieza, herramientas y papelería para empresas. Cloro, detergentes, trapeadores, papel bond y más.",
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
+    "provider": { "@id": "https://www.klyn.com.mx/#business" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
+        { "@type": "ListItem", "position": 2, "name": "Productos", "item": "https://www.klyn.com.mx/productos-v2" }
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Catálogo Klyn",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "item": { "@type": "OfferCatalog", "name": "Químicos de Limpieza" } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "OfferCatalog", "name": "Herramientas de Limpieza" } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "OfferCatalog", "name": "Higiénicos y Desechables" } },
+        { "@type": "ListItem", "position": 4, "item": { "@type": "OfferCatalog", "name": "Papelería y Oficina" } }
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --brand-blue: #6cace3;
+      --brand-gold: #fab60a;
+      --brand-dark: #1a2e4a;
+    }
+
+    .hero-stat-num {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--brand-gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+      margin-top: 5px;
+    }
+    .hero-divider {
+      width: 1px;
+      height: 42px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .product-card {
+      border-radius: 1rem !important;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      border: none;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-card-blue {
+      box-shadow: 0 2px 18px rgba(108,172,227,0.10);
+      border-left: 4px solid var(--brand-blue) !important;
+    }
+    .product-card-blue:hover {
+      box-shadow: 0 10px 32px rgba(108,172,227,0.22) !important;
+    }
+    .product-card-gold {
+      box-shadow: 0 2px 18px rgba(250,182,10,0.10);
+      border-left: 4px solid var(--brand-gold) !important;
+    }
+    .product-card-gold:hover {
+      box-shadow: 0 10px 32px rgba(250,182,10,0.22) !important;
+    }
+
+    .product-table td {
+      padding: 0.5rem 0 !important;
+      border-bottom: 1px solid #f0f4f8 !important;
+      vertical-align: middle;
+    }
+    .product-table tr:last-child td {
+      border-bottom: none !important;
+    }
+
+    .deco-num {
+      position: absolute;
+      top: -0.5rem;
+      right: 0;
+      font-size: 9rem;
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .product-check {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--brand-blue);
+    }
+
+    .product-row {
+      transition: background 0.15s;
+    }
+    .product-row:hover {
+      background: rgba(108,172,227,0.04);
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9aa8b9;
+      pointer-events: none;
+    }
+    .search-clear {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #9aa8b9;
+      cursor: pointer;
+      padding: 4px 8px;
+      display: none;
+    }
+    .search-clear:hover { color: var(--brand-dark); }
+    .search-clear.active { display: block; }
+
+    .quote-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1050;
+      background: #fff;
+      border-top: 2px solid var(--brand-blue);
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.10);
+      padding: 12px 0;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .quote-bar.active {
+      transform: translateY(0);
+    }
+
+    .product-count-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(108,172,227,0.12);
+      color: var(--brand-blue);
+      border-radius: 999px;
+      padding: 2px 10px;
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    .no-results.active {
+      display: block;
+    }
+
+    .tab-count {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(108,172,227,0.12);
+      color: var(--brand-blue);
+      border-radius: 999px;
+      padding: 1px 8px;
+      margin-left: 6px;
+    }
+    .nav-tabs .nav-link.active .tab-count {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .nav-tabs .nav-link {
+      border: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #5a6880;
+      padding: 10px 20px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-tabs .nav-link:hover {
+      background: rgba(108,172,227,0.08);
+      color: var(--brand-blue);
+    }
+    .nav-tabs .nav-link.active {
+      background: var(--brand-blue);
+      color: #fff;
+    }
+    .nav-tabs {
+      border-bottom: none;
+      gap: 4px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-pane {
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .tab-pane.active {
+      opacity: 1;
+    }
+
+    .select-all-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brand-blue);
+      background: none;
+      border: 1px dashed rgba(108,172,227,0.3);
+      border-radius: 6px;
+      padding: 3px 12px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .select-all-btn:hover {
+      background: rgba(108,172,227,0.06);
+      border-color: var(--brand-blue);
+    }
+
+    @media (max-width: 575.98px) {
+      .quote-bar .btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+
+  <section
+    style="
+      background: linear-gradient(150deg, #0d2341 0%, #1e4a7c 50%, #6cace3 100%);
+      margin-top: -87px;
+      padding-top: 150px;
+      padding-bottom: 72px;
+      position: relative;
+      overflow: hidden;
+    "
+  >
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1.5px); background-size: 30px 30px; pointer-events: none;"></div>
+    <div class="hero-blob" style="position: absolute; top: -80px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: rgba(108,172,227,0.15); filter: blur(80px); pointer-events: none;"></div>
+
+    <div class="container position-relative">
+      <div class="row justify-content-center text-center">
+        <div class="col-12 col-lg-7">
+          <div class="mb-4 hero-eyebrow">
+            <span style="display: inline-flex; align-items: center; gap: 8px; background: rgba(250,182,10,0.18); color: #fab60a; padding: 6px 16px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #fab60a;"></span>
+              Catálogo Klyn
+            </span>
+          </div>
+
+          <h1 class="fw-bold text-white mb-4 hero-heading" style="font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em;">
+            Nuestros<br>productos.
+          </h1>
+
+          <p class="hero-subtext" style="color: rgba(255,255,255,0.72); font-size: 1.1rem; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.65;">
+            Suministros de limpieza, higiene, herramientas y papelería
+            para mantener tu negocio en operación. Cotización a tu medida.
+          </p>
+
+          <div class="d-flex justify-content-center align-items-center gap-4 hero-stats">
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">4</span>
+              <span class="hero-stat-label">Categorías</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">121+</span>
+              <span class="hero-stat-label">Productos</span>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="d-flex flex-column align-items-center">
+              <span class="hero-stat-num">MX</span>
+              <span class="hero-stat-label">Todo México</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f5f9ff; padding-top: 32px; padding-bottom: 0;">
+    <div class="container">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="search-wrapper">
+            <i class="fe fe-search search-icon"></i>
+            <input
+              type="text"
+              id="productSearch"
+              class="form-control form-control-lg"
+              style="border-radius: 999px; padding-left: 44px; padding-right: 44px; border: 2px solid #e4edf7; background: #fff; font-size: 0.95rem;"
+              placeholder="Buscar productos..."
+              autocomplete="off"
+            >
+            <button type="button" id="searchClear" class="search-clear" aria-label="Limpiar búsqueda">
+              <i class="fe fe-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-7">
+          <div class="d-flex flex-wrap align-items-center gap-2 justify-content-md-end">
+            <span id="searchCount" class="text-body-secondary" style="font-size: 0.85rem;"></span>
+            <a href="/contacto" class="btn fw-bold lift text-white ms-md-2" style="background-color: #6cace3; border-radius: 999px; padding: 10px 24px; font-size: 0.85rem;">
+              <i class="fe fe-file-text me-1"></i> Cotización general
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #f5f9ff; padding-top: 20px; padding-bottom: 0;">
+    <div class="container">
+      <ul class="nav nav-tabs" id="productTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab-quimicos" data-bs-toggle="tab" data-bs-target="#pane-quimicos" type="button" role="tab" aria-controls="pane-quimicos" aria-selected="true">
+            🧴 Químicos <span class="tab-count">32</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-herramientas" data-bs-toggle="tab" data-bs-target="#pane-herramientas" type="button" role="tab" aria-controls="pane-herramientas" aria-selected="false">
+            🧹 Herramientas <span class="tab-count">52</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-higienicos" data-bs-toggle="tab" data-bs-target="#pane-higienicos" type="button" role="tab" aria-controls="pane-higienicos" aria-selected="false">
+            🧻 Higiénicos <span class="tab-count">35</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-papeleria" data-bs-toggle="tab" data-bs-target="#pane-papeleria" type="button" role="tab" aria-controls="pane-papeleria" aria-selected="false">
+            📋 Papelería <span class="tab-count">10</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="background: #f5f9ff; padding-top: 32px; padding-bottom: 0;">
+    <div class="container">
+      <div class="tab-content" id="productTabsContent">
+
+        <!-- ═══════════════════════════════════
+             PANE: QUÍMICOS
+        ═══════════════════════════════════ -->
+        <div class="tab-pane fade show active" id="pane-quimicos" role="tabpanel" aria-labelledby="tab-quimicos" data-category="quimicos">
+          <div class="row mb-8 position-relative">
+            <div class="col-12 col-lg-8">
+              <span
+                class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
+                style="background: rgba(108,172,227,0.12); color: #6cace3; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
+              >
+                <span style="font-size: 1rem;">🧴</span>
+                Químicos de Limpieza
+              </span>
+              <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+                Limpiadores, desinfectantes y detergentes profesionales.
+              </h2>
+              <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+                Productos químicos de uso profesional para mantener tus instalaciones limpias y seguras.
+              </p>
+            </div>
+            <span class="deco-num d-none d-lg-block" style="color: rgba(108,172,227,0.06);">01</span>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- Limpieza General -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🧹</span>
+                      Limpieza General
+                    </h6>
+                    <span class="product-count-badge">6</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Aceite para Mopa" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Aceite para Mopa</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fabuloso" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Fabuloso</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Lavatrastes" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Lavatrastes</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Limpiador Multiusos" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Limpiador Multiusos</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Pinol" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Pinol</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Repuestos Airwick" data-category="Químicos" data-subcategory="Limpieza General"></td><td>Repuestos Airwick</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desinfección y Sanitización -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🧼</span>
+                      Desinfección y Sanitización
+                    </h6>
+                    <span class="product-count-badge">9</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Aromatizante Ambiental" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Aromatizante Ambiental</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Aromatizante Weise Aerosol 400 ml" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Aromatizante Weise Aerosol 400 ml</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cloro" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Cloro</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Desinfectante Lysol" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Desinfectante Lysol</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Lyson Aerosol" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Lyson Aerosol</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Pastilla de cloro" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Pastilla de cloro</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Pinol Lechoso" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Pinol Lechoso</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Desinfectante Cloralex" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Toalla Desinfectante Cloralex</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Desinfectante MM" data-category="Químicos" data-subcategory="Desinfección y Sanitización"></td><td>Toalla Desinfectante MM</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desengrasantes -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🍳</span>
+                      Desengrasantes
+                    </h6>
+                    <span class="product-count-badge">2</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Desengrasante" data-category="Químicos" data-subcategory="Desengrasantes"></td><td>Desengrasante</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Desengrasante para Cocina" data-category="Químicos" data-subcategory="Desengrasantes"></td><td>Desengrasante para Cocina</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lavandería -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🫧</span>
+                      Lavandería
+                    </h6>
+                    <span class="product-count-badge">10</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente Arcoíris 9Kg" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente Arcoíris 9Kg</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente Blanca Nieves 10Kg" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente Blanca Nieves 10Kg</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente en Polvo" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente en Polvo</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente Liquido" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente Liquido</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente Ruth 10Kg" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente Ruth 10Kg</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Detergente Util 11Kg" data-category="Químicos" data-subcategory="Lavandería"></td><td>Detergente Util 11Kg</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Jabón en Polvo Arcoíris 9kg" data-category="Químicos" data-subcategory="Lavandería"></td><td>Jabón en Polvo Arcoíris 9kg</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Jabón Zote" data-category="Químicos" data-subcategory="Lavandería"></td><td>Jabón Zote</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Jabón Zote Caja 25pzs 400g" data-category="Químicos" data-subcategory="Lavandería"></td><td>Jabón Zote Caja 25pzs 400g</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Suavizante de telas" data-category="Químicos" data-subcategory="Lavandería"></td><td>Suavizante de telas</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Especializados -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🪳</span>
+                      Especializados
+                    </h6>
+                    <span class="product-count-badge">2</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Mata Cucarachas Urbano" data-category="Químicos" data-subcategory="Especializados"></td><td>Mata Cucarachas Urbano</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Mata Moscos Urbano" data-category="Químicos" data-subcategory="Especializados"></td><td>Mata Moscos Urbano</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cuidado de Baños -->
+            <div class="col-12 col-md-6 col-lg-4 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🚿</span>
+                      Cuidado de Baños
+                    </h6>
+                    <span class="product-count-badge">1</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Pastillas Harpic" data-category="Químicos" data-subcategory="Cuidado de Baños"></td><td>Pastillas Harpic</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             PANE: HERRAMIENTAS
+        ═══════════════════════════════════ -->
+        <div class="tab-pane fade" id="pane-herramientas" role="tabpanel" aria-labelledby="tab-herramientas" data-category="herramientas">
+          <div class="row mb-8 position-relative">
+            <div class="col-12 col-lg-8">
+              <span
+                class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
+                style="background: rgba(250,182,10,0.14); color: #c98b00; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
+              >
+                <span style="font-size: 1rem;">🧹</span>
+                Herramientas de Limpieza
+              </span>
+              <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+                Equipo y herramientas para la limpieza profesional.
+              </h2>
+              <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+                Todo el equipo que tu personal de limpieza necesita para operar con eficiencia.
+              </p>
+            </div>
+            <span class="deco-num d-none d-lg-block" style="color: rgba(250,182,10,0.07);">02</span>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- Mopas y Trapeadores -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧺</span>
+                      Mopas y Trapeadores
+                    </h6>
+                    <span class="product-count-badge">10</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Base para Mapeador 60cm Castor" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Base para Mapeador 60cm Castor</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Base para Mapeador 90cm Castor" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Base para Mapeador 90cm Castor</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Funda Mopa 60cm" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Funda Mopa 60cm</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Funda Mopa 90cm" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Funda Mopa 90cm</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador Hilo No 6 de Colores" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador Hilo No 6 de Colores</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador Microfibra Rojo Castor" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador Microfibra Rojo Castor</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador Tiras Microfibra/Microseda" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador Tiras Microfibra/Microseda</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador de Microseda Forjado Baston Lamina" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador de Microseda Forjado Baston Lamina</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador de Tela Microfibra Amarillo Baston Madera" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador de Tela Microfibra Amarillo Baston Madera</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Trapeador de Tela Microfibra Verde Baston Madera" data-category="Herramientas" data-subcategory="Mopas y Trapeadores"></td><td>Trapeador de Tela Microfibra Verde Baston Madera</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Escobas y Cepillos -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧹</span>
+                      Escobas y Cepillos
+                    </h6>
+                    <span class="product-count-badge">16</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cepillo Tipo Plancha" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Cepillo Tipo Plancha</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cepillo WC Bola con Base" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Cepillo WC Bola con Base</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cepillo WC Bola sin Base" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Cepillo WC Bola sin Base</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cepillo para Baño" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Cepillo para Baño</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba 6 Hilos Mijo Roja" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba 6 Hilos Mijo Roja</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba 6 Hilos Mixta Azul" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba 6 Hilos Mixta Azul</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba 6 Hilos Plastico Virgen" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba 6 Hilos Plastico Virgen</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba Coco Popote Azul" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba Coco Popote Azul</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba Coco Premium Plata" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba Coco Premium Plata</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba Espiga 8 Hilos" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba Espiga 8 Hilos</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba Metalica 20 Dientes Curva" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba Metalica 20 Dientes Curva</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba Plástico" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba Plástico</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Escoba de Plástico" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Escoba de Plástico</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Recogedor Plastico Perico" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Recogedor Plastico Perico</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Recogedor de Lamina" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Recogedor de Lamina</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Recogedor de Lamina sm" data-category="Herramientas" data-subcategory="Escobas y Cepillos"></td><td>Recogedor de Lamina sm</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contenedores -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🪣</span>
+                      Contenedores
+                    </h6>
+                    <span class="product-count-badge">18</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cesto de Plástico Sablon" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cesto de Plástico Sablon</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta Exprimidora Jofel" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta Exprimidora Jofel</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta Exprimidora Perico" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta Exprimidora Perico</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta Industrial 19L" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta Industrial 19L</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta con Escurridor" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta con Escurridor</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta con Exprimidor 20L Amarilla Oval" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta con Exprimidor 20L Amarilla Oval</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta con Exprimidor 32L Oval" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta con Exprimidor 32L Oval</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta con Exprimidor 35L Amarilla Rubermaind" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta con Exprimidor 35L Amarilla Rubermaind</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Cubeta con Exprimidor Klintek 8L" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Cubeta con Exprimidor Klintek 8L</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Despachador Toalla Interdoblada Largo Humo Oval" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Despachador Toalla Interdoblada Largo Humo Oval</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Despachador de Papel Higiénico Jumbo Ecopro Humo Oval" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Despachador de Papel Higiénico Jumbo Ecopro Humo Oval</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Despachador de Papel Higiénico Junior Humo Oval (DV009)" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Despachador de Papel Higiénico Junior Humo Oval (DV009)</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Despachador de Toalla Rollo Palanca Humo Oval" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Despachador de Toalla Rollo Palanca Humo Oval</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Dispensador Toalla Auto Corte Compacto Greymoon" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Dispensador Toalla Auto Corte Compacto Greymoon</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Dispensador Toalla Auto Corte Negra Greymoon" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Dispensador Toalla Auto Corte Negra Greymoon</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Dispensador de Papel Higiénico Greymoon" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Dispensador de Papel Higiénico Greymoon</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Dispensador de Papel Higiénico Greymoon Zero Humo" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Dispensador de Papel Higiénico Greymoon Zero Humo</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Jabonera Manual Uso Rudo Humo con Negro de 1L OVAL" data-category="Herramientas" data-subcategory="Contenedores"></td><td>Jabonera Manual Uso Rudo Humo con Negro de 1L OVAL</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Paños y Fibras -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧻</span>
+                      Paños y Fibras
+                    </h6>
+                    <span class="product-count-badge">8</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fibra Verde Scotch" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Fibra Verde Scotch</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fibra Verde con Esponja 8x12cm" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Fibra Verde con Esponja 8x12cm</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fibra Verde con Esponja Gv 8x12cm" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Fibra Verde con Esponja Gv 8x12cm</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fibra con Esponja 2pzs" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Fibra con Esponja 2pzs</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Fibra con Esponja 3M P-94" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Fibra con Esponja 3M P-94</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Franela" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Franela</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Rollo Scott Azul" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Rollo Scott Azul</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Microfibra Azul" data-category="Herramientas" data-subcategory="Paños y Fibras"></td><td>Toalla Microfibra Azul</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             PANE: HIGIÉNICOS
+        ═══════════════════════════════════ -->
+        <div class="tab-pane fade" id="pane-higienicos" role="tabpanel" aria-labelledby="tab-higienicos" data-category="higienicos">
+          <div class="row mb-8 position-relative">
+            <div class="col-12 col-lg-8">
+              <span
+                class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
+                style="background: rgba(250,182,10,0.14); color: #c98b00; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
+              >
+                <span style="font-size: 1rem;">🧻</span>
+                Higiénicos y Desechables
+              </span>
+              <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+                Papel, bolsas y artículos desechables para tu negocio.
+              </h2>
+              <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+                Insumos de higiene, cuidado personal y papel institucional para empresas.
+              </p>
+            </div>
+            <span class="deco-num d-none d-lg-block" style="color: rgba(250,182,10,0.07);">03</span>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- Bolsas -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🗑️</span>
+                      Bolsas
+                    </h6>
+                    <span class="product-count-badge">16</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Basura 210pzs 60x68 Blanca" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Basura 210pzs 60x68 Blanca</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Camiseta Grande" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Camiseta Grande</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Camiseta Jumbo #6" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Camiseta Jumbo #6</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Negra 50x70" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Negra 50x70</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Negra 70+40 x 150" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Negra 70+40 x 150</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Negra 70x90" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Negra 70x90</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Negra Jumbo" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Negra Jumbo</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Natural 24x24" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Natural 24x24</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Natural 35x47" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Natural 35x47</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Natural 40x48" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Natural 40x48</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Negra 24x24" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Negra 24x24</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Negra 30x37" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Negra 30x37</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Negra 35x47" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Negra 35x47</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa Rollo Negra 40x48" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa Rollo Negra 40x48</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Bolsa de Helado 10x25" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>Bolsa de Helado 10x25</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="bolsa negra 70+30*120" data-category="Higiénicos" data-subcategory="Bolsas"></td><td>bolsa negra 70+30*120</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Papel Institucional -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧻</span>
+                      Papel Institucional
+                    </h6>
+                    <span class="product-count-badge">13</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="FAPSA Eco K160 C/6 Toalla en Rollo Caja" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>FAPSA Eco K160 C/6 Toalla en Rollo Caja</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="FAPSA Eco K2250 8/250 Toalla Inter Caja" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>FAPSA Eco K2250 8/250 Toalla Inter Caja</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="FAPSA Pro FC10 Blanca C/6 Fluido Centrico Toalla Rollo" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>FAPSA Pro FC10 Blanca C/6 Fluido Centrico Toalla Rollo</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Papel Higiénico DALIA 160m HD 24/4" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Papel Higiénico DALIA 160m HD 24/4</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Papel Higiénico FAPSA 180m 12pzs" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Papel Higiénico FAPSA 180m 12pzs</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Papel Higiénico LEVEL PRO 350 48/1 Individual" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Papel Higiénico LEVEL PRO 350 48/1 Individual</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Papel higiénico Dalia 180m caja con 12pzs" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Papel higiénico Dalia 180m caja con 12pzs</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Interdoblada Dalitas c/12" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla Interdoblada Dalitas c/12</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Interdoblada Dalitas c/20" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla Interdoblada Dalitas c/20</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Interdoblada FAPSA TI2100 c/20" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla Interdoblada FAPSA TI2100 c/20</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla Interdoblada FAPSA TI250 16/250" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla Interdoblada FAPSA TI250 16/250</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla en Rollo FAPSA TR180 6pzs" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla en Rollo FAPSA TR180 6pzs</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Toalla interdoblada Dalia 2000pzs" data-category="Higiénicos" data-subcategory="Papel Institucional"></td><td>Toalla interdoblada Dalia 2000pzs</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cuidado Personal -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧴</span>
+                      Cuidado Personal
+                    </h6>
+                    <span class="product-count-badge">2</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Jabón Barra Eco" data-category="Higiénicos" data-subcategory="Cuidado Personal"></td><td>Jabón Barra Eco</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Shampoo p. Manos" data-category="Higiénicos" data-subcategory="Cuidado Personal"></td><td>Shampoo p. Manos</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seguridad y EPP -->
+            <div class="col-12 col-md-6 col-lg-3 subcategory-card">
+              <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧤</span>
+                      Seguridad y EPP
+                    </h6>
+                    <span class="product-count-badge">2</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Guante Latex Rojo Domestico" data-category="Higiénicos" data-subcategory="Seguridad y EPP"></td><td>Guante Latex Rojo Domestico</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Raidolitos 10 piezas" data-category="Higiénicos" data-subcategory="Seguridad y EPP"></td><td>Raidolitos 10 piezas</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════
+             PANE: PAPELERÍA
+        ═══════════════════════════════════ -->
+        <div class="tab-pane fade" id="pane-papeleria" role="tabpanel" aria-labelledby="tab-papeleria" data-category="papeleria">
+          <div class="row mb-8 position-relative">
+            <div class="col-12 col-lg-8">
+              <span
+                class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
+                style="background: rgba(108,172,227,0.12); color: #6cace3; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
+              >
+                <span style="font-size: 1rem;">📋</span>
+                Papelería y Oficina
+              </span>
+              <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+                Todo lo que necesitas en el escritorio.
+              </h2>
+              <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+                Insumos de papelería para mantener tu oficina funcionando sin interrupciones.
+              </p>
+            </div>
+            <span class="deco-num d-none d-lg-block" style="color: rgba(108,172,227,0.06);">04</span>
+          </div>
+
+          <div class="row g-4">
+
+            <!-- Papel y Sustratos -->
+            <div class="col-12 col-md-6 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">📄</span>
+                      Papel y Sustratos
+                    </h6>
+                    <span class="product-count-badge">3</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Hoja Blanca Bond Tamaño Carta 500pzs" data-category="Papelería" data-subcategory="Papel y Sustratos"></td><td>Hoja Blanca Bond Tamaño Carta 500pzs</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Hoja Blanca Fotobond" data-category="Papelería" data-subcategory="Papel y Sustratos"></td><td>Hoja Blanca Fotobond</td></tr>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Hoja Opalina" data-category="Papelería" data-subcategory="Papel y Sustratos"></td><td>Hoja Opalina</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Escritorio y Presentaciones -->
+            <div class="col-12 col-md-6 subcategory-card">
+              <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                      <span class="d-inline-flex align-items-center justify-content-center rounded-3" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">✏️</span>
+                      Escritorio y Presentaciones
+                    </h6>
+                    <span class="product-count-badge">1</span>
+                  </div>
+                  <div class="flex-grow-1">
+                    <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                      <tbody>
+                        <tr class="product-row"><td style="width:32px"><input type="checkbox" class="product-check" data-name="Pizarron de corcho 60x90" data-category="Papelería" data-subcategory="Escritorio y Presentaciones"></td><td>Pizarron de corcho 60x90</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="select-all-btn mt-2 w-100" type="button">Seleccionar todos</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="no-results" id="noResults">
+        <div class="py-8">
+          <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🔍</span>
+          <h4 class="fw-bold text-dark mb-2">No encontramos productos con ese nombre</h4>
+          <p class="text-body-secondary mb-4">Intenta con otras palabras o contáctanos y te ayudamos a encontrar lo que necesitas.</p>
+          <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Estaba+buscando+un+producto+en+su+cat%C3%A1logo+pero+no+lo+encontr%C3%A9.+%C2%BFMe+pueden+ayudar%3F" target="_blank" rel="noopener noreferrer" class="btn fw-bold lift text-white" style="background-color: #6cace3; border-radius: 999px; padding: 12px 28px;">
+            <i class="fe fe-message-circle me-2"></i> Preguntar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ pageUrl="https://www.klyn.com.mx/productos-v2" />
+
+  <section style="background: #f5f9ff; border-top: 1px solid #e4edf7; border-bottom: 1px solid #e4edf7;">
+    <div class="container py-9 py-md-11">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-7">
+          <p class="mb-2" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #6cace3;">
+            ¿No ves lo que buscas?
+          </p>
+          <h3 class="fw-bold text-dark mb-3" style="font-size: 1.65rem; letter-spacing: -0.015em;">
+            Pregúntanos. Probablemente lo tenemos.
+          </h3>
+          <p class="text-body-secondary mb-0" style="max-width: 440px;">
+            Este catálogo es una muestra de nuestros productos más solicitados.
+            Si necesitas algo específico, contáctanos y buscamos la solución para ti.
+          </p>
+        </div>
+        <div class="col-12 col-md-5 mt-6 mt-md-0 text-md-end">
+          <a
+            href="/contacto"
+            class="btn btn-lg fw-bold lift text-white"
+            style="background-color: #6cace3; border-radius: 999px; padding: 14px 32px;"
+          >
+            Solicitar cotización <i class="fe fe-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    style="
+      background: linear-gradient(150deg, #0d2341 0%, #1e4a7c 55%, #6cace3 100%);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    "
+  >
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px); background-size: 32px 32px; pointer-events: none;"></div>
+
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-7 text-center">
+          <p class="mb-4" style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #fab60a;">
+            100% personalizado
+          </p>
+          <h2 class="fw-bold text-white mb-4" style="font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.025em; line-height: 1.15;">
+            Recibe una cotización personalizada para tu negocio.
+          </h2>
+          <p class="mb-8" style="color: rgba(255,255,255,0.68); font-size: 1.05rem;">
+            Precios adaptados a tu volumen y frecuencia.
+            Contáctanos hoy y te respondemos a la brevedad.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a
+              href="https://wa.me/526681629654?text=%C2%A1Hola%21+Estoy+revisando+su+cat%C3%A1logo+y+me+gustar%C3%ADa+recibir+una+cotizaci%C3%B3n+personalizada.+%C2%BFEst%C3%A1n+disponibles%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-light fw-bold lift"
+              style="border-radius: 999px; padding: 14px 28px; color: #1a2e4a;"
+            >
+              <i class="fe fe-message-circle me-2"></i> WhatsApp
+            </a>
+            <a
+              href="/contacto"
+              class="btn btn-outline-light fw-bold lift"
+              style="border-radius: 999px; padding: 14px 28px;"
+            >
+              Otras opciones <i class="fe fe-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-bar" id="quoteBar">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-sm-6">
+          <span class="fw-bold" style="color: var(--brand-dark); font-size: 0.95rem;">
+            <span id="quoteCount">0</span> producto(s) seleccionado(s)
+          </span>
+        </div>
+        <div class="col-12 col-sm-6 text-sm-end mt-2 mt-sm-0">
+          <a
+            href="#"
+            id="quoteWhatsAppBtn"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn fw-bold text-white lift"
+            style="background-color: #25d366; border-radius: 999px; padding: 10px 24px; font-size: 0.88rem;"
+          >
+            <i class="fe fe-message-circle me-2"></i> Cotizar por WhatsApp
+          </a>
+          <button
+            id="quoteClearBtn"
+            type="button"
+            class="btn btn-sm fw-bold"
+            style="color: #9aa8b9; background: none; border: none; margin-left: 8px;"
+          >
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function() {
+      const searchInput = document.getElementById('productSearch');
+      const searchClear = document.getElementById('searchClear');
+      const searchCount = document.getElementById('searchCount');
+      const noResults = document.getElementById('noResults');
+      const quoteBar = document.getElementById('quoteBar');
+      const quoteCount = document.getElementById('quoteCount');
+      const quoteBtn = document.getElementById('quoteWhatsAppBtn');
+      const quoteClearBtn = document.getElementById('quoteClearBtn');
+
+      const selected = new Map();
+      let searchQuery = '';
+
+      function getVisibleRows() {
+        const activePane = document.querySelector('.tab-pane.active');
+        if (!activePane) return [];
+        return activePane.querySelectorAll('.product-table .product-row');
+      }
+
+      function getActiveSubcategoryCards() {
+        const activePane = document.querySelector('.tab-pane.active');
+        if (!activePane) return [];
+        return activePane.querySelectorAll('.subcategory-card');
+      }
+
+      function filterProducts() {
+        const query = searchQuery.toLowerCase().trim();
+        const rows = document.querySelectorAll('.tab-pane .product-table .product-row');
+        let totalVisible = 0;
+
+        rows.forEach(function(row) {
+          const text = row.textContent.toLowerCase();
+          const match = !query || text.includes(query);
+          row.style.display = match ? '' : 'none';
+          if (match) totalVisible++;
+        });
+
+        document.querySelectorAll('.tab-pane').forEach(function(pane) {
+          const cards = pane.querySelectorAll('.subcategory-card');
+          cards.forEach(function(card) {
+            const visibleRows = card.querySelectorAll('.product-row[style*="display"]');
+            const hiddenRows = card.querySelectorAll('.product-row[style*="display: none"]');
+            const total = card.querySelectorAll('.product-row').length;
+            const hasVisible = card.querySelectorAll('.product-row').length !== hiddenRows.length;
+            card.style.display = (!query || hasVisible) ? '' : 'none';
+          });
+        });
+
+        const activeRows = getVisibleRows();
+        const visibleCount = activeRows.length;
+        const totalRows = document.querySelectorAll('.tab-pane.active .product-table .product-row').length;
+        const paneHasResults = Array.from(document.querySelectorAll('.tab-pane.active .subcategory-card')).some(function(c) {
+          return c.style.display !== 'none';
+        });
+
+        if (query) {
+          searchCount.textContent = paneHasResults ? visibleCount + ' productos encontrados' : '';
+          noResults.classList.toggle('active', !paneHasResults);
+        } else {
+          searchCount.textContent = '';
+          noResults.classList.remove('active');
+        }
+
+        searchClear.classList.toggle('active', !!query);
+      }
+
+      function updateQuoteBar() {
+        const count = selected.size;
+        quoteCount.textContent = count;
+        quoteBar.classList.toggle('active', count > 0);
+
+        if (count > 0) {
+          const categories = {};
+          selected.forEach(function(name) {
+            const cb = document.querySelector('.product-check[data-name="' + CSS.escape(name) + '"]');
+            if (cb) {
+              const cat = cb.getAttribute('data-category') || 'General';
+              if (!categories[cat]) categories[cat] = [];
+              categories[cat].push(name);
+            }
+          });
+
+          let msg = '¡Hola! Me gustaría cotizar los siguientes productos:\n\n';
+          Object.keys(categories).forEach(function(cat) {
+            msg += '*' + cat + '*\n';
+            categories[cat].forEach(function(p) { msg += '• ' + p + '\n'; });
+            msg += '\n';
+          });
+          msg += 'Gracias.';
+
+          const url = 'https://wa.me/526681629654?text=' + encodeURIComponent(msg);
+          quoteBtn.setAttribute('href', url);
+        }
+      }
+
+      function toggleProduct(cb) {
+        const name = cb.getAttribute('data-name');
+        if (cb.checked) {
+          selected.set(name, true);
+        } else {
+          selected.delete(name);
+        }
+        updateQuoteBar();
+      }
+
+      function selectAllInCard(btn) {
+        const card = btn.closest('.subcategory-card');
+        const checkboxes = card.querySelectorAll('.product-check');
+        const allChecked = Array.from(checkboxes).every(function(c) { return c.checked; });
+        checkboxes.forEach(function(cb) {
+          cb.checked = !allChecked;
+          toggleProduct(cb);
+        });
+        btn.textContent = allChecked ? 'Seleccionar todos' : 'Deseleccionar todos';
+      }
+
+      searchInput.addEventListener('input', function() {
+        searchQuery = this.value;
+        filterProducts();
+      });
+
+      searchClear.addEventListener('click', function() {
+        searchInput.value = '';
+        searchQuery = '';
+        filterProducts();
+        searchInput.focus();
+      });
+
+      document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('product-check')) {
+          toggleProduct(e.target);
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('select-all-btn')) {
+          selectAllInCard(e.target);
+        }
+      });
+
+      quoteClearBtn.addEventListener('click', function() {
+        selected.clear();
+        document.querySelectorAll('.product-check').forEach(function(cb) {
+          cb.checked = false;
+        });
+        document.querySelectorAll('.select-all-btn').forEach(function(btn) {
+          btn.textContent = 'Seleccionar todos';
+        });
+        updateQuoteBar();
+      });
+
+      document.querySelectorAll('.nav-tabs .nav-link').forEach(function(tab) {
+        tab.addEventListener('shown.bs.tab', function() {
+          filterProducts();
+          const activePane = document.querySelector('.tab-pane.active');
+          if (activePane) {
+            const rows = activePane.querySelectorAll('.product-table .product-row');
+            const visible = Array.from(rows).filter(function(r) { return r.style.display !== 'none'; }).length;
+            const total = rows.length;
+            if (searchQuery) {
+              searchCount.textContent = visible + ' productos encontrados';
+            } else {
+              searchCount.textContent = '';
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll('.product-check').forEach(function(cb) {
+        if (cb.checked) {
+          toggleProduct(cb);
+        }
+      });
+    })();
+  </script>
+</Layout>

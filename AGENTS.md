@@ -24,7 +24,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - `src/pages/links.astro` is **standalone** (no Layout, no navbar/footer). Has its own GTM + Bootstrap bundles.
 - Footer rendered via `<slot name="footer">` — can be overridden per page.
 - Active route in Navbar: exact match for `/`, `startsWith` for others.
-- Pages: `/` · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links` · `/blog/` · `/blog/posts/[slug]/`
+- Pages: `/` · `/nosotros` · `/productos` · `/productos-v2` · `/contacto` · `/aviso-de-privacidad` · `/links` · `/blog/` · `/blog/posts/[slug]/`
 
 ## Blog
 
@@ -61,6 +61,21 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; Article + BreadcrumbList schema vía BlogLayout.
+
+## Productos v2 (`/productos-v2`)
+
+Experimental catalog page at `src/pages/productos-v2.astro` with three UX improvements:
+
+- **Bootstrap 5 nav-tabs** — category tabs (Químicos, Herramientas, Higiénicos, Papelería) with product count badges. Active tab uses `#6cace3` background. Tabs scroll horizontally on mobile via `overflow-x: auto` + `flex-nowrap`.
+- **Real-time search** — vanilla JS on `input` event, filters `.product-row` visibility across active tab-pane. Shows/hides `.subcategory-card` and `.no-results` state. Clear button appears when query active.
+- **Quote builder** — `<input type="checkbox">` per product with `data-name`, `data-category`, `data-subcategory` attributes. "Select all / Deselect all" button per subcategory card. Sticky `fixed-bottom` bar with count + WhatsApp button that builds grouped-by-category message. Event delegation via document `change`/`click`.
+
+### Patterns
+- `data-category="Químicos|Herramientas|Higiénicos|Papelería"` — used for grouping in WhatsApp message.
+- `data-name` — product name (unique identifier for selection Map).
+- `CSS.escape()` used in selector construction for safe querying.
+- Quote state (`selected` Map) persists across tab switches.
+- Search scoped to active tab only; re-applies on `shown.bs.tab` event.
 
 ## Misc
 

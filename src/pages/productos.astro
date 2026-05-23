@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout
   title="Catálogo de Productos de Limpieza y Papelería - Klyn"
-  description="Catálogo de productos de limpieza, herramientas y papelería para empresas. Cloro, detergentes, trapeadores, papel bond y más. Pide tu cotización."
+  description="Catálogo de productos de limpieza, higiene, herramientas y papelería para empresas. Cloro, detergentes, trapeadores, papel bond y más. Pide tu cotización."
   bodyClass=""
 >
   <script slot="head-schema" type="application/ld+json" is:inline>
@@ -31,7 +31,8 @@ import Layout from "../layouts/Layout.astro";
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "item": { "@type": "OfferCatalog", "name": "Químicos de Limpieza", "url": "https://www.klyn.com.mx/productos#quimicos" } },
         { "@type": "ListItem", "position": 2, "item": { "@type": "OfferCatalog", "name": "Herramientas de Limpieza", "url": "https://www.klyn.com.mx/productos#herramientas" } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "OfferCatalog", "name": "Papelería y Oficina", "url": "https://www.klyn.com.mx/productos#papeleria" } }
+        { "@type": "ListItem", "position": 3, "item": { "@type": "OfferCatalog", "name": "Higiénicos y Desechables", "url": "https://www.klyn.com.mx/productos#higienicos" } },
+        { "@type": "ListItem", "position": 4, "item": { "@type": "OfferCatalog", "name": "Papelería y Oficina", "url": "https://www.klyn.com.mx/productos#papeleria" } }
       ]
     }
   }
@@ -140,8 +141,19 @@ import Layout from "../layouts/Layout.astro";
     }
 
     /* ── Section scroll offset (accounts for sticky nav) ── */
-    #quimicos, #herramientas, #papeleria {
+    #quimicos, #herramientas, #higienicos, #papeleria {
       scroll-margin-top: 140px;
+    }
+
+    .product-table td {
+      padding: 0.5rem 0 !important;
+      border-bottom: 1px solid #f0f4f8 !important;
+    }
+    .product-table tr:last-child td {
+      border-bottom: none !important;
+    }
+    .product-table tr:hover td {
+      color: #6cace3;
     }
 
     /* ── Hero stats ──────────────────────────────── */
@@ -211,20 +223,20 @@ import Layout from "../layouts/Layout.astro";
 
           <!-- Subtext -->
           <p class="hero-subtext" style="color: rgba(255,255,255,0.72); font-size: 1.1rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;">
-            Suministros de limpieza, herramientas y papelería para mantener tu
-            negocio en operación. cotización a tu medida.
+            Suministros de limpieza, higiene, herramientas y papelería
+            para mantener tu negocio en operación. Cotización a tu medida.
           </p>
 
           <!-- Stats row -->
           <div class="d-flex justify-content-center align-items-center gap-4 hero-stats">
             <div class="d-flex flex-column align-items-center">
-              <span class="hero-stat-num">3</span>
+              <span class="hero-stat-num">4</span>
               <span class="hero-stat-label">Categorías</span>
             </div>
             <div class="hero-divider"></div>
             <div class="d-flex flex-column align-items-center">
-              <span class="hero-stat-num">200+</span>
-              <span class="hero-stat-label">Referencias</span>
+              <span class="hero-stat-num">121+</span>
+              <span class="hero-stat-label">Productos</span>
             </div>
             <div class="hero-divider"></div>
             <div class="d-flex flex-column align-items-center">
@@ -248,6 +260,7 @@ import Layout from "../layouts/Layout.astro";
         <span class="text-body-secondary d-none d-md-inline me-1" style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Ir a →</span>
         <a href="#quimicos" class="cat-pill">🧴 Químicos</a>
         <a href="#herramientas" class="cat-pill">🧹 Herramientas</a>
+        <a href="#higienicos" class="cat-pill">🧻 Higiénicos</a>
         <a href="#papeleria" class="cat-pill">📋 Papelería</a>
         <a href="/contacto" class="cat-pill-cta ms-md-auto">
           Cotizar ahora <i class="fe fe-arrow-right"></i>
@@ -259,7 +272,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- ═══════════════════════════════════
        SECCIÓN 01 — QUÍMICOS
   ═══════════════════════════════════ -->
-  <section class="py-10 py-md-13 bg-white" id="quimicos" style="background: #f5f9ff !important;">
+  <section class="py-10 py-md-13" id="quimicos" style="background: #f5f9ff !important;">
     <div class="container">
 
       <!-- Section header -->
@@ -273,7 +286,7 @@ import Layout from "../layouts/Layout.astro";
             Químicos de Limpieza
           </span>
           <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
-            Limpiadores y desinfectantes<br class="d-none d-xl-block"> industriales.
+            Limpiadores, desinfectantes y<br class="d-none d-xl-block"> detergentes profesionales.
           </h2>
           <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
             Productos químicos de uso profesional para mantener tus instalaciones limpias y seguras.
@@ -282,80 +295,147 @@ import Layout from "../layouts/Layout.astro";
         <span class="deco-num d-none d-lg-block" style="color: rgba(108,172,227,0.06);">01</span>
       </div>
 
-      <!-- Featured row (2 wide cards) -->
-      <div class="row g-4 mb-4">
-        <div class="col-12 col-md-6" data-aos="fade-up">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-blue">🧹</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Cloro y desinfectantes</h5>
-              <p class="text-body-secondary mb-0">
-                Cloro de alta concentración, desinfectantes multiusos y
-                germicidas para superficies de trabajo, pisos y baños.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="80">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-blue">🫧</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Jabones y detergentes</h5>
-              <p class="text-body-secondary mb-0">
-                Jabón líquido para manos, detergente en polvo y líquido para
-                lavado de ropa, trastes y pisos industriales.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary row (4 compact cards) -->
+      <!-- Subcategories with product tables -->
       <div class="row g-4">
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">✨</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Multiusos y desengrasantes</h6>
-              <p class="text-body-secondary small mb-0">
-                Limpiadores multiusos en spray, desengrasantes industriales para cocinas y producción.
-              </p>
+
+        <!-- Limpieza General -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🧹</span>
+                Limpieza General
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Aceite para Mopa</td></tr>
+                    <tr><td class="ps-0">Fabuloso</td></tr>
+                    <tr><td class="ps-0">Lavatrastes</td></tr>
+                    <tr><td class="ps-0">Limpiador Multiusos</td></tr>
+                    <tr><td class="ps-0">Pinol</td></tr>
+                    <tr><td class="ps-0">Repuestos Airwick</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">🚿</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Limpiadores de baño</h6>
-              <p class="text-body-secondary small mb-0">
-                Gel ácido para sanitarios, quitasarro, descalcificadores y aromatizantes.
-              </p>
+
+        <!-- Desinfección y Sanitización -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="40">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🧼</span>
+                Desinfección y Sanitización
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Aromatizante Ambiental</td></tr>
+                    <tr><td class="ps-0">Aromatizante Weise Aerosol 400 ml</td></tr>
+                    <tr><td class="ps-0">Cloro</td></tr>
+                    <tr><td class="ps-0">Desinfectante Lysol</td></tr>
+                    <tr><td class="ps-0">Lyson Aerosol</td></tr>
+                    <tr><td class="ps-0">Pastilla de cloro</td></tr>
+                    <tr><td class="ps-0">Pinol Lechoso</td></tr>
+                    <tr><td class="ps-0">Toalla Desinfectante Cloralex</td></tr>
+                    <tr><td class="ps-0">Toalla Desinfectante MM</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">🪟</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Limpiavidrios</h6>
-              <p class="text-body-secondary small mb-0">
-                Limpiadores de vidrio y espejos sin manchas ni residuos.
-              </p>
+
+        <!-- Desengrasantes -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🍳</span>
+                Desengrasantes
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Desengrasante</td></tr>
+                    <tr><td class="ps-0">Desengrasante para Cocina</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">🌸</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Aromatizantes</h6>
-              <p class="text-body-secondary small mb-0">
-                Ambientadores en aerosol, bloques para baño y aromatizantes de pisos.
-              </p>
+
+        <!-- Lavandería -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="120">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🫧</span>
+                Lavandería
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Detergente Arcoíris 9Kg</td></tr>
+                    <tr><td class="ps-0">Detergente Blanca Nieves 10Kg</td></tr>
+                    <tr><td class="ps-0">Detergente en Polvo</td></tr>
+                    <tr><td class="ps-0">Detergente Liquido</td></tr>
+                    <tr><td class="ps-0">Detergente Ruth 10Kg</td></tr>
+                    <tr><td class="ps-0">Detergente Util 11Kg</td></tr>
+                    <tr><td class="ps-0">Jabón en Polvo Arcoíris 9kg</td></tr>
+                    <tr><td class="ps-0">Jabón Zote</td></tr>
+                    <tr><td class="ps-0">Jabón Zote Caja 25pzs 400g</td></tr>
+                    <tr><td class="ps-0">Suavizante de telas</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Especializados -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🪳</span>
+                Especializados
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Mata Cucarachas Urbano</td></tr>
+                    <tr><td class="ps-0">Mata Moscos Urbano</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuidado de Baños -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">🚿</span>
+                Cuidado de Baños
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Pastillas Harpic</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -377,7 +457,7 @@ import Layout from "../layouts/Layout.astro";
             Herramientas de Limpieza
           </span>
           <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
-            Equipo físico para la<br class="d-none d-xl-block"> limpieza diaria.
+            Equipo y herramientas para la<br class="d-none d-xl-block"> limpieza profesional.
           </h2>
           <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
             Todo el equipo que tu personal de limpieza necesita para operar con eficiencia.
@@ -386,86 +466,277 @@ import Layout from "../layouts/Layout.astro";
         <span class="deco-num d-none d-lg-block" style="color: rgba(250,182,10,0.07);">02</span>
       </div>
 
-      <!-- Featured row -->
-      <div class="row g-4 mb-4">
-        <div class="col-12 col-md-6" data-aos="fade-up">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-gold">🧺</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Trapeadores y escobas</h5>
-              <p class="text-body-secondary mb-0">
-                Trapeadores de microfibra y algodón, escobas industriales,
-                jaladores de agua y cepillos de piso.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="80">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-gold">🪣</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Cubetas y contenedores</h5>
-              <p class="text-body-secondary mb-0">
-                Cubetas industriales de distintas capacidades, contenedores para
-                mezcla de químicos y recipientes de trapeado.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary row -->
+      <!-- Subcategories with product tables -->
       <div class="row g-4">
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-gold">🧻</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Trapos y microfibras</h6>
-              <p class="text-body-secondary small mb-0">
-                Trapos industriales, franelas y paños de microfibra para superficies delicadas.
-              </p>
+
+        <!-- Mopas y Trapeadores -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧺</span>
+                Mopas y Trapeadores
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Base para Mapeador 60cm Castor</td></tr>
+                    <tr><td class="ps-0">Base para Mapeador 90cm Castor</td></tr>
+                    <tr><td class="ps-0">Funda Mopa 60cm</td></tr>
+                    <tr><td class="ps-0">Funda Mopa 90cm</td></tr>
+                    <tr><td class="ps-0">Trapeador Hilo No 6 de Colores</td></tr>
+                    <tr><td class="ps-0">Trapeador Microfibra Rojo Castor</td></tr>
+                    <tr><td class="ps-0">Trapeador Tiras Microfibra/Microseda</td></tr>
+                    <tr><td class="ps-0">Trapeador de Microseda Forjado Baston Lamina</td></tr>
+                    <tr><td class="ps-0">Trapeador de Tela Microfibra Amarillo Baston Madera</td></tr>
+                    <tr><td class="ps-0">Trapeador de Tela Microfibra Verde Baston Madera</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-gold">🧤</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Guantes y EPP</h6>
-              <p class="text-body-secondary small mb-0">
-                Guantes de hule, cubrebocas desechables y equipo de protección personal.
-              </p>
+
+        <!-- Escobas y Cepillos -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="40">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧹</span>
+                Escobas y Cepillos
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Cepillo Tipo Plancha</td></tr>
+                    <tr><td class="ps-0">Cepillo WC Bola con Base</td></tr>
+                    <tr><td class="ps-0">Cepillo WC Bola sin Base</td></tr>
+                    <tr><td class="ps-0">Cepillo para Baño</td></tr>
+                    <tr><td class="ps-0">Escoba 6 Hilos Mijo Roja</td></tr>
+                    <tr><td class="ps-0">Escoba 6 Hilos Mixta Azul</td></tr>
+                    <tr><td class="ps-0">Escoba 6 Hilos Plastico Virgen</td></tr>
+                    <tr><td class="ps-0">Escoba Coco Popote Azul</td></tr>
+                    <tr><td class="ps-0">Escoba Coco Premium Plata</td></tr>
+                    <tr><td class="ps-0">Escoba Espiga 8 Hilos</td></tr>
+                    <tr><td class="ps-0">Escoba Metalica 20 Dientes Curva</td></tr>
+                    <tr><td class="ps-0">Escoba Plástico</td></tr>
+                    <tr><td class="ps-0">Escoba de Plástico</td></tr>
+                    <tr><td class="ps-0">Recogedor Plastico Perico</td></tr>
+                    <tr><td class="ps-0">Recogedor de Lamina</td></tr>
+                    <tr><td class="ps-0">Recogedor de Lamina sm</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-gold">🗑️</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Bolsas para basura</h6>
-              <p class="text-body-secondary small mb-0">
-                Bolsas negras y de colores en distintos calibres, desde uso doméstico hasta industrial.
-              </p>
+
+        <!-- Contenedores -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🪣</span>
+                Contenedores
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Cesto de Plástico Sablon</td></tr>
+                    <tr><td class="ps-0">Cubeta Exprimidora Jofel</td></tr>
+                    <tr><td class="ps-0">Cubeta Exprimidora Perico</td></tr>
+                    <tr><td class="ps-0">Cubeta Industrial 19L</td></tr>
+                    <tr><td class="ps-0">Cubeta con Escurridor</td></tr>
+                    <tr><td class="ps-0">Cubeta con Exprimidor 20L Amarilla Oval</td></tr>
+                    <tr><td class="ps-0">Cubeta con Exprimidor 32L Oval</td></tr>
+                    <tr><td class="ps-0">Cubeta con Exprimidor 35L Amarilla Rubermaind</td></tr>
+                    <tr><td class="ps-0">Cubeta con Exprimidor Klintek 8L</td></tr>
+                    <tr><td class="ps-0">Despachador Toalla Interdoblada Largo Humo Oval</td></tr>
+                    <tr><td class="ps-0">Despachador de Papel Higiénico Jumbo Ecopro Humo Oval</td></tr>
+                    <tr><td class="ps-0">Despachador de Papel Higiénico Junior Humo Oval (DV009)</td></tr>
+                    <tr><td class="ps-0">Despachador de Toalla Rollo Palanca Humo Oval</td></tr>
+                    <tr><td class="ps-0">Dispensador Toalla Auto Corte Compacto Greymoon</td></tr>
+                    <tr><td class="ps-0">Dispensador Toalla Auto Corte Negra Greymoon</td></tr>
+                    <tr><td class="ps-0">Dispensador de Papel Higiénico Greymoon</td></tr>
+                    <tr><td class="ps-0">Dispensador de Papel Higiénico Greymoon Zero Humo</td></tr>
+                    <tr><td class="ps-0">Jabonera Manual Uso Rudo Humo con Negro de 1L OVAL</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
-          <div class="card product-card product-card-gold h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-gold">🪠</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Accesorios de baño</h6>
-              <p class="text-body-secondary small mb-0">
-                Despachadores, portarrollos, escobillas sanitarias y cestillos comerciales.
-              </p>
+
+        <!-- Paños y Fibras -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧻</span>
+                Paños y Fibras
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Fibra Verde Scotch</td></tr>
+                    <tr><td class="ps-0">Fibra Verde con Esponja 8x12cm</td></tr>
+                    <tr><td class="ps-0">Fibra Verde con Esponja Gv 8x12cm</td></tr>
+                    <tr><td class="ps-0">Fibra con Esponja 2pzs</td></tr>
+                    <tr><td class="ps-0">Fibra con Esponja 3M P-94</td></tr>
+                    <tr><td class="ps-0">Franela</td></tr>
+                    <tr><td class="ps-0">Rollo Scott Azul</td></tr>
+                    <tr><td class="ps-0">Toalla Microfibra Azul</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════
-       SECCIÓN 03 — PAPELERÍA
+       SECCIÓN 03 — HIGIÉNICOS
+  ═══════════════════════════════════ -->
+  <section class="py-10 py-md-13" id="higienicos" style="background: #f5f9ff;">
+    <div class="container">
+
+      <!-- Section header -->
+      <div class="row mb-8 position-relative">
+        <div class="col-12 col-lg-8">
+          <span
+            class="d-inline-flex align-items-center gap-2 mb-3 px-3 py-2 rounded-pill"
+            style="background: rgba(250,182,10,0.14); color: #c98b00; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;"
+          >
+            <span style="font-size: 1rem;">🧻</span>
+            Higiénicos y Desechables
+          </span>
+          <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.9rem, 3.5vw, 2.75rem); letter-spacing: -0.02em;">
+            Papel, bolsas y artículos<br class="d-none d-xl-block"> desechables para tu negocio.
+          </h2>
+          <p class="text-body-secondary" style="font-size: 1.05rem; max-width: 520px;">
+            Insumos de higiene, cuidado personal y papel institucional para empresas.
+          </p>
+        </div>
+        <span class="deco-num d-none d-lg-block" style="color: rgba(250,182,10,0.07);">03</span>
+      </div>
+
+      <!-- Subcategories with product tables -->
+      <div class="row g-4">
+
+        <!-- Bolsas -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🗑️</span>
+                Bolsas
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Bolsa Basura 210pzs 60x68 Blanca</td></tr>
+                    <tr><td class="ps-0">Bolsa Camiseta Grande</td></tr>
+                    <tr><td class="ps-0">Bolsa Camiseta Jumbo #6</td></tr>
+                    <tr><td class="ps-0">Bolsa Negra 50x70</td></tr>
+                    <tr><td class="ps-0">Bolsa Negra 70+40 x 150</td></tr>
+                    <tr><td class="ps-0">Bolsa Negra 70x90</td></tr>
+                    <tr><td class="ps-0">Bolsa Negra Jumbo</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Natural 24x24</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Natural 35x47</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Natural 40x48</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Negra 24x24</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Negra 30x37</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Negra 35x47</td></tr>
+                    <tr><td class="ps-0">Bolsa Rollo Negra 40x48</td></tr>
+                    <tr><td class="ps-0">Bolsa de Helado 10x25</td></tr>
+                    <tr><td class="ps-0">bolsa negra 70+30*120</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Papel Institucional -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="40">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧻</span>
+                Papel Institucional
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">FAPSA Eco K160 C/6 Toalla en Rollo Caja</td></tr>
+                    <tr><td class="ps-0">FAPSA Eco K2250 8/250 Toalla Inter Caja</td></tr>
+                    <tr><td class="ps-0">FAPSA Pro FC10 Blanca C/6 Fluido Centrico Toalla Rollo</td></tr>
+                    <tr><td class="ps-0">Papel Higiénico DALIA 160m HD 24/4</td></tr>
+                    <tr><td class="ps-0">Papel Higiénico FAPSA 180m 12pzs</td></tr>
+                    <tr><td class="ps-0">Papel Higiénico LEVEL PRO 350 48/1 Individual</td></tr>
+                    <tr><td class="ps-0">Papel higiénico Dalia 180m caja con 12pzs</td></tr>
+                    <tr><td class="ps-0">Toalla Interdoblada Dalitas c/12</td></tr>
+                    <tr><td class="ps-0">Toalla Interdoblada Dalitas c/20</td></tr>
+                    <tr><td class="ps-0">Toalla Interdoblada FAPSA TI2100 c/20</td></tr>
+                    <tr><td class="ps-0">Toalla Interdoblada FAPSA TI250 16/250</td></tr>
+                    <tr><td class="ps-0">Toalla en Rollo FAPSA TR180 6pzs</td></tr>
+                    <tr><td class="ps-0">Toalla interdoblada Dalia 2000pzs</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuidado Personal -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧴</span>
+                Cuidado Personal
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Jabón Barra Eco</td></tr>
+                    <tr><td class="ps-0">Shampoo p. Manos</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seguridad y EPP -->
+        <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+          <div class="card product-card product-card-gold h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(250,182,10,0.14);">🧤</span>
+                Seguridad y EPP
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Guante Latex Rojo Domestico</td></tr>
+                    <tr><td class="ps-0">Raidolitos 10 piezas</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECCIÓN 04 — PAPELERÍA
   ═══════════════════════════════════ -->
   <section class="py-10 py-md-13" style="background: #f5f9ff;" id="papeleria">
     <div class="container">
@@ -487,83 +758,52 @@ import Layout from "../layouts/Layout.astro";
             Insumos de papelería para mantener tu oficina funcionando sin interrupciones.
           </p>
         </div>
-        <span class="deco-num d-none d-lg-block" style="color: rgba(108,172,227,0.06);">03</span>
+        <span class="deco-num d-none d-lg-block" style="color: rgba(108,172,227,0.06);">04</span>
       </div>
 
-      <!-- Featured row -->
-      <div class="row g-4 mb-4">
-        <div class="col-12 col-md-6" data-aos="fade-up">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-blue">📄</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Papel bond y resmas</h5>
-              <p class="text-body-secondary mb-0">
-                Papel bond tamaño carta y oficio, resmas de 500 hojas en
-                distintos gramajes para impresora y copiadora.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="80">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-5">
-              <div class="icon-box icon-box-lg icon-box-blue">✏️</div>
-              <h5 class="fw-bold text-dark mb-2" style="font-size: 1.2rem;">Bolígrafos y plumas</h5>
-              <p class="text-body-secondary mb-0">
-                Plumas de tinta azul, negra y roja, marcadores de pizarrón,
-                plumones y portaminas para oficina.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary row -->
+      <!-- Subcategories with product tables -->
       <div class="row g-4">
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">📁</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Folders y archiveros</h6>
-              <p class="text-body-secondary small mb-0">
-                Folders, carpetas de argollas, separadores y cajas para archivo muerto.
-              </p>
+
+        <!-- Papel y Sustratos -->
+        <div class="col-12 col-md-6" data-aos="fade-up">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">📄</span>
+                Papel y Sustratos
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Hoja Blanca Bond Tamaño Carta 500pzs</td></tr>
+                    <tr><td class="ps-0">Hoja Blanca Fotobond</td></tr>
+                    <tr><td class="ps-0">Hoja Opalina</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">📎</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Útiles de escritorio</h6>
-              <p class="text-body-secondary small mb-0">
-                Grapas, ligas, clips, correctores, tijeras y cinta adhesiva del día a día.
-              </p>
+
+        <!-- Escritorio y Presentaciones -->
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="40">
+          <div class="card product-card product-card-blue h-100 shadow-soft border-0">
+            <div class="card-body p-4 d-flex flex-column">
+              <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                <span class="d-inline-flex align-items-center justify-content-center rounded-3 me-1" style="width:36px;height:36px;font-size:1.1rem;background:rgba(108,172,227,0.12);">✏️</span>
+                Escritorio y Presentaciones
+              </h6>
+              <div class="flex-grow-1">
+                <table class="table table-borderless table-sm mb-0 align-middle product-table">
+                  <tbody>
+                    <tr><td class="ps-0">Pizarron de corcho 60x90</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">🖨️</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Consumibles de impresora</h6>
-              <p class="text-body-secondary small mb-0">
-                Tintas, tóners y cartuchos para las principales marcas de impresoras.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
-          <div class="card product-card product-card-blue h-100">
-            <div class="card-body p-4">
-              <div class="icon-box icon-box-sm icon-box-blue">📦</div>
-              <h6 class="fw-bold text-dark mb-2 h5">Material de embalaje</h6>
-              <p class="text-body-secondary small mb-0">
-                Cajas de cartón, cinta de embalaje y papel burbuja para envíos.
-              </p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>

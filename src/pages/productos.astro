@@ -1,152 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  subcategory: string;
-  categoryKey: string;
-  accent: "blue" | "gold";
-}
-
-const products: Product[] = [
-  // ── Químicos — Limpieza General ─────────────────────────
-  { id:  1, name: "Aceite para Mopa",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  2, name: "Fabuloso",                       category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  3, name: "Lavatrastes",                    category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  4, name: "Limpiador Multiusos",            category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  5, name: "Pinol",                          category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  6, name: "Repuestos Airwick",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  // ── Químicos — Desinfección y Sanitización ──────────────
-  { id:  7, name: "Aromatizante Ambiental",         category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id:  8, name: "Aromatizante Weise Aerosol 400 ml", category: "Químicos", subcategory: "Desinfección",            categoryKey: "quimicos", accent: "blue" },
-  { id:  9, name: "Cloro",                          category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 10, name: "Desinfectante Lysol",            category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 11, name: "Lyson Aerosol",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 12, name: "Pastilla de cloro",              category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 13, name: "Pinol Lechoso",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 14, name: "Toalla Desinfectante Cloralex",  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 15, name: "Toalla Desinfectante MM",        category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  // ── Químicos — Desengrasantes ────────────────────────────
-  { id: 16, name: "Desengrasante",                  category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue" },
-  { id: 17, name: "Desengrasante para Cocina",      category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue" },
-  // ── Químicos — Lavandería ────────────────────────────────
-  { id: 18, name: "Detergente Arcoíris 9Kg",        category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 19, name: "Detergente Blanca Nieves 10Kg",  category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 20, name: "Detergente en Polvo",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 21, name: "Detergente Liquido",             category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 22, name: "Detergente Ruth 10Kg",           category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 23, name: "Detergente Util 11Kg",           category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 24, name: "Jabón en Polvo Arcoíris 9kg",    category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 25, name: "Jabón Zote",                     category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 26, name: "Jabón Zote Caja 25pzs 400g",     category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 27, name: "Suavizante de telas",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  // ── Químicos — Especializados ────────────────────────────
-  { id: 28, name: "Mata Cucarachas Urbano",         category: "Químicos", subcategory: "Especializados",             categoryKey: "quimicos", accent: "blue" },
-  { id: 29, name: "Mata Moscos Urbano",             category: "Químicos", subcategory: "Especializados",             categoryKey: "quimicos", accent: "blue" },
-  // ── Químicos — Cuidado de Baños ──────────────────────────
-  { id: 30, name: "Pastillas Harpic",               category: "Químicos", subcategory: "Cuidado de Baños",           categoryKey: "quimicos", accent: "blue" },
-  // ── Herramientas — Mopas y Trapeadores ──────────────────
-  { id: 31, name: "Base para Mapeador 60cm Castor", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 32, name: "Base para Mapeador 90cm Castor", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 33, name: "Funda Mopa 60cm",                category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 34, name: "Funda Mopa 90cm",                category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 35, name: "Trapeador Hilo No 6 de Colores", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 36, name: "Trapeador Microfibra Rojo Castor", category: "Herramientas", subcategory: "Mopas y Trapeadores",  categoryKey: "herramientas", accent: "gold" },
-  { id: 37, name: "Trapeador Tiras Microfibra/Microseda", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
-  { id: 38, name: "Trapeador de Microseda Forjado Baston Lamina", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
-  { id: 39, name: "Trapeador de Tela Microfibra Amarillo Baston Madera", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
-  { id: 40, name: "Trapeador de Tela Microfibra Verde Baston Madera", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
-  // ── Herramientas — Escobas y Cepillos ───────────────────
-  { id: 41, name: "Cepillo Tipo Plancha",           category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 42, name: "Cepillo WC Bola con Base",       category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 43, name: "Cepillo WC Bola sin Base",       category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 44, name: "Cepillo para Baño",              category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 45, name: "Escoba 6 Hilos Mijo Roja",       category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 46, name: "Escoba 6 Hilos Mixta Azul",      category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 47, name: "Escoba 6 Hilos Plastico Virgen", category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 48, name: "Escoba Coco Popote Azul",        category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 49, name: "Escoba Coco Premium Plata",      category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 50, name: "Escoba Espiga 8 Hilos",          category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 51, name: "Escoba Metalica 20 Dientes Curva", category: "Herramientas", subcategory: "Escobas y Cepillos",   categoryKey: "herramientas", accent: "gold" },
-  { id: 52, name: "Escoba Plástico",                category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 53, name: "Escoba de Plástico",             category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 54, name: "Recogedor Plastico Perico",      category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 55, name: "Recogedor de Lamina",            category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  { id: 56, name: "Recogedor de Lamina sm",         category: "Herramientas", subcategory: "Escobas y Cepillos",     categoryKey: "herramientas", accent: "gold" },
-  // ── Herramientas — Contenedores ──────────────────────────
-  { id: 57, name: "Cesto de Plástico Sablon",       category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 58, name: "Cubeta Exprimidora Jofel",        category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 59, name: "Cubeta Exprimidora Perico",       category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 60, name: "Cubeta Industrial 19L",           category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 61, name: "Cubeta con Escurridor",           category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 62, name: "Cubeta con Exprimidor 20L Amarilla Oval", category: "Herramientas", subcategory: "Contenedores",   categoryKey: "herramientas", accent: "gold" },
-  { id: 63, name: "Cubeta con Exprimidor 32L Oval",  category: "Herramientas", subcategory: "Contenedores",           categoryKey: "herramientas", accent: "gold" },
-  { id: 64, name: "Cubeta con Exprimidor 35L Amarilla Rubermaind", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 65, name: "Cubeta con Exprimidor Klintek 8L", category: "Herramientas", subcategory: "Contenedores",          categoryKey: "herramientas", accent: "gold" },
-  { id: 66, name: "Despachador Toalla Interdoblada Largo Humo Oval", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 67, name: "Despachador de Papel Higiénico Jumbo Ecopro Humo Oval", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 68, name: "Despachador de Papel Higiénico Junior Humo Oval (DV009)", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 69, name: "Despachador de Toalla Rollo Palanca Humo Oval", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 70, name: "Dispensador Toalla Auto Corte Compacto Greymoon", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 71, name: "Dispensador Toalla Auto Corte Negra Greymoon", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 72, name: "Dispensador de Papel Higiénico Greymoon", category: "Herramientas", subcategory: "Contenedores",   categoryKey: "herramientas", accent: "gold" },
-  { id: 73, name: "Dispensador de Papel Higiénico Greymoon Zero Humo", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  { id: 74, name: "Jabonera Manual Uso Rudo Humo con Negro de 1L OVAL", category: "Herramientas", subcategory: "Contenedores", categoryKey: "herramientas", accent: "gold" },
-  // ── Herramientas — Paños y Fibras ────────────────────────
-  { id: 75, name: "Fibra Verde Scotch",             category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 76, name: "Fibra Verde con Esponja 8x12cm", category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 77, name: "Fibra Verde con Esponja Gv 8x12cm", category: "Herramientas", subcategory: "Paños y Fibras",       categoryKey: "herramientas", accent: "gold" },
-  { id: 78, name: "Fibra con Esponja 2pzs",         category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 79, name: "Fibra con Esponja 3M P-94",      category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 80, name: "Franela",                        category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 81, name: "Rollo Scott Azul",               category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  { id: 82, name: "Toalla Microfibra Azul",         category: "Herramientas", subcategory: "Paños y Fibras",          categoryKey: "herramientas", accent: "gold" },
-  // ── Higiénicos — Bolsas ──────────────────────────────────
-  { id: 83, name: "Bolsa Basura 210pzs 60x68 Blanca", category: "Higiénicos", subcategory: "Bolsas",                 categoryKey: "higienicos", accent: "gold" },
-  { id: 84, name: "Bolsa Camiseta Grande",           category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 85, name: "Bolsa Camiseta Jumbo #6",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 86, name: "Bolsa Negra 50x70",               category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 87, name: "Bolsa Negra 70+40 x 150",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 88, name: "Bolsa Negra 70x90",               category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 89, name: "Bolsa Negra Jumbo",               category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 90, name: "Bolsa Rollo Natural 24x24",       category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 91, name: "Bolsa Rollo Natural 35x47",       category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 92, name: "Bolsa Rollo Natural 40x48",       category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 93, name: "Bolsa Rollo Negra 24x24",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 94, name: "Bolsa Rollo Negra 30x37",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 95, name: "Bolsa Rollo Negra 35x47",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 96, name: "Bolsa Rollo Negra 40x48",         category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 97, name: "Bolsa de Helado 10x25",           category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  { id: 98, name: "Bolsa Negra 70+30x120",           category: "Higiénicos", subcategory: "Bolsas",                   categoryKey: "higienicos", accent: "gold" },
-  // ── Higiénicos — Papel Institucional ────────────────────
-  { id: 99,  name: "FAPSA Eco K160 C/6 Toalla en Rollo Caja", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 100, name: "FAPSA Eco K2250 8/250 Toalla Inter Caja", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 101, name: "FAPSA Pro FC10 Blanca C/6 Fluido Centrico Toalla Rollo", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 102, name: "Papel Higiénico DALIA 160m HD 24/4", category: "Higiénicos", subcategory: "Papel Institucional",  categoryKey: "higienicos", accent: "gold" },
-  { id: 103, name: "Papel Higiénico FAPSA 180m 12pzs",   category: "Higiénicos", subcategory: "Papel Institucional",  categoryKey: "higienicos", accent: "gold" },
-  { id: 104, name: "Papel Higiénico LEVEL PRO 350 48/1 Individual", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 105, name: "Papel higiénico Dalia 180m caja con 12pzs", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 106, name: "Toalla Interdoblada Dalitas c/12",  category: "Higiénicos", subcategory: "Papel Institucional",   categoryKey: "higienicos", accent: "gold" },
-  { id: 107, name: "Toalla Interdoblada Dalitas c/20",  category: "Higiénicos", subcategory: "Papel Institucional",   categoryKey: "higienicos", accent: "gold" },
-  { id: 108, name: "Toalla Interdoblada FAPSA TI2100 c/20", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 109, name: "Toalla Interdoblada FAPSA TI250 16/250", category: "Higiénicos", subcategory: "Papel Institucional", categoryKey: "higienicos", accent: "gold" },
-  { id: 110, name: "Toalla en Rollo FAPSA TR180 6pzs",  category: "Higiénicos", subcategory: "Papel Institucional",   categoryKey: "higienicos", accent: "gold" },
-  { id: 111, name: "Toalla interdoblada Dalia 2000pzs", category: "Higiénicos", subcategory: "Papel Institucional",   categoryKey: "higienicos", accent: "gold" },
-  // ── Higiénicos — Cuidado Personal ────────────────────────
-  { id: 112, name: "Jabón Barra Eco",               category: "Higiénicos", subcategory: "Cuidado Personal",          categoryKey: "higienicos", accent: "gold" },
-  { id: 113, name: "Shampoo p. Manos",              category: "Higiénicos", subcategory: "Cuidado Personal",          categoryKey: "higienicos", accent: "gold" },
-  // ── Higiénicos — Seguridad y EPP ────────────────────────
-  { id: 114, name: "Guante Latex Rojo Domestico",   category: "Higiénicos", subcategory: "Seguridad y EPP",           categoryKey: "higienicos", accent: "gold" },
-  { id: 115, name: "Raidolitos 10 piezas",          category: "Higiénicos", subcategory: "Seguridad y EPP",           categoryKey: "higienicos", accent: "gold" },
-  // ── Papelería — Papel y Sustratos ───────────────────────
-  { id: 116, name: "Hoja Blanca Bond Tamaño Carta 500pzs", category: "Papelería", subcategory: "Papel y Sustratos",   categoryKey: "papeleria", accent: "blue" },
-  { id: 117, name: "Hoja Blanca Fotobond",          category: "Papelería", subcategory: "Papel y Sustratos",          categoryKey: "papeleria", accent: "blue" },
-  { id: 118, name: "Hoja Opalina",                  category: "Papelería", subcategory: "Papel y Sustratos",          categoryKey: "papeleria", accent: "blue" },
-  // ── Papelería — Escritorio ───────────────────────────────
-  { id: 119, name: "Pizarron de corcho 60x90",      category: "Papelería", subcategory: "Escritorio y Presentaciones", categoryKey: "papeleria", accent: "blue" },
-];
+import { products, type Product } from "../data/products";
 
 const TOTAL = products.length;
 
@@ -379,18 +233,26 @@ for (const cm of categoryMeta) {
       overflow: hidden; min-height: 3.3em;
     }
 
-    /* Checkmark badge */
+    /* Add-to-quote badge */
     .pc__chk {
-      position: absolute; top: 7px; right: 7px;
-      width: 19px; height: 19px;
-      background: #6cace3; border-radius: 50%;
+      position: absolute; bottom: 8px; right: 8px;
+      width: 20px; height: 20px;
+      background: #eef3f8; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; transform: scale(0.5);
-      transition: opacity 0.14s, transform 0.14s cubic-bezier(0.34,1.56,0.64,1);
+      transition: background 0.14s, transform 0.14s cubic-bezier(0.34,1.56,0.64,1);
       pointer-events: none;
     }
-    .pc--gold .pc__chk { background: #fab60a; }
-    .pc.sel .pc__chk { opacity: 1; transform: scale(1); }
+    .pc__chk-plus,
+    .pc__chk-check {
+      position: absolute;
+      transition: opacity 0.14s, transform 0.14s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .pc__chk-plus { opacity: 1; }
+    .pc__chk-check { opacity: 0; transform: scale(0.5); }
+    .pc.sel .pc__chk { background: #6cace3; }
+    .pc--gold.sel .pc__chk { background: #fab60a; }
+    .pc.sel .pc__chk-plus { opacity: 0; transform: scale(0.5); }
+    .pc.sel .pc__chk-check { opacity: 1; transform: scale(1); }
 
     /* No results */
     .no-results-msg { display: none; grid-column: 1 / -1; text-align: center; padding: 56px 16px; }
@@ -506,7 +368,7 @@ for (const cm of categoryMeta) {
   </section>
 
   <!-- ═══════ CATALOG ════════════════════════════════════ -->
-  <section style="background:#f5f9ff;padding-top:28px;padding-bottom:0;">
+  <section style="background:#f5f9ff;padding-top:28px;padding-bottom:60px;">
     <div class="container">
 
       <!-- Mobile filter strip -->
@@ -592,7 +454,10 @@ for (const cm of categoryMeta) {
                   <span class="pc__sub">{p.subcategory}</span>
                   <p class="pc__name">{p.name}</p>
                   <div class="pc__chk" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                    <svg class="pc__chk-plus" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M6 1v10M1 6h10" stroke="#8a9baf" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="pc__chk-check" width="11" height="11" viewBox="0 0 11 11" fill="none">
                       <path d="M1.5 5.5l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </div>
@@ -617,7 +482,7 @@ for (const cm of categoryMeta) {
   </section>
 
   <!-- ═══════ "¿No ves lo que buscas?" ══════════════════ -->
-  <section style="background:#f5f9ff;border-top:1px solid #e4edf7;border-bottom:1px solid #e4edf7;margin-top:40px;">
+  <section style="background:#f5f9ff;border-top:1px solid #e4edf7;border-bottom:1px solid #e4edf7;">
     <div class="container py-9 py-md-11">
       <div class="row align-items-center">
         <div class="col-12 col-md-7">
@@ -668,7 +533,12 @@ for (const cm of categoryMeta) {
           <a id="quoteWaBtn" href="#" target="_blank" rel="noopener noreferrer"
              class="btn fw-bold text-white lift"
              style="background:#25d366;border-radius:999px;padding:9px 20px;font-size:0.84rem;">
-            <i class="fe fe-message-circle me-2"></i> Cotizar por WhatsApp
+            <i class="fe fe-message-circle me-2"></i> WhatsApp
+          </a>
+          <a id="quoteMailBtn" href="#" target="_blank" rel="noopener noreferrer"
+             class="btn fw-bold text-white lift"
+             style="background:#6cace3;border-radius:999px;padding:9px 20px;font-size:0.84rem;">
+            <i class="fe fe-mail me-2"></i> Email
           </a>
         </div>
       </div>
@@ -701,6 +571,7 @@ for (const cm of categoryMeta) {
     var quoteChips    = document.getElementById('quoteChips');
     var quoteClearBtn = document.getElementById('quoteClearBtn');
     var quoteWaBtn    = document.getElementById('quoteWaBtn');
+    var quoteMailBtn  = document.getElementById('quoteMailBtn');
 
     var allCards = Array.prototype.slice.call(prodGrid.querySelectorAll('.pc'));
     var allFilterBtns = Array.prototype.slice.call(
@@ -799,6 +670,16 @@ for (const cm of categoryMeta) {
       });
       msg += 'Gracias.';
       quoteWaBtn.href = 'https://wa.me/526681629654?text=' + encodeURIComponent(msg);
+
+      // Build email message
+      var mailBody = 'Hola, me gustaría cotizar los siguientes productos:\n\n';
+      Object.keys(byCat).forEach(function (cat) {
+        mailBody += cat + ':\n';
+        byCat[cat].forEach(function (name) { mailBody += '\u2022 ' + name + '\n'; });
+        mailBody += '\n';
+      });
+      mailBody += 'Gracias.';
+      quoteMailBtn.href = 'mailto:contacto@klyn.com.mx?subject=Cotizaci%C3%B3n%20Klyn&body=' + encodeURIComponent(mailBody);
     }
 
     // ── Clear all ──────────────────────────────────────────

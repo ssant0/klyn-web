@@ -62,6 +62,27 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; Article + BreadcrumbList schema vía BlogLayout.
 
+## Productos data (`src/data/products.ts`)
+
+- Standalone data file exporting `Product` interface and `products` array (119 items).
+- Fields: `id`, `name`, `category`, `subcategory`, `categoryKey` (`quimicos|herramientas|higienicos|papeleria`), `accent` (`blue|gold`).
+- Imported by `src/pages/productos.astro`. Ready to reuse in other pages.
+
+## Catálogo (`/productos`)
+
+Main catalog at `src/pages/productos.astro`. Full filter + quote builder:
+
+- **Card selection**: click/tap a `.pc` card to toggle selection. Cards get `.sel` class. Selected state persists across filter/tab switches.
+- **Add-to-quote badge**: each card has a `+` icon in a squared badge (`border-radius: 6px`) at `bottom: 8px; right: 8px`. When selected, the `+` fades out and a checkmark scales in with brand colors (`#6cace3` / `#fab60a`). CSS-only transition — no JS required for badge animation.
+- **Sidebar filters**: `.sidebar-btn` for categories, `.sidebar-sub` for subcategories. Active filter gets `.is-active`.
+- **Mobile filter strip**: horizontally scrollable pills (`.mob-pill`), same filter logic.
+- **Real-time search**: vanilla JS `input` event, filters `allCards` by `data-name`. Clear button appears when query active.
+- **Quote bar** (`#quoteBar`): fixed bottom bar slides up when ≥1 product selected. Shows category chips with counts, plus two action buttons:
+  - **WhatsApp** (`#quoteWaBtn`): builds grouped-by-category message with markdown (`*Category*`, `• items`) → `wa.me` URL.
+  - **Email** (`#quoteMailBtn`): same grouped message → `mailto:contacto@klyn.com.mx` with subject.
+  - **Clear** (`#quoteClearBtn`): resets all selections.
+- `define:vars={{ products }}` passes the full array to client as `window.__KLYN_PRODUCTS__`.
+
 ## Productos v2 (`/productos-v2`)
 
 Experimental catalog page at `src/pages/productos-v2.astro` with three UX improvements:

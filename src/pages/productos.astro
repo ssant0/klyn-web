@@ -574,6 +574,7 @@ for (const cm of categoryMeta) {
   const quoteClearBtn = document.getElementById('quoteClearBtn')  as HTMLButtonElement;
   const quoteWaBtn    = document.getElementById('quoteWaBtn')     as HTMLAnchorElement;
   const quoteMailBtn  = document.getElementById('quoteMailBtn')   as HTMLAnchorElement;
+  const whatsappFloatBtn = document.getElementById('whatsapp-float-btn') as HTMLElement;
 
   const allCards      = Array.from(prodGrid.querySelectorAll<HTMLElement>('.pc'));
   const allFilterBtns = Array.from(document.querySelectorAll<HTMLElement>('[data-fcat]'));
@@ -637,10 +638,20 @@ for (const cm of categoryMeta) {
 
   // ── Quote bar ──────────────────────────────────────────
   function updateQuoteBar(): void {
-    const ids:   string[] = Object.keys(selected);
-    const count: number   = ids.length;
-    quoteBar.classList.toggle('open', count > 0);
-    if (count === 0) return;
+    const ids:    string[] = Object.keys(selected);
+    const count:  number   = ids.length;
+    const isOpen: boolean  = count > 0;
+
+    quoteBar.classList.toggle('open', isOpen);
+
+    // ── Sync WhatsApp float button ────────────────────────
+    if (whatsappFloatBtn) {
+      whatsappFloatBtn.style.bottom = isOpen
+        ? `${quoteBar.offsetHeight + 24}px`
+        : '24px';
+    }
+
+    if (!isOpen) return;
 
     // Group by category
     const byCat: Record<string, string[]> = {};

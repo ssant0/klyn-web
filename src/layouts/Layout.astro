@@ -215,6 +215,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
 
     <!-- WhatsApp Flotante -->
     <a
+      id="whatsapp-float-btn"
       href="https://wa.me/526681629654?text=%C2%A1Hola%21+Me+gustar%C3%ADa+recibir+informaci%C3%B3n+y+cotizaci%C3%B3n+de+sus+productos.+%C2%BFPueden+ayudarme%3F"
       target="_blank"
       rel="noopener noreferrer"
@@ -234,7 +235,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
         height: 76px;
         border-radius: 50%;
         box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: bottom 0.26s cubic-bezier(0.4,0,0.2,1), transform 0.2s ease, box-shadow 0.2s ease;
       "
       onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 18px rgba(0,0,0,0.3)';"
       onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.25)';"

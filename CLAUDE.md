@@ -44,6 +44,17 @@ This is an **Astro static site** deployed to **Cloudflare Pages**.
 - NO agregar Tailwind ni ningún otro framework CSS — conflicto con Bootstrap
 - `src/styles/global.css` contiene utilidades custom: `.shadow-soft` (sombra discreta), estilos de `.accordion-button`, `.accordion-icon`, `.accordion-chevron`
 
+**Lenguaje de scripting: TypeScript**
+- **Todo el código JavaScript del proyecto se escribe en TypeScript** — es el default para archivos nuevos y ediciones.
+- Los `<script>` en archivos `.astro` se escriben sin `is:inline` para que Astro/Vite los compile como módulos TypeScript.
+- `is:inline` se reserva **exclusivamente** para: código vendor (GTM, analytics) y bloques con `define:vars` que necesitan pasar datos del servidor al cliente.
+- Tipar con `as HTMLInputElement`, `as HTMLAnchorElement`, etc. los elementos DOM obtenidos con `getElementById` / `querySelector`.
+- Usar `interface` para objetos de estado con más de un campo.
+- Arrow functions `(e) => {}` sobre `function(e) {}` anónimas en callbacks.
+- Template literals `` `${var}` `` sobre concatenación de strings `+`.
+- `Array.from(el.querySelectorAll<HTMLElement>('.cls'))` en lugar de `Array.prototype.slice.call(...)`.
+- No usar `var` — siempre `const` o `let` según si se reasigna o no.
+
 **Deployment:** Targets **Cloudflare Pages** (not Workers). `wrangler.jsonc` sets `pages_build_output_dir: ./dist`. Deploy with `wrangler pages deploy` or via the Cloudflare Pages Git integration. The adapter uses `mode: 'directory'` which outputs a `_worker.js` inside `dist/` for Pages to pick up automatically.
 
 **Layout:** `src/layouts/Layout.astro` es el layout base. Incluye navbar, footer y modales. Props: `title`, `bodyClass`.

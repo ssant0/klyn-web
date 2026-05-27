@@ -39,8 +39,8 @@ for (const cm of categoryMeta) {
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://www.klyn.com.mx/productos-v3#webpage",
-    "url": "https://www.klyn.com.mx/productos-v3",
+    "@id": "https://www.klyn.com.mx/productos#webpage",
+    "url": "https://www.klyn.com.mx/productos",
     "name": "Catálogo Explorer — Klyn",
     "description": "Catálogo de suministros de limpieza, herramientas y papelería para empresas.",
     "inLanguage": "es-MX",
@@ -50,7 +50,7 @@ for (const cm of categoryMeta) {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.klyn.com.mx/" },
-        { "@type": "ListItem", "position": 2, "name": "Productos", "item": "https://www.klyn.com.mx/productos-v3" }
+        { "@type": "ListItem", "position": 2, "name": "Productos", "item": "https://www.klyn.com.mx/productos" }
       ]
     }
   }
@@ -551,186 +551,185 @@ for (const cm of categoryMeta) {
   </script>
 
   <!-- Main catalog logic -->
-  <script is:inline>
-  (function () {
-    'use strict';
+  <script>
+  interface SelectedProduct {
+    name: string;
+    category: string;
+  }
 
-    // ── State ──────────────────────────────────────────────
-    var selected  = {}; // { id: {name, category} }
-    var activeCat = '';
-    var activeSub = '';
-    var query     = '';
+  // ── State ──────────────────────────────────────────────
+  let selected: Record<string, SelectedProduct> = {};
+  let activeCat = '';
+  let activeSub = '';
+  let query     = '';
 
-    // ── DOM ────────────────────────────────────────────────
-    var searchInput   = document.getElementById('catalogSearch');
-    var searchClear   = document.getElementById('searchClearBtn');
-    var resultsMeta   = document.getElementById('resultsMeta');
-    var prodGrid      = document.getElementById('prodGrid');
-    var noResultsMsg  = document.getElementById('noResultsMsg');
-    var quoteBar      = document.getElementById('quoteBar');
-    var quoteChips    = document.getElementById('quoteChips');
-    var quoteClearBtn = document.getElementById('quoteClearBtn');
-    var quoteWaBtn    = document.getElementById('quoteWaBtn');
-    var quoteMailBtn  = document.getElementById('quoteMailBtn');
+  // ── DOM ────────────────────────────────────────────────
+  const searchInput   = document.getElementById('catalogSearch')  as HTMLInputElement;
+  const searchClear   = document.getElementById('searchClearBtn') as HTMLButtonElement;
+  const resultsMeta   = document.getElementById('resultsMeta')    as HTMLElement;
+  const prodGrid      = document.getElementById('prodGrid')       as HTMLElement;
+  const noResultsMsg  = document.getElementById('noResultsMsg')   as HTMLElement;
+  const quoteBar      = document.getElementById('quoteBar')       as HTMLElement;
+  const quoteChips    = document.getElementById('quoteChips')     as HTMLElement;
+  const quoteClearBtn = document.getElementById('quoteClearBtn')  as HTMLButtonElement;
+  const quoteWaBtn    = document.getElementById('quoteWaBtn')     as HTMLAnchorElement;
+  const quoteMailBtn  = document.getElementById('quoteMailBtn')   as HTMLAnchorElement;
 
-    var allCards = Array.prototype.slice.call(prodGrid.querySelectorAll('.pc'));
-    var allFilterBtns = Array.prototype.slice.call(
-      document.querySelectorAll('[data-fcat]')
-    );
+  const allCards      = Array.from(prodGrid.querySelectorAll<HTMLElement>('.pc'));
+  const allFilterBtns = Array.from(document.querySelectorAll<HTMLElement>('[data-fcat]'));
 
-    // ── Filter ─────────────────────────────────────────────
-    function applyFilters() {
-      var q = query.toLowerCase().trim();
-      var visible = 0;
+  // ── Filter ─────────────────────────────────────────────
+  function applyFilters(): void {
+    const q: string    = query.toLowerCase().trim();
+    let visible: number = 0;
 
-      allCards.forEach(function (card) {
-        var catOk = !activeCat || card.dataset.catkey === activeCat;
-        var subOk = !activeSub || card.dataset.sub === activeSub;
-        var nameOk = !q || card.dataset.name.toLowerCase().indexOf(q) !== -1;
-        var show = catOk && subOk && nameOk;
-        card.classList.toggle('hidden', !show);
-        if (show) visible++;
-      });
-
-      noResultsMsg.classList.toggle('visible', visible === 0);
-
-      if (q || activeCat || activeSub) {
-        resultsMeta.textContent = visible + ' producto' + (visible !== 1 ? 's' : '');
-      } else {
-        resultsMeta.textContent = '';
-      }
-
-      searchClear.classList.toggle('visible', q.length > 0);
-    }
-
-    // ── Activate filter button ─────────────────────────────
-    function setFilter(cat, sub) {
-      activeCat = cat;
-      activeSub = sub;
-
-      allFilterBtns.forEach(function (btn) {
-        var bCat = btn.dataset.fcat;
-        var bSub = btn.dataset.fsub || '';
-        var match = bCat === cat && bSub === sub;
-        var isSidebar = btn.classList.contains('sidebar-btn') || btn.classList.contains('sidebar-sub');
-        var isMob = btn.classList.contains('mob-pill');
-        if (isSidebar || isMob) {
-          btn.classList.toggle('is-active', match);
-        }
-      });
-
-      applyFilters();
-    }
-
-    // ── Card toggle ────────────────────────────────────────
-    function toggleCard(card) {
-      var id = card.dataset.id;
-      if (selected[id]) {
-        delete selected[id];
-        card.classList.remove('sel');
-        card.setAttribute('aria-pressed', 'false');
-      } else {
-        selected[id] = { name: card.dataset.name, category: card.dataset.cat };
-        card.classList.add('sel');
-        card.setAttribute('aria-pressed', 'true');
-      }
-      updateQuoteBar();
-    }
-
-    // ── Quote bar ──────────────────────────────────────────
-    function updateQuoteBar() {
-      var ids = Object.keys(selected);
-      var count = ids.length;
-      quoteBar.classList.toggle('open', count > 0);
-      if (count === 0) return;
-
-      // Group by category
-      var byCat = {};
-      ids.forEach(function (id) {
-        var item = selected[id];
-        if (!byCat[item.category]) byCat[item.category] = [];
-        byCat[item.category].push(item.name);
-      });
-
-      // Render chips
-      quoteChips.innerHTML = '';
-      Object.keys(byCat).forEach(function (cat) {
-        var chip = document.createElement('span');
-        chip.className = 'q-chip';
-        chip.innerHTML = cat + ' <span class="q-chip-n">' + byCat[cat].length + '</span>';
-        quoteChips.appendChild(chip);
-      });
-
-      // Build WhatsApp message
-      var msg = '¡Hola! Me gustaría cotizar los siguientes productos:\n\n';
-      Object.keys(byCat).forEach(function (cat) {
-        msg += '*' + cat + '*\n';
-        byCat[cat].forEach(function (name) { msg += '• ' + name + '\n'; });
-        msg += '\n';
-      });
-      msg += 'Gracias.';
-      quoteWaBtn.href = 'https://wa.me/526681629654?text=' + encodeURIComponent(msg);
-
-      // Build email message
-      var mailBody = 'Hola, me gustaría cotizar los siguientes productos:\n\n';
-      Object.keys(byCat).forEach(function (cat) {
-        mailBody += cat + ':\n';
-        byCat[cat].forEach(function (name) { mailBody += '\u2022 ' + name + '\n'; });
-        mailBody += '\n';
-      });
-      mailBody += 'Gracias.';
-      quoteMailBtn.href = 'mailto:contacto@klyn.com.mx?subject=Cotizaci%C3%B3n%20Klyn&body=' + encodeURIComponent(mailBody);
-    }
-
-    // ── Clear all ──────────────────────────────────────────
-    function clearAll() {
-      selected = {};
-      allCards.forEach(function (c) {
-        c.classList.remove('sel');
-        c.setAttribute('aria-pressed', 'false');
-      });
-      updateQuoteBar();
-    }
-
-    // ── Events ─────────────────────────────────────────────
-
-    // Card click
-    prodGrid.addEventListener('click', function (e) {
-      var card = e.target.closest('.pc');
-      if (card && !card.classList.contains('hidden')) toggleCard(card);
-    });
-    // Card keyboard
-    prodGrid.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        var card = e.target.closest('.pc');
-        if (card && !card.classList.contains('hidden')) { e.preventDefault(); toggleCard(card); }
-      }
+    allCards.forEach((card) => {
+      const catOk  = !activeCat || card.dataset.catkey === activeCat;
+      const subOk  = !activeSub || card.dataset.sub    === activeSub;
+      const nameOk = !q         || card.dataset.name!.toLowerCase().indexOf(q) !== -1;
+      const show   = catOk && subOk && nameOk;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
     });
 
-    // Filter buttons (sidebar + mobile strip)
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-fcat]');
-      if (btn) setFilter(btn.dataset.fcat, btn.dataset.fsub || '');
+    noResultsMsg.classList.toggle('visible', visible === 0);
+
+    if (q || activeCat || activeSub) {
+      resultsMeta.textContent = `${visible} producto${visible !== 1 ? 's' : ''}`;
+    } else {
+      resultsMeta.textContent = '';
+    }
+
+    searchClear.classList.toggle('visible', q.length > 0);
+  }
+
+  // ── Activate filter button ─────────────────────────────
+  function setFilter(cat: string, sub: string): void {
+    activeCat = cat;
+    activeSub = sub;
+
+    allFilterBtns.forEach((btn) => {
+      const bCat      = btn.dataset.fcat ?? '';
+      const bSub      = btn.dataset.fsub ?? '';
+      const match     = bCat === cat && bSub === sub;
+      const isSidebar = btn.classList.contains('sidebar-btn') || btn.classList.contains('sidebar-sub');
+      const isMob     = btn.classList.contains('mob-pill');
+      if (isSidebar || isMob) btn.classList.toggle('is-active', match);
     });
 
-    // Search
-    searchInput.addEventListener('input', function () {
-      query = this.value;
-      applyFilters();
-    });
-    searchClear.addEventListener('click', function () {
-      searchInput.value = '';
-      query = '';
-      applyFilters();
-      searchInput.focus();
-    });
-
-    // Quote bar clear
-    quoteClearBtn.addEventListener('click', clearAll);
-
-    // Init
     applyFilters();
-  })();
+  }
+
+  // ── Card toggle ────────────────────────────────────────
+  function toggleCard(card: HTMLElement): void {
+    const id = card.dataset.id!;
+    if (selected[id]) {
+      delete selected[id];
+      card.classList.remove('sel');
+      card.setAttribute('aria-pressed', 'false');
+    } else {
+      selected[id] = { name: card.dataset.name!, category: card.dataset.cat! };
+      card.classList.add('sel');
+      card.setAttribute('aria-pressed', 'true');
+    }
+    updateQuoteBar();
+  }
+
+  // ── Quote bar ──────────────────────────────────────────
+  function updateQuoteBar(): void {
+    const ids:   string[] = Object.keys(selected);
+    const count: number   = ids.length;
+    quoteBar.classList.toggle('open', count > 0);
+    if (count === 0) return;
+
+    // Group by category
+    const byCat: Record<string, string[]> = {};
+    ids.forEach((id) => {
+      const item = selected[id];
+      if (!byCat[item.category]) byCat[item.category] = [];
+      byCat[item.category].push(item.name);
+    });
+
+    // Render chips
+    quoteChips.innerHTML = '';
+    Object.keys(byCat).forEach((cat) => {
+      const chip = document.createElement('span');
+      chip.className = 'q-chip';
+      chip.innerHTML = `${cat} <span class="q-chip-n">${byCat[cat].length}</span>`;
+      quoteChips.appendChild(chip);
+    });
+
+    // Build WhatsApp message
+    let msg = '¡Hola! Me gustaría cotizar los siguientes productos:\n\n';
+    Object.keys(byCat).forEach((cat) => {
+      msg += `*${cat}*\n`;
+      byCat[cat].forEach((name) => { msg += `• ${name}\n`; });
+      msg += '\n';
+    });
+    msg += 'Gracias.';
+    quoteWaBtn.href = `https://wa.me/526681629654?text=${encodeURIComponent(msg)}`;
+
+    // Build email message
+    let mailBody = 'Hola, me gustaría cotizar los siguientes productos:\n\n';
+    Object.keys(byCat).forEach((cat) => {
+      mailBody += `${cat}:\n`;
+      byCat[cat].forEach((name) => { mailBody += `• ${name}\n`; });
+      mailBody += '\n';
+    });
+    mailBody += 'Gracias.';
+    quoteMailBtn.href = `mailto:contacto@klyn.com.mx?subject=Cotizaci%C3%B3n%20Klyn&body=${encodeURIComponent(mailBody)}`;
+  }
+
+  // ── Clear all ──────────────────────────────────────────
+  function clearAll(): void {
+    selected = {};
+    allCards.forEach((c) => {
+      c.classList.remove('sel');
+      c.setAttribute('aria-pressed', 'false');
+    });
+    updateQuoteBar();
+  }
+
+  // ── Events ─────────────────────────────────────────────
+
+  // Card click
+  prodGrid.addEventListener('click', (e) => {
+    const card = (e.target as Element).closest<HTMLElement>('.pc');
+    if (card && !card.classList.contains('hidden')) toggleCard(card);
+  });
+
+  // Card keyboard
+  prodGrid.addEventListener('keydown', (e) => {
+    const { key } = e as KeyboardEvent;
+    if (key === 'Enter' || key === ' ') {
+      const card = (e.target as Element).closest<HTMLElement>('.pc');
+      if (card && !card.classList.contains('hidden')) { e.preventDefault(); toggleCard(card); }
+    }
+  });
+
+  // Filter buttons (sidebar + mobile strip)
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>('[data-fcat]');
+    if (btn) setFilter(btn.dataset.fcat ?? '', btn.dataset.fsub ?? '');
+  });
+
+  // Search
+  searchInput.addEventListener('input', (e) => {
+    query = (e.target as HTMLInputElement).value;
+    applyFilters();
+  });
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    query = '';
+    applyFilters();
+    searchInput.focus();
+  });
+
+  // Quote bar clear
+  quoteClearBtn.addEventListener('click', clearAll);
+
+  // Init
+  applyFilters();
   </script>
 
 </Layout>

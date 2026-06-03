@@ -552,6 +552,8 @@ for (const cm of categoryMeta) {
 
   <!-- Main catalog logic -->
   <script>
+  import { config } from "../data/config";
+
   interface SelectedProduct {
     name: string;
     category: string;
@@ -688,7 +690,7 @@ for (const cm of categoryMeta) {
       mailBody += '\n';
     });
     mailBody += 'Gracias.';
-    quoteMailBtn.href = `mailto:contacto@klyn.com.mx?subject=Cotizaci%C3%B3n%20Klyn&body=${encodeURIComponent(mailBody)}`;
+    quoteMailBtn.href = `mailto:${atob(config.email)}?subject=Cotizaci%C3%B3n%20Klyn&body=${encodeURIComponent(mailBody)}`;
   }
 
   // ── Clear all ──────────────────────────────────────────

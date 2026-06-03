@@ -25,7 +25,7 @@ import Layout from "../layouts/Layout.astro";
           </p>
           <p>
             Puede contactarnos a través de:<br>
-            Correo electrónico: <a href="mailto:contacto@klyn.com.mx">contacto@klyn.com.mx</a><br>
+            Correo electrónico: <a href="" data-email-href data-email-text></a><br>
             Teléfono / WhatsApp: <a href="tel:+526681629654">+52 668 162 9654</a>
           </p>
 
@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
           </ul>
           <p>
             Si no desea que sus datos sean utilizados para las finalidades secundarias, puede manifestarlo
-            enviando un correo a <a href="mailto:contacto@klyn.com.mx">contacto@klyn.com.mx</a> con el asunto
+            enviando un correo a <a href="" data-email-href data-email-text></a> con el asunto
             <em>"Oposición finalidades secundarias"</em>.
           </p>
 
@@ -133,7 +133,7 @@ import Layout from "../layouts/Layout.astro";
             al tratamiento de sus datos personales. Para ejercerlos, envíe una solicitud a:
           </p>
           <ul>
-            <li>Correo electrónico: <a href="mailto:contacto@klyn.com.mx">contacto@klyn.com.mx</a></li>
+            <li>Correo electrónico: <a href="" data-email-href data-email-text></a></li>
             <li>Asunto: <em>"Ejercicio de derechos ARCO"</em></li>
           </ul>
           <p>Su solicitud debe incluir:</p>
@@ -167,3 +167,8 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 </Layout>
+
+<script>
+  import { hydrateEmail } from "../utils/email";
+  hydrateEmail();
+</script>

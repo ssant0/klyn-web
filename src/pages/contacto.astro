@@ -296,9 +296,9 @@ import FAQ from "../components/FAQ.astro";
                     <p class="text-body-secondary mb-3" style="font-size: 0.95rem;">
                       Escríbenos con tu lista de productos o dudas sobre el catálogo.
                     </p>
-                    <a href="mailto:contacto@klyn.com.mx?subject=Solicitud%20de%20cotizaci%C3%B3n&body=Hola%2C%20equipo%20de%20Klyn%3A%0A%0AMe%20interesa%20recibir%20una%20cotizaci%C3%B3n%20de%20sus%20productos.%0A%0ANombre%3A%20%0AEmpresa%3A%20%0AProductos%20de%20inter%C3%A9s%3A%20%0AVolumen%20aproximado%3A%20%0ATel%C3%A9fono%20de%20contacto%3A%20" class="contact-link contact-link-email">
+                    <a href="" data-email-href data-email-params="?subject=Solicitud%20de%20cotizaci%C3%B3n&body=Hola%2C%20equipo%20de%20Klyn%3A%0A%0AMe%20interesa%20recibir%20una%20cotizaci%C3%B3n%20de%20sus%20productos.%0A%0ANombre%3A%20%0AEmpresa%3A%20%0AProductos%20de%20inter%C3%A9s%3A%20%0AVolumen%20aproximado%3A%20%0ATel%C3%A9fono%20de%20contacto%3A%20" class="contact-link contact-link-email">
                       <i class="fe fe-mail"></i>
-                      contacto@klyn.com.mx
+                      <span data-email-text></span>
                     </a>
                   </div>
                 </div>
@@ -492,3 +492,8 @@ import FAQ from "../components/FAQ.astro";
     </div>
   </section>
 </Layout>
+
+<script>
+  import { hydrateEmail } from "../utils/email";
+  hydrateEmail();
+</script>

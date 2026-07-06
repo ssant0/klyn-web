@@ -38,7 +38,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .hero-landing {
-      min-height: 100vh;
+      min-height: calc(100vh - 80px);
       display: flex;
       align-items: center;
       position: relative;
@@ -395,7 +395,7 @@ import Layout from "../layouts/Layout.astro";
     .cta-note {
       color: rgba(255,255,255,0.4);
       font-size: 0.8rem;
-      margin-top: 1rem;
+      margin-top: 1rem !important;
     }
 
     .products-grid {
@@ -427,6 +427,12 @@ import Layout from "../layouts/Layout.astro";
       font-size: 0.85rem;
       font-weight: 600;
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-card h3 {
@@ -565,20 +571,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
       <div class="hero-image-frame">
-        <div class="hero-image-placeholder">
-          <svg viewBox="0 0 72 72" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="10" y="18" width="52" height="40" rx="4"/>
-            <rect x="22" y="10" width="28" height="12" rx="2"/>
-            <rect x="14" y="30" width="18" height="14" rx="1"/>
-            <rect x="40" y="30" width="18" height="14" rx="1"/>
-            <rect x="14" y="48" width="18" height="8" rx="1"/>
-            <rect x="40" y="48" width="18" height="8" rx="1"/>
-            <path d="M26 30v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-width="0.8" opacity="0.5"/>
-            <path d="M48 56h-4l-1 4H29l-1-4h-4" stroke-width="0.8" opacity="0.5"/>
-          </svg>
-          <span>Imagen institucional</span>
-          <span style="font-size:0.7rem;opacity:0.6;">1:1</span>
-        </div>
+        <img src="/assets/img/landings/negocios-educativos/hero-section.webp" alt="Instituciones educativas" width="380" height="380" loading="lazy" style="width:100%;height:100%;border-radius:var(--radius);object-fit:cover;">
       </div>
     </div>
   </section>
@@ -657,38 +650,52 @@ import Layout from "../layouts/Layout.astro";
   <!-- PRODUCTOS -->
   <section class="section-pad fade-section" id="productos" style="background:var(--bg);">
     <div class="container text-center">
-      <span class="eyebrow">Insumos de limpieza</span>
+      <span class="eyebrow">Insumos institucionales</span>
       <h2 class="section-title mx-auto" style="max-width:640px;">Equipa tu institución con productos profesionales</h2>
-      <p class="section-desc mx-auto">Mantén aulas, baños, comedores y áreas comunes impecables con nuestra línea completa de productos de limpieza institucional. Todo lo que una escuela necesita, en un solo proveedor.</p>
+      <p class="section-desc mx-auto">Limpieza, papelería, consumibles de impresión y más. Todo lo que una escuela necesita administrativa y operativamente, en un solo proveedor.</p>
     </div>
     <div class="container products-grid">
       <div class="product-card">
         <div class="product-image">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M20 12a8 8 0 0 1-16 0 8 8 0 0 1 16 0z"/></svg>
+          <img src="/assets/img/landings/negocios-educativos/liquidos-quimicos.webp" alt="Líquidos y químicos profesionales" width="260" height="260" loading="lazy">
         </div>
         <h3>Líquidos y químicos profesionales</h3>
         <p>Desinfectantes, limpiadores multiusos, desengrasantes, aromatizantes y solventes de grado institucional. Productos certificados, seguros para usar en entornos escolares.</p>
       </div>
       <div class="product-card">
         <div class="product-image">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>
+          <img src="/assets/img/landings/negocios-educativos/jerceria-herramientas.webp" alt="Herramientas y equipos de limpieza" width="260" height="260" loading="lazy">
         </div>
         <h3>Herramientas y equipos</h3>
         <p>Trapeadores, escobas, cubetas, exprimidores, aspersores, carros de limpieza y dispensadores. Equipo resistente para uso continuo en instituciones de gran volumen.</p>
       </div>
       <div class="product-card">
         <div class="product-image">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22V8l4-6 4 6v14"/><path d="M10 12H6"/><path d="M14 22V4l4-2 4 2v18"/><path d="M18 10v4"/></svg>
+          <img src="/assets/img/landings/negocios-educativos/suministros-papel.webp" alt="Suministros de papel e higiene" width="260" height="260" loading="lazy">
         </div>
         <h3>Suministros de papel e higiene</h3>
         <p>Papel higiénico, toallas de papel, jabón de manos, gel antibacterial y dispensadores. Formato institucional con el mejor costo por uso para tu presupuesto.</p>
       </div>
       <div class="product-card">
         <div class="product-image">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M6 12H2"/><path d="M22 12h-2"/></svg>
+          <img src="/assets/img/landings/negocios-educativos/bolsas-desechables.webp" alt="Bolsas, desechables y accesorios" width="260" height="260" loading="lazy">
         </div>
         <h3>Bolsas, desechables y accesorios</h3>
         <p>Bolsas para residuos en todos los calibres, guantes, franelas, señalización y artículos de limpieza general. Todo el consumo básico que tu institución requiere cada mes.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/assets/img/landings/negocios-educativos/papeleria-oficina.webp" alt="Papelería de oficina" width="260" height="260" loading="lazy">
+        </div>
+        <h3>Papelería de oficina</h3>
+        <p>Cuadernos, blocks, carpetas, folders, bolígrafos, lápices, correctores, clips, engrapadoras y todo el material de oficina que tu institución necesita diariamente.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+          <img src="/assets/img/landings/negocios-educativos/toners-tintas.webp" alt="Tóner, tintas y consumibles" width="260" height="260" loading="lazy">
+        </div>
+        <h3>Tóner, tintas y consumibles</h3>
+        <p>Cartuchos de tinta original y compatible, tóner para impresoras láser, tambores, cintas y consumibles de impresión para mantener tu equipo administrativo y académico funcionando.</p>
       </div>
     </div>
   </section>

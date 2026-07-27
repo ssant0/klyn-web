@@ -1,0 +1,172 @@
+# Klyn — Suministros de Limpieza y Papelería para Empresas
+> Proveedor B2B de suministros de limpieza, herramientas y papelería para empresas, hoteles, escuelas y comercios. Entregas locales en Los Mochis, Sinaloa, y envíos a todo México.
+
+## Site Information
+
+- **Name:** Klyn
+- **Type:** WholesaleStore / B2B Supplier
+- **Languages:** Spanish (es-MX)
+- **Service Area:** Mexico, primarily Sinaloa and Los Mochis
+- **Founded:** 2025
+- **Address:** Melchor Ocampo 1054, Colonia Romanillo, Los Mochis, Sinaloa, CP 81285
+- **Contact:** +526681629654 (WhatsApp), contacto@klyn.com.mx
+- **Hours:** Mon–Fri 09:00–18:00, Sat 09:30–13:30
+- **Social:** facebook.com/klyn.com.mx, instagram.com/klyn.com.mx, linkedin.com/company/klyn-solutions
+
+## Pages
+
+- Home: https://www.klyn.com.mx/
+- Product Catalog: https://www.klyn.com.mx/productos/
+- About Us: https://www.klyn.com.mx/nosotros/
+- Contact: https://www.klyn.com.mx/contacto/
+- Privacy Policy: https://www.klyn.com.mx/aviso-de-privacidad/
+- Blog: https://www.klyn.com.mx/blog/
+- Institutions: https://www.klyn.com.mx/instituciones-educativas/
+
+## Product Categories
+
+- Químicos de limpieza (cleaning chemicals): disinfectants, chlorine, degreasers, soaps
+- Herramientas de limpieza (cleaning tools): microfiber cloths, mops, brooms, equipment
+- Higiénicos (hygiene products): paper towels, toilet paper, hand soap, dispensers
+- Papelería (office supplies): bond paper, folders, pens, printer consumables
+
+## Blog Articles
+
+### Guía completa de productos de limpieza profesional para empresas en México
+
+**URL:** https://www.klyn.com.mx/blog/posts/guia-productos-limpieza-profesional/
+**Category:** Guías
+**Published:** 2026-05-21
+**Tags:** limpieza profesional, productos de limpieza, B2B, guía
+
+**Summary:**
+Comprehensive guide to professional cleaning products for Mexican businesses. Covers the difference between domestic and professional products (higher active ingredient concentrations, better yield per liter, documented efficacy against bacteria and viruses). Details five main product categories: chlorine and disinfectants (conventional 6%, concentrated 13%+, chlorine-free), soaps and detergents (hand soap, powder/liquid detergent), degreasers (essential for industrial kitchens), and tools (microfiber cloths, mops, paper products).
+
+Includes industry-specific recommendations: hotels need chlorine + disinfectants + air fresheners; offices need glass cleaners + hand soap + microfiber cloths; schools need high-spectrum disinfectants + diluted chlorine + antibacterial soap + disposable PPE. Provides a 5-criteria framework for choosing a B2B supplier: product variety, consistent quality, punctual delivery (especially in Los Mochis), personalized attention/pricing, and CFDI invoicing (SAT-compliant).
+
+**Key data points:**
+- 1 liter of concentrated product yields 10-20 liters of ready-to-use solution
+- Professional products cost more per container but less per liter applied
+- 8 "must-have" products cover 90% of daily business needs: multi-purpose cleaner, disinfectant, liquid soap, chlorine, degreaser, trash bags, toilet paper, microfiber cloths
+- Buying from a single supplier reduces freight costs, simplifies invoicing, and improves volume pricing for most SMEs
+
+**FAQ (5 questions):** What products are essential for a business? (8 basics cover 90%). Do concentrated products yield more? (1L concentrate = 10-20L ready-to-use). Is staff training necessary? (prevents waste, surface damage, accidents). Difference between domestic and professional? (higher active ingredient concentration, documented efficacy, lower cost per applied liter). Buy from one supplier? (yes for most SMEs — fewer invoices, better pricing).
+
+---
+
+### Suministros de papelería básicos que toda oficina necesita
+
+**URL:** https://www.klyn.com.mx/blog/posts/suministros-papeleria-oficina/
+**Category:** Papelería
+**Published:** 2026-05-22
+**Tags:** papelería, oficina, suministros, guía B2B
+
+**Summary:**
+Complete guide to essential office supplies for Mexican businesses. Breaks down five categories: bond paper (standard presentations: carta 75g/m² for daily use, oficio 75g/m² for legal documents, carta 90g/m² for formal presentations); pens (70% blue, 20% black, 10% red ink distribution); folders and filing (letter/legal folders, ring binders, dividers, archive boxes with 3-5 year retention under LFPDPPP); printer consumables (double-sided printing as default, original vs. certified compatible toners); and daily desk items (staplers, clips, tape, scissors, correction supplies, Post-it notes).
+
+Provides monthly consumption estimation table per 10 employees: 3-4 bond paper reams, 15-20 pens, 25-30 folders, 1-2 staple boxes, toner/printer-specific. Emphasizes that bulk purchasing saves 10-20% vs. retail but requires basic inventory control and storage space.
+
+**Key data points:**
+- 3-4 reams of bond paper consumed per month per 10 employees (baseline)
+- Accounting/legal firms consume more; digital-heavy companies consume less
+- Typcial bulk savings: 10-20% over retail
+- Certified compatible toner saves 30-50% but verify it won't void printer warranty
+- 4 strategies to optimize printer costs: double-sided printing, original/certified toners, inventory tracking, monitor cost per page (CPP)
+
+**FAQ (5 questions):** How much bond paper per month? (3-4 reams per 10 employees). Buy in bulk? (10-20% savings, needs storage). Original vs. compatible toner? (original = guaranteed quality; certified compatible = 30-50% cheaper, verify warranty). Cost per page (CPP)? (consumable price ÷ page yield; correct metric for printer comparison). Inventory frequency? (monthly with reorder point — replenish when stock hits minimum, e.g., 2 reams).
+
+---
+
+### ¿Cloro o desinfectante? Cuándo usar cada uno en tu negocio
+
+**URL:** https://www.klyn.com.mx/blog/posts/cloro-o-desinfectante-cuando-usar/
+**Category:** Limpieza
+**Published:** 2026-05-23
+**Tags:** cloro, desinfectante, limpieza profesional, comparativa
+
+**Summary:**
+Detailed comparison between chlorine (sodium hypochlorite) and chlorine-free professional disinfectants for Mexican commercial settings. Chlorine is the most widely used disinfectant in Mexican commercial cleaning due to cost-effectiveness, fast action (seconds vs. 5-10 minutes), and broad spectrum efficacy (>99.9% kill rate). However, it is corrosive to metals, has strong odor, high toxicity requiring dilution, and loses potency within hours of dilution.
+
+Chlorine-free disinfectants (quaternary ammonium compounds, hydrogen peroxide, peracetic acid) achieve the same >99.9% efficacy but require longer contact time (5-10 min) and pre-cleaned surfaces. They are non-corrosive, have mild or no odor, low to moderate toxicity, and remain stable for days or weeks after dilution. Cost per diluted liter is medium to high compared to chlorine's very low cost.
+
+Includes a comparative table across 8 dimensions (germicidal power, speed, corrosivity, odor, toxicity, surface compatibility, cost per diluted liter, diluted shelf life). Provides explicit usage guidance: chlorine for concrete/ceramic/porcelain floors, high-traffic bathrooms, food prep areas (with rinse), outdoor areas, and flu season; chlorine-free for wood/acrylic/laminated surfaces, electronics, hotel rooms, schools, stainless steel, and customer-facing areas where sensory experience matters. Warns against dangerous mixing (chlorine + ammonia = chloramine gas; chlorine + acids = chlorine gas; chlorine + alcohol = chloroform).
+
+**Key data points:**
+- Both types achieve >99.9% efficacy with correct concentration and contact time
+- Minimum contact time for chlorine: 5 minutes (shorter evaporation means recontamination)
+- Chlorine concentration recommendation: 13% concentrate diluted to 10% (1:9 ratio) for general, 20% for high contamination
+- Diluted chlorine loses potency within hours; chlorine-free lasts days or weeks
+- High-traffic bathrooms: disinfect every 2-3 hours; low-use office bathrooms: twice daily
+
+**FAQ (5 questions):** Is chlorine the same as disinfectant? (chlorine is one type of disinfectant; chlorine-free options exist with different active ingredients). Chlorine contact time? (minimum 5 minutes for effective disinfection). Are chlorine-free disinfectants more expensive? (higher cost per diluted liter but offset by durability and lower surface damage). Chlorine on stainless steel? (only if rinsed immediately and dried; prolonged exposure causes pitting corrosion). Bathroom disinfection frequency? (high-traffic: every 2-3 hours; low-use office: twice daily).
+
+---
+
+### Guía de limpieza para hoteles: productos y protocolos esenciales
+
+**URL:** https://www.klyn.com.mx/blog/posts/guia-limpieza-hoteles-productos-protocolos/
+**Category:** Industrias
+**Published:** 2026-05-24
+**Tags:** hoteles, limpieza profesional, hospitality, Sinaloa
+
+**Summary:**
+Comprehensive hotel cleaning guide covering products and protocols for each area: guest rooms, bathrooms, lobby/common areas, kitchen/restaurant, laundry, and pool/exterior areas. Provides area-specific product matrices with recommended frequency — guest rooms (daily at checkout: multi-purpose cleaner, chlorine-free disinfectant, glass cleaner, air freshener); public bathrooms (every 2-3 hours high-traffic: diluted chlorine, liquid soap, porcelain cleaner); lobby (daily: multi-purpose cleaner, furniture polish, carpet shampoo); kitchen/restaurant (per shift: industrial degreaser, chlorine for surfaces, dish soap, fruit/vegetable sanitizer); laundry (daily: industrial detergent, softener, bleach, enzymatic stain remover); pool (per maintenance program: stabilized chlorine, algaecide).
+
+Includes detailed room cleaning protocol in 7 steps (30-second first-impression window): remove soiled linens, apply chlorine-free disinfectant to touch surfaces (nightstands, remotes, phones, switches), clean bathroom (chlorine in toilet bowl + chlorine-free on sink/shower), restock amenities, make bed, vacuum/mop floor, ventilate and apply light air freshener. Target time: 25-35 min for checkout cleaning, 10-15 min for stayover. A 40-room hotel processes 200-300 kg of laundry daily.
+
+Provides 6 criteria for hotel cleaning supplier selection in Sinaloa/Los Mochis: constant availability, scheduled weekly/biweekly delivery, concentrated products, technical data sheets and MSDS (for Protección Civil/STPS compliance), CFDI invoicing, and same-day emergency delivery capability.
+
+**Key data points:**
+- Guest impression formed in first 30 seconds of entering a room
+- Room cleaning target: 25-35 min (checkout), 10-15 min (stayover)
+- 40-room hotel: 200-300 kg of laundry per day
+- Public bathroom cleaning: every 2-3 hours with logbook
+- Deep carpet cleaning: every 3 months
+- Cost per occupied room cleaning: 35-80 MXN (including labor and supplies)
+
+**FAQ (5 questions):** Recommended disinfectant for hotels? (chlorine-free quaternary ammonium for guest areas; diluted chlorine for bathrooms and service areas). Bed linen washing frequency? (every guest change; every 2-3 days for stays over 3 nights). Housekeeper cart essentials? (multi-purpose disinfectant, glass cleaner, diluted chlorine, microfiber cloths, brushes, air freshener, gloves). Cost per room cleaning? (35-80 MXN depending on hotel category). Air freshener in all areas? (yes, but moderate — subtle consistent scent, avoid triggering allergies).
+
+---
+
+### Cómo elegir el proveedor de suministros de limpieza adecuado para tu empresa
+
+**URL:** https://www.klyn.com.mx/blog/posts/como-elegir-proveedor-suministros-limpieza/
+**Category:** Guías
+**Published:** 2026-05-25
+**Tags:** proveedor, suministros de limpieza, compras B2B, guía
+
+**Summary:**
+Strategic guide for Mexican businesses selecting a B2B cleaning supplies supplier. Establishes 6 evaluation criteria: product variety (one supplier should cover disinfectants, chlorine, soaps, degreasers, trash bags, toilet paper, microfiber, equipment), consistent quality (no unauthorized brand substitutions), delivery capability (timely, correct quantities, no damages; local proximity matters in Los Mochis/Sinaloa), personalized attention (account executive who understands your consumption patterns), CFDI invoicing (non-negotiable SAT compliance), and competitive pricing (evaluate total cost including freight and payment terms, not just unit price).
+
+Includes a detailed retail vs. B2B supplier comparison table across 7 dimensions: price per unit (high retail vs. low volume-discount B2B), variety (limited to stock vs. full catalog), CFDI invoicing (possible with limits vs. always with product detail), attention (generic vs. dedicated executive), deliveries (self-pickup vs. scheduled delivery), consistency (variable by batch vs. controlled), returns (7-15 day limited vs. flexible by commercial agreement).
+
+Provides 7 pre-contract questions: stock availability (in-stock or made-to-order? affects lead times), minimum purchase amount, return policy for defects/errors, staff training on dilutions/contact times/safety, technical data sheets and MSDS (required for STPS/Protección Civil compliance), standard delivery time (must match your operation), and scalability if your business grows. Lists 5 red flags: prices far below market (adulterated/diluted products), recurring stockouts, poor post-sale service, no local representation (long response times), frequent unauthorized product substitutions.
+
+**Key data points:**
+- Monthly cleaning supply spending guideline: 1.5-3% of rent (offices), 2-5% (restaurants/hotels)
+- Formal supplier review recommended every 6 months
+- For most SMEs: one reliable supplier is optimal; large companies with multi-category consumption may use 2-3
+- A single supplier reduces freight costs, invoicing overhead, and improves negotiation power
+- Red flag: prices significantly below market may indicate adulterated or diluted products
+
+**FAQ (5 questions):** Monthly cleaning supply spending? (1.5-3% of rent for offices, 2-5% for restaurants/hotels). Supplier review frequency? (formal review every 6 months). Bulk vs. monthly purchasing? (bulk = better pricing but needs storage/capital; monthly = more manageable for small businesses). What if current supplier fails? (contact account executive first; if no improvement in 2-3 deliveries, start looking but don't cancel until new supplier confirmed). Are generic products good? (depends on manufacturer — some match brand quality, others are diluted; request samples before committing).
+
+---
+
+## Contact
+
+- WhatsApp: https://wa.me/526681629654
+- Teléfono: +52 668 162 9654
+- Email: contacto@klyn.com.mx
+- Dirección: Melchor Ocampo 1054, Colonia Romanillo, Los Mochis, Sinaloa, CP 81285, México
+
+## Social
+
+- Facebook: https://www.facebook.com/share/1DqQxgT3Zk/
+- Instagram: https://www.instagram.com/klyn.com.mx/
+- LinkedIn: https://www.linkedin.com/company/klyn-solutions/
+
+## Business hours
+
+- Lunes a Viernes: 09:00–18:00
+- Sábado: 09:30–13:30

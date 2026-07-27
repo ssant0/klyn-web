@@ -71,7 +71,7 @@ src/pages/blog/
 - [x] **Agregar "Key takeaway" box en cada post** — para que LLMs puedan citar fácilmente
 - [x] **Incluir internal links contextuales** hacia productos y categorías del catálogo
 - [x] **Optimizar headings (H2, H3)** con preguntas naturales que la gente busca
-- [ ] **Crear `llms-full.txt`** con resúmenes extendidos de cada artículo para AI crawlers
+- [x] **Crear `llms-full.txt`** con resúmenes extendidos de cada artículo para AI crawlers
 - [ ] **Tabla de contenido al inicio de cada artículo** (Table of Contents con anchor links)
 
 ---

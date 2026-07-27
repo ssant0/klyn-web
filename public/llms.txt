@@ -7,11 +7,21 @@
 - Nosotros: https://www.klyn.com.mx/nosotros/
 - Contacto: https://www.klyn.com.mx/contacto/
 - Aviso de privacidad: https://www.klyn.com.mx/aviso-de-privacidad/
+- Blog: https://www.klyn.com.mx/blog/
+- Instituciones educativas: https://www.klyn.com.mx/instituciones-educativas/
 
 ## Product categories
 - Químicos de limpieza: https://www.klyn.com.mx/productos/#quimicos
 - Herramientas de limpieza: https://www.klyn.com.mx/productos/#herramientas
+- Higiénicos: https://www.klyn.com.mx/productos/#higienicos
 - Papelería y oficina: https://www.klyn.com.mx/productos/#papeleria
+
+## Blog posts
+- Guía completa de productos de limpieza profesional para empresas en México: https://www.klyn.com.mx/blog/posts/guia-productos-limpieza-profesional/
+- Suministros de papelería básicos que toda oficina necesita: https://www.klyn.com.mx/blog/posts/suministros-papeleria-oficina/
+- ¿Cloro o desinfectante? Cuándo usar cada uno en tu negocio: https://www.klyn.com.mx/blog/posts/cloro-o-desinfectante-cuando-usar/
+- Guía de limpieza para hoteles: productos y protocolos esenciales: https://www.klyn.com.mx/blog/posts/guia-limpieza-hoteles-productos-protocolos/
+- Cómo elegir el proveedor de suministros de limpieza adecuado para tu empresa: https://www.klyn.com.mx/blog/posts/como-elegir-proveedor-suministros-limpieza/
 
 ## Contact
 - WhatsApp: https://wa.me/526681629654

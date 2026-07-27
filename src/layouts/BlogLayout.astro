@@ -10,6 +10,7 @@ interface Props {
     author?: string;
     image?: string;
     tags?: string[];
+    category?: string;
   };
   bodyClass?: string;
 }
@@ -20,20 +21,33 @@ const { title, description, article, bodyClass } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
 const articleSchema = article ? JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Article',
-  '@id': `${canonicalURL.href}#article`,
+  '@type': 'BlogPosting',
+  '@id': `${canonicalURL.href}#blogposting`,
   headline: article.headline,
   description: article.description,
   datePublished: article.datePublished,
   dateModified: article.dateModified || article.datePublished,
+  inLanguage: 'es-MX',
   author: {
     '@type': 'Organization',
     name: article.author || 'Klyn',
     url: 'https://www.klyn.com.mx',
   },
   publisher: { '@id': 'https://www.klyn.com.mx/#organization' },
-  image: article.image || 'https://www.klyn.com.mx/assets/img/og/og-image.png',
+  image: {
+    '@type': 'ImageObject',
+    url: article.image || 'https://www.klyn.com.mx/assets/img/og/og-image.png',
+    width: 1200,
+    height: 630,
+  },
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL.href },
+  isPartOf: {
+    '@type': 'Blog',
+    '@id': 'https://www.klyn.com.mx/blog/#blog',
+    name: 'Blog Klyn',
+    url: 'https://www.klyn.com.mx/blog/',
+  },
+  ...(article.category ? { articleSection: article.category } : {}),
   ...(article.tags?.length ? { keywords: article.tags.join(', ') } : {}),
 }, null, 2) : '';
 

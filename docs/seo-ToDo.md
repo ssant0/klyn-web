@@ -24,14 +24,14 @@ src/pages/blog/
 
 ## 🔴 Fase 1 — Infraestructura
 
-- [ ] **Crear layout específico para blog** — `src/layouts/BlogLayout.astro` con Article schema, breadcrumbs, author, datePublished
-- [ ] **Crear página `/blog/index.astro`** — listado con paginación, preview cards, SEO meta
-- [ ] **Crear template dinámico `/blog/posts/[slug].astro`** — ruta programática para artículos
-- [ ] **Configurar `@astrojs/mdx`** — para escribir posts en MDX con frontmatter
-- [ ] **Agregar Article schema (JSON-LD)** en cada post: headline, description, datePublished, author, image, publisher
-- [ ] **Agregar BreadcrumbList schema** en cada post
-- [ ] **Agregar BlogPosting schema** para visibilidad en Google News / Discover
-- [ ] **Actualizar sitemap** para incluir rutas del blog
+- [x] **Crear layout específico para blog** — `src/layouts/BlogLayout.astro` con Article schema, breadcrumbs, author, datePublished
+- [x] **Crear página `/blog/index.astro`** — listado con paginación, preview cards, SEO meta
+- [x] **Crear template dinámico `/blog/posts/[slug].astro`** — ruta programática para artículos
+- [x] **Configurar `@astrojs/mdx`** — para escribir posts en MDX con frontmatter
+- [x] **Agregar Article schema (JSON-LD)** en cada post: headline, description, datePublished, author, image, publisher
+- [x] **Agregar BreadcrumbList schema** en cada post
+- [x] **Agregar BlogPosting schema** para visibilidad en Google News / Discover
+- [x] **Actualizar sitemap** para incluir rutas del blog — automático vía `@astrojs/sitemap`
 
 ---
 
@@ -48,11 +48,11 @@ src/pages/blog/
 
 ### Plan de artículos inicial (12)
 
-- [ ] **Artículo 1:** "Guía completa de productos de limpieza profesional para empresas en México"
-- [ ] **Artículo 2:** "¿Cloro o desinfectante? Cuándo usar cada uno en tu negocio"
-- [ ] **Artículo 3:** "Cómo elegir el proveedor de suministros de limpieza adecuado para tu empresa"
-- [ ] **Artículo 4:** "Suministros de papelería básicos que toda oficina necesita"
-- [ ] **Artículo 5:** "Guía de limpieza para hoteles: productos y protocolos esenciales"
+- [x] **Artículo 1:** "Guía completa de productos de limpieza profesional para empresas en México"
+- [x] **Artículo 2:** "¿Cloro o desinfectante? Cuándo usar cada uno en tu negocio"
+- [x] **Artículo 3:** "Cómo elegir el proveedor de suministros de limpieza adecuado para tu empresa"
+- [x] **Artículo 4:** "Suministros de papelería básicos que toda oficina necesita"
+- [x] **Artículo 5:** "Guía de limpieza para hoteles: productos y protocolos esenciales"
 - [ ] **Artículo 6:** "Productos de limpieza para escuelas: seguridad y eficiencia"
 - [ ] **Artículo 7:** "Limpieza para restaurantes: desengrasantes, desinfectantes y sanidad"
 - [ ] **Artículo 8:** "Trapos de microfibra vs algodón: ¿cuál elegir para tu negocio?"

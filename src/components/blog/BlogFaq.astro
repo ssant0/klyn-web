@@ -1,0 +1,42 @@
+---
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  heading?: string;
+}
+
+const { items, heading = 'Preguntas frecuentes' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonicalURL.href}#faq`,
+  url: canonicalURL.href,
+  inLanguage: 'es-MX',
+  isPartOf: { '@id': `${canonicalURL.href}#blogposting` },
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+}, null, 2);
+---
+
+<h2>{heading}</h2>
+
+{items.map((item) => (
+  <Fragment>
+    <h3>{item.q}</h3>
+    <p>{item.a}</p>
+  </Fragment>
+))}
+
+<script type="application/ld+json" set:html={faqSchema} />

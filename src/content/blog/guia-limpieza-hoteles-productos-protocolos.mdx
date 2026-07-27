@@ -7,6 +7,8 @@ tags: ["hoteles", "limpieza profesional", "hospitality", "Sinaloa"]
 category: "industrias"
 ---
 
+import BlogFaq from '../../components/blog/BlogFaq.astro';
+
 <div class="key-takeaway">
 
 **En resumen:** La limpieza en hoteles exige productos y protocolos distintos para cada área. Habitaciones, baños, lobby, cocina y lavandería requieren combinaciones específicas de desinfectantes, desengrasantes, detergentes y aromatizantes. Un programa bien definido reduce costos operativos, mejora la calificación en plataformas de reserva y asegura el cumplimiento de normas sanitarias.
@@ -73,22 +75,13 @@ Para hoteles en Sinaloa, Los Mochis y región, estos son los criterios clave al 
 5. **Facturación CFDI**: Requisito fiscal indispensable
 6. **Atención a emergencias**: Capacidad de entrega en el mismo día si algo falta
 
-## Preguntas frecuentes
-
-**¿Qué desinfectante recomiendan para hoteles?**
-Para habitaciones y áreas de huéspedes recomendamos desinfectantes sin cloro a base de amonios cuaternarios. Para baños y áreas de servicio, cloro diluido es más eficaz.
-
-**¿Cada cuánto debe lavarse la ropa de cama?**
-En cada cambio de huésped. En estancias largas (más de 3 noches), cada 2-3 días o a solicitud del huésped.
-
-**¿Qué productos no deben faltar en el kit de limpieza de una camarista?**
-Desinfectante multiusos, limpiador de vidrios, cloro diluido, paños de microfibra, cepillos de baño, aromatizante y guantes de limpieza.
-
-**¿Cuánto debe costar la limpieza por habitación?**
-Depende del nivel del hotel, pero el rango está entre 35 y 80 pesos por habitación ocupada, incluyendo mano de obra e insumos.
-
-**¿Es necesario usar aromatizante en todas las áreas?**
-Sí, pero con moderación. Un aroma suave y consistente genera una experiencia positiva. Evita aromas muy intensos que puedan resultar molestos para huéspedes sensibles o alérgicos.
+<BlogFaq items={[
+  { q: "¿Qué desinfectante recomiendan para hoteles?", a: "Para habitaciones y áreas de huéspedes recomendamos desinfectantes sin cloro a base de amonios cuaternarios. Para baños y áreas de servicio, cloro diluido es más eficaz." },
+  { q: "¿Cada cuánto debe lavarse la ropa de cama?", a: "En cada cambio de huésped. En estancias largas (más de 3 noches), cada 2-3 días o a solicitud del huésped." },
+  { q: "¿Qué productos no deben faltar en el kit de limpieza de una camarista?", a: "Desinfectante multiusos, limpiador de vidrios, cloro diluido, paños de microfibra, cepillos de baño, aromatizante y guantes de limpieza." },
+  { q: "¿Cuánto debe costar la limpieza por habitación?", a: "Depende del nivel del hotel, pero el rango está entre 35 y 80 pesos por habitación ocupada, incluyendo mano de obra e insumos." },
+  { q: "¿Es necesario usar aromatizante en todas las áreas?", a: "Sí, pero con moderación. Un aroma suave y consistente genera una experiencia positiva. Evita aromas muy intensos que puedan resultar molestos para huéspedes sensibles o alérgicos." },
+]} />
 
 ## Conclusión
 

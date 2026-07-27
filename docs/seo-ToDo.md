@@ -65,12 +65,12 @@ src/pages/blog/
 
 ## 🔵 Fase 3 — GEO / AEO / AIO
 
-- [ ] **Estructurar artículos para featured snippets** — párrafos de respuesta directa (< 50 words) al inicio, lists, tables
-- [ ] **Incluir FAQSchema en cada artículo** — 3-5 preguntas/respuestas relacionadas
-- [ ] **Usar formato "Pregunta → Respuesta directa → Desarrollo"** — optimizado para voice search y AI extract
-- [ ] **Agregar "Key takeaway" box en cada post** — para que LLMs puedan citar fácilmente
-- [ ] **Incluir internal links contextuales** hacia productos y categorías del catálogo
-- [ ] **Optimizar headings (H2, H3)** con preguntas naturales que la gente busca
+- [x] **Estructurar artículos para featured snippets** — párrafos de respuesta directa (< 50 words) al inicio, lists, tables
+- [x] **Incluir FAQSchema en cada artículo** — 3-5 preguntas/respuestas relacionadas vía `<BlogFaq>` component
+- [x] **Usar formato "Pregunta → Respuesta directa → Desarrollo"** — optimizado para voice search y AI extract
+- [x] **Agregar "Key takeaway" box en cada post** — para que LLMs puedan citar fácilmente
+- [x] **Incluir internal links contextuales** hacia productos y categorías del catálogo
+- [x] **Optimizar headings (H2, H3)** con preguntas naturales que la gente busca
 - [ ] **Crear `llms-full.txt`** con resúmenes extendidos de cada artículo para AI crawlers
 - [ ] **Tabla de contenido al inicio de cada artículo** (Table of Contents con anchor links)
 

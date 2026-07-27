@@ -7,6 +7,8 @@ tags: ["proveedor", "suministros de limpieza", "compras B2B", "guía"]
 category: "guias"
 ---
 
+import BlogFaq from '../../components/blog/BlogFaq.astro';
+
 <div class="key-takeaway">
 
 **En resumen:** Elegir un proveedor de suministros de limpieza va más allá del precio. Factores como la variedad de productos, consistencia en calidad, capacidad de entrega, atención personalizada y facturación CFDI determinan si una relación comercial será productiva o problemática. Esta guía te da los criterios exactos para evaluar y seleccionar al mejor proveedor para tu empresa.
@@ -85,22 +87,13 @@ Antes de firmar cualquier acuerdo, haz estas preguntas:
 
 Para la mayoría de las PYMES, un solo proveedor confiable es la mejor opción. Para grandes empresas con consumo alto en múltiples categorías, dividir en 2 o 3 proveedores puede tener sentido.
 
-## Preguntas frecuentes
-
-**¿Cuánto debo gastar en suministros de limpieza por mes?**
-Depende del tamaño de tu negocio. Una regla general: entre 1.5% y 3% de tu renta mensual para oficinas, y entre 2% y 5% para restaurantes y hoteles.
-
-**¿Cada cuándo debo revisar a mi proveedor de suministros?**
-Haz una revisión formal cada 6 meses: compara precios, evalúa calidad de servicio y verifica que los productos sigan satisfaciendo tus necesidades.
-
-**¿Es mejor comprar por mayoreo o mensualmente?**
-Depende de tu capacidad de almacenamiento y flujo de efectivo. Comprar por mayoreo da mejor precio, pero requiere espacio y capital. Las entregas mensuales son más manejables para negocios pequeños.
-
-**¿Qué hago si mi proveedor actual no cumple?**
-Habla con tu ejecutivo de cuenta primero. Si no hay mejora en 2-3 entregas, comienza a buscar alternativas. No canceles hasta tener otro proveedor confirmado.
-
-**¿Los productos de limpieza genéricos son buena opción?**
-Depende del fabricante. Algunos genéricos tienen calidad equiparable a marcas líderes. Otros son simplemente productos diluidos que rinden menos. Solicita una muestra y prueba antes de comprometerte.
+<BlogFaq items={[
+  { q: "¿Cuánto debo gastar en suministros de limpieza por mes?", a: "Depende del tamaño de tu negocio. Una regla general: entre 1.5% y 3% de tu renta mensual para oficinas, y entre 2% y 5% para restaurantes y hoteles." },
+  { q: "¿Cada cuándo debo revisar a mi proveedor de suministros?", a: "Haz una revisión formal cada 6 meses: compara precios, evalúa calidad de servicio y verifica que los productos sigan satisfaciendo tus necesidades." },
+  { q: "¿Es mejor comprar por mayoreo o mensualmente?", a: "Depende de tu capacidad de almacenamiento y flujo de efectivo. Comprar por mayoreo da mejor precio, pero requiere espacio y capital. Las entregas mensuales son más manejables para negocios pequeños." },
+  { q: "¿Qué hago si mi proveedor actual no cumple?", a: "Habla con tu ejecutivo de cuenta primero. Si no hay mejora en 2-3 entregas, comienza a buscar alternativas. No canceles hasta tener otro proveedor confirmado." },
+  { q: "¿Los productos de limpieza genéricos son buena opción?", a: "Depende del fabricante. Algunos genéricos tienen calidad equiparable a marcas líderes. Otros son simplemente productos diluidos que rinden menos. Solicita una muestra y prueba antes de comprometerte." },
+]} />
 
 ## Conclusión
 

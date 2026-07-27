@@ -7,6 +7,8 @@ tags: ["cloro", "desinfectante", "limpieza profesional", "comparativa"]
 category: "limpieza"
 ---
 
+import BlogFaq from '../../components/blog/BlogFaq.astro';
+
 <div class="key-takeaway">
 
 **En resumen:** Cloro y desinfectante no son intercambiables. El cloro (hipoclorito de sodio) es un desinfectante potente y económico, pero corrosivo y de olor fuerte. Los desinfectantes sin cloro son más seguros para superficies delicadas, no dañan materiales y tienen menor toxicidad. La decisión correcta depende del tipo de superficie, el nivel de desinfección requerido y el giro de tu negocio.
@@ -88,22 +90,13 @@ Los desinfectantes sin cloro son la mejor opción: menor olor, sin daño a muebl
 ### Escuelas y guarderías
 Combina desinfectantes sin cloro para superficies de contacto (mesas, sillas, juguetes) con cloro diluido para pisos y baños. Asegura enjuague completo.
 
-## Preguntas frecuentes
-
-**¿Es lo mismo cloro que desinfectante?**
-No. El cloro es un tipo de desinfectante (hipoclorito de sodio). Existen desinfectantes sin cloro con diferentes ingredientes activos igual de eficaces.
-
-**¿Cuánto tiempo debe estar el cloro en contacto con la superficie?**
-Mínimo 5 minutos para desinfección efectiva. Si se evapora antes, el área sigue contaminada.
-
-**¿Los desinfectantes sin cloro son más caros?**
-Su costo por litro de producto diluido es mayor, pero su durabilidad y menor daño a instalaciones puede compensar la diferencia.
-
-**¿Puedo usar cloro en superficies de acero inoxidable?**
-Solo si se enjuaga inmediatamente y se seca. El cloro causa picaduras y corrosión en acero inoxidable con exposición prolongada.
-
-**¿Cada cuándo debo desinfectar los baños de mi negocio?**
-En baños de alto tráfico, cada 2-3 horas. En baños de oficina con poco uso, al menos dos veces al día.
+<BlogFaq items={[
+  { q: "¿Es lo mismo cloro que desinfectante?", a: "No. El cloro es un tipo de desinfectante (hipoclorito de sodio). Existen desinfectantes sin cloro con diferentes ingredientes activos igual de eficaces." },
+  { q: "¿Cuánto tiempo debe estar el cloro en contacto con la superficie?", a: "Mínimo 5 minutos para desinfección efectiva. Si se evapora antes, el área sigue contaminada." },
+  { q: "¿Los desinfectantes sin cloro son más caros?", a: "Su costo por litro de producto diluido es mayor, pero su durabilidad y menor daño a instalaciones puede compensar la diferencia." },
+  { q: "¿Puedo usar cloro en superficies de acero inoxidable?", a: "Solo si se enjuaga inmediatamente y se seca. El cloro causa picaduras y corrosión en acero inoxidable con exposición prolongada." },
+  { q: "¿Cada cuándo debo desinfectar los baños de mi negocio?", a: "En baños de alto tráfico, cada 2-3 horas. En baños de oficina con poco uso, al menos dos veces al día." },
+]} />
 
 ## Conclusión
 

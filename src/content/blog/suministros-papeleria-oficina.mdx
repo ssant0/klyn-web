@@ -7,6 +7,8 @@ tags: ["papelería", "oficina", "suministros", "guía B2B"]
 category: "papeleria"
 ---
 
+import BlogFaq from '../../components/blog/BlogFaq.astro';
+
 <div class="key-takeaway">
 
 **En resumen:** Tener una oficina bien abastecida va más allá de comprar resmas de papel. Los básicos incluyen papel bond, bolígrafos, folders, consumibles de impresora y material de archivo. Una gestión eficiente de estos insumos reduce costos operativos y evita interrupciones. Aquí te decimos exactamente qué necesitas y cómo calcular tu consumo mensual.
@@ -81,6 +83,14 @@ Una forma práctica es usar la siguiente regla general por cada 10 empleados:
 | Tóner/tinta | Según impresora |
 
 Estos números varían según el giro del negocio, pero son un buen punto de partida para tu primera orden.
+
+<BlogFaq items={[
+  { q: "¿Cuánto papel bond consume una oficina al mes?", a: "Entre 3 y 4 resmas por cada 10 empleados como punto de partida. Despachos contables y legales consumen más; empresas con procesos digitales, menos." },
+  { q: "¿Conviene comprar papelería por mayoreo?", a: "Sí. El ahorro típico es de 10% a 20% contra compras al menudeo, y reduces pedidos urgentes. Solo necesitas un espacio mínimo de almacén y un control de inventario básico." },
+  { q: "¿Tóner original o compatible?", a: "El original garantiza calidad y protege la garantía del equipo. Un compatible certificado puede ahorrar entre 30% y 50%, pero verifica que no anule la garantía de tu impresora antes de usarlo." },
+  { q: "¿Qué es el costo por página (CPP) y por qué importa?", a: "Es el precio del consumible dividido entre su rendimiento en páginas. Es la métrica correcta para comparar impresoras: un equipo barato con CPP alto cuesta más a largo plazo." },
+  { q: "¿Cada cuándo debo hacer inventario de papelería?", a: "Una revisión mensual con punto de reorden es suficiente. Cuando un insumo baja de su mínimo (por ejemplo, 2 resmas de papel), se repone antes de que se acabe." },
+]} />
 
 ## Conclusión
 

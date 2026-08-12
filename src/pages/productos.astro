@@ -10,12 +10,13 @@ const categoryMeta = [
   { key: "herramientas", label: "Herramientas", emoji: "🧹" },
   { key: "higienicos",   label: "Higiénicos",   emoji: "🧻" },
   { key: "papeleria",    label: "Papelería",    emoji: "📋" },
+  { key: "empaques",     label: "Empaques",     emoji: "📦" },
 ];
 
 // Emoji per subcategory — used as image placeholder until real photos exist
 const SUB_EMOJI: Record<string, string> = {
   "Limpieza General": "🧴",
-  "Desinfección": "🧪",
+  "Desinfección y Sanitización": "🧪",
   "Desengrasantes": "🫧",
   "Lavandería": "🧺",
   "Especializados": "🪲",
@@ -23,13 +24,25 @@ const SUB_EMOJI: Record<string, string> = {
   "Mopas y Trapeadores": "🪣",
   "Escobas y Cepillos": "🧹",
   "Contenedores": "🗑️",
+  "Cubetas": "🪣",
+  "Dispensadores": "🧴",
   "Paños y Fibras": "🧽",
+  "Asas": "🪝",
+  "Envases": "🧴",
+  "Etiquetadoras": "🏷️",
+  "Tapas": "🫙",
   "Bolsas": "🛍️",
   "Papel Institucional": "🧻",
   "Cuidado Personal": "🧼",
-  "Seguridad y EPP": "🧤",
-  "Papel y Sustratos": "📄",
-  "Escritorio y Presentaciones": "📋",
+  "Desechables de Comedor": "🥤",
+  "Protección Personal": "😷",
+  "Protección Manual": "🧤",
+  "Papel Cortado": "📄",
+  "Pizarrones y Pintarrones": "📋",
+  "Accesorios de Oficina": "📎",
+  "Impresión": "🖨️",
+  "Enmicadoras": "🗂️",
+  "Temperatura": "🌡️",
 };
 const emojiOf = (p: Product): string => SUB_EMOJI[p.subcategory] ?? "📦";
 

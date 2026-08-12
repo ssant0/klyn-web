@@ -26,3 +26,5 @@ pnpm-debug.log*
 
 .agents
 .claude
+# temp working files (CSV imports, ERP change notes)
+temp/

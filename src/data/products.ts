@@ -1,44 +1,88 @@
+export interface ProductVariant {
+  key: string;      // machine key, e.g. "presentacion" | "esencia" | "talla" | "color"
+  label: string;    // human label shown in UI / WhatsApp message, e.g. "Presentación"
+  options: string[]; // e.g. ["1L", "3.75L", "5L", "20L"]
+}
+
 export interface Product {
   id: number;
   name: string;
   category: string;
   subcategory: string;
-  categoryKey: string;
+  categoryKey: "quimicos" | "herramientas" | "higienicos" | "papeleria";
   accent: "blue" | "gold";
+  image?: string;          // future photo path, e.g. /assets/products/fabuloso.webp
+  variants?: ProductVariant[];
 }
+
+// ── Reusable variant presets ──────────────────────────────
+const PRES_LIQUIDO: ProductVariant = {
+  key: "presentacion",
+  label: "Presentación",
+  options: ["1L", "3.75L", "5L", "20L"],
+};
+
+const PRES_POLVO: ProductVariant = {
+  key: "presentacion",
+  label: "Presentación",
+  options: ["1 kg", "5 kg", "9 kg", "20 kg"],
+};
 
 export const products: Product[] = [
   // ── Químicos — Limpieza General ─────────────────────────
-  { id:  1, name: "Aceite para Mopa",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  2, name: "Fabuloso",                       category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  3, name: "Lavatrastes",                    category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  4, name: "Limpiador Multiusos",            category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  5, name: "Pinol",                          category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
-  { id:  6, name: "Repuestos Airwick",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue" },
+  { id:  1, name: "Aceite para Mopa",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id:  2, name: "Fabuloso",                       category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO, { key: "esencia", label: "Esencia", options: ["Lavanda", "Limón", "Bebé", "Floral"] }] },
+  { id:  3, name: "Lavatrastes",                    category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO, { key: "esencia", label: "Esencia", options: ["Limón", "Manzana"] }] },
+  { id:  4, name: "Limpiador Multiusos",            category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO, { key: "esencia", label: "Esencia", options: ["Limón", "Lavanda", "Pino"] }] },
+  { id:  5, name: "Pinol",                          category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id:  6, name: "Repuestos Airwick",              category: "Químicos", subcategory: "Limpieza General",           categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "esencia", label: "Esencia", options: ["Lavanda", "Cítricos", "Vainilla", "Floral"] }] },
   // ── Químicos — Desinfección y Sanitización ──────────────
-  { id:  7, name: "Aromatizante Ambiental",         category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id:  8, name: "Aromatizante Weise Aerosol 400 ml", category: "Químicos", subcategory: "Desinfección",            categoryKey: "quimicos", accent: "blue" },
-  { id:  9, name: "Cloro",                          category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 10, name: "Desinfectante Lysol",            category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 11, name: "Lyson Aerosol",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 12, name: "Pastilla de cloro",              category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 13, name: "Pinol Lechoso",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 14, name: "Toalla Desinfectante Cloralex",  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
-  { id: 15, name: "Toalla Desinfectante MM",        category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue" },
+  { id:  7, name: "Aromatizante Ambiental",         category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [
+      { key: "presentacion", label: "Presentación", options: ["Aerosol 400 ml", "1L", "3.75L"] },
+      { key: "esencia", label: "Esencia", options: ["Lavanda", "Cítricos", "Floral", "Vainilla", "Bebé"] },
+    ] },
+  { id:  8, name: "Aromatizante Weise Aerosol 400 ml", category: "Químicos", subcategory: "Desinfección",            categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "esencia", label: "Esencia", options: ["Lavanda", "Cítricos", "Floral", "Vainilla"] }] },
+  { id:  9, name: "Cloro",                          category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id: 10, name: "Desinfectante Lysol",            category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id: 11, name: "Lyson Aerosol",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "esencia", label: "Esencia", options: ["Lavanda", "Cítricos", "Floral"] }] },
+  { id: 12, name: "Pastilla de cloro",              category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "presentacion", label: "Presentación", options: ["1 kg", "5 kg", "25 kg"] }] },
+  { id: 13, name: "Pinol Lechoso",                  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id: 14, name: "Toalla Desinfectante Cloralex",  category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "presentacion", label: "Presentación", options: ["Paquete 40 pzs", "Paquete 100 pzs"] }] },
+  { id: 15, name: "Toalla Desinfectante MM",        category: "Químicos", subcategory: "Desinfección",               categoryKey: "quimicos", accent: "blue",
+    variants: [{ key: "presentacion", label: "Presentación", options: ["Paquete 40 pzs", "Paquete 100 pzs"] }] },
   // ── Químicos — Desengrasantes ────────────────────────────
-  { id: 16, name: "Desengrasante",                  category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue" },
-  { id: 17, name: "Desengrasante para Cocina",      category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue" },
+  { id: 16, name: "Desengrasante",                  category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
+  { id: 17, name: "Desengrasante para Cocina",      category: "Químicos", subcategory: "Desengrasantes",             categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
   // ── Químicos — Lavandería ────────────────────────────────
   { id: 18, name: "Detergente Arcoíris 9Kg",        category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
   { id: 19, name: "Detergente Blanca Nieves 10Kg",  category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 20, name: "Detergente en Polvo",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 21, name: "Detergente Liquido",             category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
+  { id: 20, name: "Detergente en Polvo",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_POLVO] },
+  { id: 21, name: "Detergente Liquido",             category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO] },
   { id: 22, name: "Detergente Ruth 10Kg",           category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
   { id: 23, name: "Detergente Util 11Kg",           category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
   { id: 24, name: "Jabón en Polvo Arcoíris 9kg",    category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
   { id: 25, name: "Jabón Zote",                     category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
   { id: 26, name: "Jabón Zote Caja 25pzs 400g",     category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
-  { id: 27, name: "Suavizante de telas",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue" },
+  { id: 27, name: "Suavizante de telas",            category: "Químicos", subcategory: "Lavandería",                 categoryKey: "quimicos", accent: "blue",
+    variants: [PRES_LIQUIDO, { key: "esencia", label: "Esencia", options: ["Lavanda", "Bebé", "Floral"] }] },
   // ── Químicos — Especializados ────────────────────────────
   { id: 28, name: "Mata Cucarachas Urbano",         category: "Químicos", subcategory: "Especializados",             categoryKey: "quimicos", accent: "blue" },
   { id: 29, name: "Mata Moscos Urbano",             category: "Químicos", subcategory: "Especializados",             categoryKey: "quimicos", accent: "blue" },
@@ -49,7 +93,8 @@ export const products: Product[] = [
   { id: 32, name: "Base para Mapeador 90cm Castor", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
   { id: 33, name: "Funda Mopa 60cm",                category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
   { id: 34, name: "Funda Mopa 90cm",                category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
-  { id: 35, name: "Trapeador Hilo No 6 de Colores", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold" },
+  { id: 35, name: "Trapeador Hilo No 6 de Colores", category: "Herramientas", subcategory: "Mopas y Trapeadores",    categoryKey: "herramientas", accent: "gold",
+    variants: [{ key: "color", label: "Color", options: ["Azul", "Verde", "Rojo", "Amarillo"] }] },
   { id: 36, name: "Trapeador Microfibra Rojo Castor", category: "Herramientas", subcategory: "Mopas y Trapeadores",  categoryKey: "herramientas", accent: "gold" },
   { id: 37, name: "Trapeador Tiras Microfibra/Microseda", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
   { id: 38, name: "Trapeador de Microseda Forjado Baston Lamina", category: "Herramientas", subcategory: "Mopas y Trapeadores", categoryKey: "herramientas", accent: "gold" },
@@ -133,9 +178,11 @@ export const products: Product[] = [
   { id: 111, name: "Toalla interdoblada Dalia 2000pzs", category: "Higiénicos", subcategory: "Papel Institucional",   categoryKey: "higienicos", accent: "gold" },
   // ── Higiénicos — Cuidado Personal ────────────────────────
   { id: 112, name: "Jabón Barra Eco",               category: "Higiénicos", subcategory: "Cuidado Personal",          categoryKey: "higienicos", accent: "gold" },
-  { id: 113, name: "Shampoo p. Manos",              category: "Higiénicos", subcategory: "Cuidado Personal",          categoryKey: "higienicos", accent: "gold" },
+  { id: 113, name: "Shampoo p. Manos",              category: "Higiénicos", subcategory: "Cuidado Personal",          categoryKey: "higienicos", accent: "gold",
+    variants: [{ key: "presentacion", label: "Presentación", options: ["1L", "3.75L", "5L"] }] },
   // ── Higiénicos — Seguridad y EPP ────────────────────────
-  { id: 114, name: "Guante Latex Rojo Domestico",   category: "Higiénicos", subcategory: "Seguridad y EPP",           categoryKey: "higienicos", accent: "gold" },
+  { id: 114, name: "Guante Latex Rojo Domestico",   category: "Higiénicos", subcategory: "Seguridad y EPP",           categoryKey: "higienicos", accent: "gold",
+    variants: [{ key: "talla", label: "Talla", options: ["Chica", "Mediana", "Grande"] }] },
   { id: 115, name: "Raidolitos 10 piezas",          category: "Higiénicos", subcategory: "Seguridad y EPP",           categoryKey: "higienicos", accent: "gold" },
   // ── Papelería — Papel y Sustratos ───────────────────────
   { id: 116, name: "Hoja Blanca Bond Tamaño Carta 500pzs", category: "Papelería", subcategory: "Papel y Sustratos",   categoryKey: "papeleria", accent: "blue" },

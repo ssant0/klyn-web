@@ -24,7 +24,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - `src/pages/links.astro` is **standalone** (no Layout, no navbar/footer). Has its own GTM + Bootstrap bundles.
 - Footer rendered via `<slot name="footer">` — can be overridden per page.
 - Active route in Navbar: exact match for `/`, `startsWith` for others.
-- Pages: `/` · `/nosotros` · `/productos` · `/productos-v2` · `/contacto` · `/aviso-de-privacidad` · `/links` · `/blog/` · `/blog/posts/[slug]/`
+- Pages: `/` · `/nosotros` · `/productos` · `/contacto` · `/aviso-de-privacidad` · `/links` · `/blog/` · `/blog/posts/[slug]/`
 
 ## Blog
 
@@ -66,37 +66,27 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 - Standalone data file exporting `Product` interface and `products` array (119 items).
 - Fields: `id`, `name`, `category`, `subcategory`, `categoryKey` (`quimicos|herramientas|higienicos|papeleria`), `accent` (`blue|gold`).
+- Optional fields: `image` (future photo path, placeholder emoji shown until set), `variants` (`ProductVariant[]` — `{ key, label, options[] }`; 23 products have them, e.g. presentación 1L/3.75L/5L/20L, esencia, talla, color).
+- Reusable presets at top of file: `PRES_LIQUIDO`, `PRES_POLVO`.
 - Imported by `src/pages/productos.astro`. Ready to reuse in other pages.
 
-## Catálogo (`/productos`)
+## Catálogo (`/productos`) — delivery-app style
 
-Main catalog at `src/pages/productos.astro`. Full filter + quote builder:
+Main catalog at `src/pages/productos.astro`. UX modeled after Uber Eats / Rappi. Quote-only (no prices); order sent via WhatsApp/Email.
 
-- **Card selection**: click/tap a `.pc` card to toggle selection. Cards get `.sel` class. Selected state persists across filter/tab switches.
-- **Add-to-quote badge**: each card has a `+` icon in a squared badge (`border-radius: 6px`) at `bottom: 8px; right: 8px`. When selected, the `+` fades out and a checkmark scales in with brand colors (`#6cace3` / `#fab60a`). CSS-only transition — no JS required for badge animation.
-- **Sidebar filters**: `.sidebar-btn` for categories, `.sidebar-sub` for subcategories. Active filter gets `.is-active`.
-- **Mobile filter strip**: horizontally scrollable pills (`.mob-pill`), same filter logic.
-- **Real-time search**: vanilla JS `input` event, filters `allCards` by `data-name`. Clear button appears when query active.
-- **Quote bar** (`#quoteBar`): fixed bottom bar slides up when ≥1 product selected. Shows category chips with counts, plus two action buttons:
-  - **WhatsApp** (`#quoteWaBtn`): builds grouped-by-category message with markdown (`*Category*`, `• items`) → `wa.me` URL.
-  - **Email** (`#quoteMailBtn`): same grouped message → `mailto:contacto@klyn.com.mx` with subject.
-  - **Clear** (`#quoteClearBtn`): resets all selections.
-- `define:vars={{ products }}` passes the full array to client as `window.__KLYN_PRODUCTS__`.
-
-## Productos v2 (`/productos-v2`)
-
-Experimental catalog page at `src/pages/productos-v2.astro` with three UX improvements:
-
-- **Bootstrap 5 nav-tabs** — category tabs (Químicos, Herramientas, Higiénicos, Papelería) with product count badges. Active tab uses `#6cace3` background. Tabs scroll horizontally on mobile via `overflow-x: auto` + `flex-nowrap`.
-- **Real-time search** — vanilla JS on `input` event, filters `.product-row` visibility across active tab-pane. Shows/hides `.subcategory-card` and `.no-results` state. Clear button appears when query active.
-- **Quote builder** — `<input type="checkbox">` per product with `data-name`, `data-category`, `data-subcategory` attributes. "Select all / Deselect all" button per subcategory card. Sticky `fixed-bottom` bar with count + WhatsApp button that builds grouped-by-category message. Event delegation via document `change`/`click`.
-
-### Patterns
-- `data-category="Químicos|Herramientas|Higiénicos|Papelería"` — used for grouping in WhatsApp message.
-- `data-name` — product name (unique identifier for selection Map).
-- `CSS.escape()` used in selector construction for safe querying.
-- Quote state (`selected` Map) persists across tab switches.
-- Search scoped to active tab only; re-applies on `shown.bs.tab` event.
+- **Product cards** (`.pc`): image area on top (aspect 4/3) — real `<img>` if `p.image`, else emoji placeholder by subcategory (`SUB_EMOJI` map in frontmatter). Round `+` button (`.pc__add`) bottom-right. Products with variants show "Personalizable" hint and a navy qty badge (`.pc__qty`) when in cart.
+- **No-variant products**: `+` adds directly and morphs into an inline stepper (`.pc__stepper`).
+- **Variant products**: `+` (or card tap) opens the **product bottom sheet** (`#productSheet`) — bottom sheet on mobile, full-height right side panel on ≥768px (430px, same pattern as cart drawer). Variant groups render as single-select chips (`.vchip`), default = first option. Footer: qty stepper + "Agregar al pedido".
+- **Floating cart button** (`#cartFab`): centered navy pill with count badge, slides in when cart non-empty. Also lifts the Layout's WhatsApp float to `bottom: 92px` via JS.
+- **Cart drawer** (`#cartDrawer`): right panel on desktop (430px), 92vh bottom sheet on mobile. Lines (`.cline`) with emoji thumb, options text, stepper, delete. Order notes textarea. WhatsApp (primary) + Email buttons. Empty state when no items.
+- **Cart model**: `CartLine { key: "${id}|${opts}", id, name, category, emoji, accent, opts, qty }` — lines merge when product + options match. `opts` is pre-formatted (e.g. `"Presentación: 5L · Esencia: Lavanda"`).
+- **Persistence**: `localStorage` key `klyn-cart-v1` (`{ lines, notes }`), restored on load; stale product ids dropped.
+- **WhatsApp message**: grouped by category with markdown (`*Category*`), lines as `• 2× Fabuloso (Presentación: 5L · Esencia: Lavanda)`, plus optional notes.
+- **Shared overlay** (`#overlay`) + `Esc` close both panels; body scroll locked while open. z-index: overlay 10000, sheet/drawer 10001 (above WhatsApp float's 9999).
+- **Sidebar filters** (`.sidebar-btn` / `.sidebar-sub`, `.is-active`) on desktop; **mobile pills** (`.mob-pill`) + search live in a sticky `.tools-bar` (`top: 0` — navbar is not fixed).
+- **Real-time search**: vanilla JS `input` event, filters `allCards` by `data-name`.
+- `define:vars={{ clientProducts }}` passes products + emoji + variants to client as `window.__KLYN_PRODUCTS__`.
+- **Gotcha**: elements created via `createElement` (chips, cart lines) don't get Astro's scoped-CSS attribute — their styles live in a separate `<style is:global>` block. Keep JS-generated element styles there.
 
 ## Misc
 

@@ -1258,7 +1258,14 @@ const clientProducts = products.map(p => ({
 
   // ── Overlay helpers ────────────────────────────────────
   function lockScroll(lock: boolean): void {
-    document.body.style.overflow = lock ? 'hidden' : '';
+    if (lock) {
+      const sbw = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
   }
   function anyPanelOpen(): boolean {
     return sheet.classList.contains('open') || drawer.classList.contains('open');

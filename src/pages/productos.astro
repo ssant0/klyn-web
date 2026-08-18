@@ -1257,13 +1257,17 @@ const clientProducts = products.map(p => ({
 
   // ── Overlay helpers ────────────────────────────────────
   function lockScroll(lock: boolean): void {
+    const sbw = window.innerWidth - document.documentElement.clientWidth;
     if (lock) {
-      const sbw = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+      // Keep the centered FAB fixed: hiding the scrollbar widens the viewport
+      // and shifts left:50% to the right by half the scrollbar width.
+      if (sbw > 0) cartFab.style.left = `calc(50% - ${sbw / 2}px)`;
     } else {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+      cartFab.style.left = '';
     }
   }
   function anyPanelOpen(): boolean {

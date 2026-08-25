@@ -247,11 +247,12 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
     </a>
 
     <!-- JAVASCRIPT -->
-    <!-- Vendor JS -->
-    <script defer is:inline src="/assets/js/vendor.bundle.js"></script>
+    <!-- Bootstrap 5 (Collapse: navbar toggler + FAQ accordion) -->
+    <script defer is:inline src="/assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Theme JS -->
-    <script defer is:inline src="/assets/js/theme.bundle.js"></script>
+    <!-- AOS + init propio (countup incluido) -->
+    <script defer is:inline src="/assets/js/aos.js"></script>
+    <script defer is:inline src="/assets/js/klyn.js"></script>
 
   </body>
 </html>

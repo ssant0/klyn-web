@@ -16,7 +16,7 @@
 
 ## Estado actual verificado (2026-08-24)
 
-- **Ninguno de los 29 fixes está aplicado en el repo** todavía (el audit es de hoy).
+- **Fix #4 completado** (bundle JS): 719KB → 98KB raw; `bootstrap.bundle.min.js` + `aos.js` + `klyn.js` en `public/assets/js/`. Resuelve también el warning de Jarallax.
 - Fix #21 (fotos de producto) **arrancó**: `public/assets/img/products/blanca-nieves-10kg.webp` + cambio en `src/data/products.ts`.
 - Lo que **ya está bien** (no tocar, solo verificar tras cada cambio):
   - Canonical absoluto y auto-referencial en 12/13 páginas; hreflang `es-MX` + `x-default`; títulos/descripciones únicos; 1 H1 por página.
@@ -36,7 +36,7 @@
 | 1 | 🔴 | 522 en `http://klyn.com.mx/` → Redirect Rule 301 a `https://www.klyn.com.mx/$1` | [ ] | Cloudflare dashboard |
 | 2 | 🟠 | De-orphan `/instituciones-educativas/` + CTA a `/productos/` | [ ] | `Layout.astro`, `index.astro`, `instituciones-educativas.astro`, blog |
 | 3 | 🟠 | Trailing slashes en ~120 links internos | [ ] | `Navbar.astro`, `Footer.astro`, CTAs páginas |
-| 4 | 🟠 | Reemplazar `vendor.bundle.js` (711KB) por bootstrap.bundle + AOS | [ ] | `public/assets/js/`, `Layout.astro` |
+| 4 | 🟠 | Reemplazar `vendor.bundle.js` (711KB) por bootstrap.bundle + AOS | [x] | `public/assets/js/`, `Layout.astro` |
 | 5 | 🟠 | `font-display: swap` ×4 + `rel="preload"` heading font | [ ] | CSS bundle, `Layout.astro` |
 | 6 | 🟠 | `.pc__add` y steppers ≥44×44px (hoy 34×34) | [ ] | `productos.astro` styles |
 | 7 | 🟠 | Titles ≤60 chars y descriptions ≤160 (5 posts) | [ ] | `src/content/blog/*.mdx` |
@@ -111,12 +111,16 @@
 
 ## 🟠 FASE 2 — Rendimiento y E-E-A-T (High)
 
-### Fix 4 — Reemplazar `vendor.bundle.js` (711KB raw / 202KB br)
-- [ ] Inventariar qué usa el sitio: Bootstrap 5 + AOS (data-aos en home/nosotros/contacto/blog) + JS del catálogo.
-- [ ] Servir `bootstrap.bundle.min.js` + AOS standalone (o bundle propio) desde `public/assets/js/`.
-- [ ] Quitar `vendor.bundle.js` y `theme.bundle.js` de `Layout.astro`; migrar init de AOS.
-- [ ] Objetivo: **−170KB br** (~202KB → ~30KB). Borrar `.map` de legacy.
-- [ ] Verificar consola en 0 errores y que AOS siga animando (validación con `npm run build && npm run preview`).
+### Fix 4 — Reemplazar `vendor.bundle.js` (711KB raw / 202KB br) ✅ COMPLETADO (2026-08-24)
+- [x] Inventariar qué usa el sitio: Bootstrap 5 + AOS (data-aos en home/nosotros/contacto/blog) + JS del catálogo.
+  - Uso real: **Collapse** (navbar toggler + FAQ.astro), **AOS** (13–17 elems/página), **countup** (3 stats en home).
+  - Vendor traía 20+ libs muertas (Quill, Flickity, Isotope, Jarallax, Dropzone, Choices, Typed, mapbox…).
+- [x] Servir `bootstrap.bundle.min.js` (5.3.8) + `aos.js` (2.3.4) standalone desde `public/assets/js/`.
+- [x] Quitar `vendor.bundle.js` y `theme.bundle.js` de `Layout.astro`; migrar init de AOS a `public/assets/js/klyn.js`.
+  - `links.astro` no usaba nada del bundle → scripts eliminados sin reemplazo.
+  - ⚠️ La build de AOS de Landkit estaba parcheada y emitía `aos:in:<id>`; la oficial **no emite eventos** → `klyn.js` dispara el countup vía MutationObserver sobre `.aos-animate`.
+- [x] Objetivo superado: **719KB → 98KB raw** (~206KB → ~30KB gzip; ~26KB br). `.map` legacy borrados.
+- [x] Verificado (`.seo-audit/verify_fix4.py`, Playwright): 0 errores consola, AOS 13/13 anima, countup anima 0→200/150/32, navbar collapse y FAQ accordion abren/cierran, catálogo (stepper) OK.
 
 ### Fix 5 — Fonts: `font-display` + preload
 - [ ] Agregar `font-display: swap;` a los 4 `@font-face` (3× HKGroteskPro + Feather) en `theme.bundle.css`.
@@ -229,7 +233,7 @@
 - [ ] AOS: fallback `.no-js`/noscript `opacity:1` para renders de full-page.
 - [ ] Placeholder de búsqueda mobile: "Buscar: cloro, mopa, bolsa…" (no truncado).
 - [ ] CTA de WhatsApp dentro del hero de `/contacto/` + link "Cómo llegar" a Maps en la tarjeta de dirección.
-- [ ] Warning de consola "Jarallax Element is DEPRECATED" — se resuelve con Fix 4 (reemplazo de bundle).
+- [x] Warning de consola "Jarallax Element is DEPRECATED" — resuelto con Fix 4 (bundle eliminado).
 
 ---
 

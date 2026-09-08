@@ -15,7 +15,7 @@ const { Content } = await render(post);
 ---
 
 <BlogLayout
-  title={`${post.data.title} - Blog Klyn`}
+  title={post.data.title}
   description={post.data.description}
   article={{
     headline: post.data.title,
@@ -38,6 +38,15 @@ const { Content } = await render(post);
               <> · {post.data.tags.map((t) => <span class="badge bg-light text-dark me-1">{t}</span>)}</>
             )}
           </p>
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="d-inline-flex align-items-center justify-content-center rounded-circle fw-bold text-white" style="width:42px;height:42px;background:#6cace3;font-size:1rem;flex-shrink:0;">
+              {post.data.author.split(' ').map((w) => w[0]).slice(0, 2).join('')}
+            </span>
+            <div>
+              <p class="mb-0 fw-bold text-dark" style="font-size:0.92rem;">{post.data.author}</p>
+              <p class="mb-0 text-body-secondary" style="font-size:0.8rem;">Socio · Ventas y distribución en Klyn</p>
+            </div>
+          </div>
           <h1 class="fw-bold text-dark mb-4" style="font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.02em;">
             {post.data.title}
           </h1>
@@ -52,7 +61,7 @@ const { Content } = await render(post);
             <a href="/blog/" class="btn btn-outline-secondary rounded-pill px-5" style="border-radius: 999px;">
               <i class="fe fe-arrow-left me-2"></i> Volver al blog
             </a>
-            <a href="/contacto" class="btn fw-bold text-white ms-2 rounded-pill px-5" style="background-color: #6cace3; border-radius: 999px;">
+            <a href="/contacto/" class="btn fw-bold text-white ms-2 rounded-pill px-5" style="background-color: #6cace3; border-radius: 999px;">
               Cotizar productos <i class="fe fe-arrow-right ms-2"></i>
             </a>
           </div>

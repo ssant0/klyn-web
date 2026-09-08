@@ -24,6 +24,12 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48.png">
@@ -152,7 +158,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
       "sameAs": [
         "https://www.facebook.com/share/1DqQxgT3Zk/",
         "https://www.instagram.com/klyn.com.mx/",
-        "https://www.linkedin.com/company/klyn-solutions/"
+        "https://www.linkedin.com/company/klyn-solutions/",
+        "https://www.google.com/maps?cid=10369337440073808156"
       ]
     }
     </script>
@@ -176,10 +183,19 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
         "availableLanguage": "Spanish",
         "areaServed": "MX"
       },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Melchor Ocampo 1054, Colonia Romanillo",
+        "addressLocality": "Los Mochis",
+        "addressRegion": "Sinaloa",
+        "postalCode": "81285",
+        "addressCountry": "MX"
+      },
       "sameAs": [
         "https://www.facebook.com/share/1DqQxgT3Zk/",
         "https://www.instagram.com/klyn.com.mx/",
-        "https://www.linkedin.com/company/klyn-solutions/"
+        "https://www.linkedin.com/company/klyn-solutions/",
+        "https://www.google.com/maps?cid=10369337440073808156"
       ]
     }
     </script>

@@ -29,9 +29,10 @@ const articleSchema = article ? JSON.stringify({
   dateModified: article.dateModified || article.datePublished,
   inLanguage: 'es-MX',
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: article.author || 'Klyn',
-    url: 'https://www.klyn.com.mx',
+    jobTitle: 'Socio · Ventas y distribución',
+    worksFor: { '@id': 'https://www.klyn.com.mx/#organization' },
   },
   publisher: { '@id': 'https://www.klyn.com.mx/#organization' },
   image: {

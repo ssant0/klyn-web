@@ -75,6 +75,25 @@ const clientProducts = products.map(p => ({
   image: p.image ?? null,
   variants: p.variants ?? [],
 }));
+
+// ItemList JSON-LD (quote-only, no offers) — Product entities per item
+const itemListSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': 'https://www.klyn.com.mx/productos/#catalogo',
+  name: 'Catálogo de productos de limpieza, higiene y papelería Klyn',
+  numberOfItems: TOTAL,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      '@id': `https://www.klyn.com.mx/productos/#p-${p.id}`,
+      name: p.name,
+      category: p.category,
+    },
+  })),
+}, null, 2);
 ---
 
 <Layout
@@ -86,13 +105,14 @@ const clientProducts = products.map(p => ({
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://www.klyn.com.mx/productos#webpage",
+    "@id": "https://www.klyn.com.mx/productos/#webpage",
     "url": "https://www.klyn.com.mx/productos",
     "name": "Catálogo Klyn — Pide tus productos",
     "description": "Catálogo de suministros de limpieza, herramientas y papelería para empresas. Arma tu pedido y cotiza por WhatsApp.",
     "inLanguage": "es-MX",
     "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
     "provider": { "@id": "https://www.klyn.com.mx/#business" },
+    "mainEntity": { "@id": "https://www.klyn.com.mx/productos/#catalogo" },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -102,6 +122,7 @@ const clientProducts = products.map(p => ({
     }
   }
   </script>
+  <script slot="head-schema" type="application/ld+json" is:inline set:html={itemListSchema} />
 
   <style>
     /* ── Layout ──────────────────────────────────────────── */
@@ -123,8 +144,8 @@ const clientProducts = products.map(p => ({
     .catalog-sidebar::-webkit-scrollbar-thumb { background: #dde4ef; border-radius: 4px; }
 
     .sidebar-label {
-      font-size: 0.62rem; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 0.12em; color: #b0bbc9; padding: 0 10px; margin-bottom: 6px; margin-top: 4px;
+      font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.12em; color: #4a5a6e; padding: 0 10px; margin-bottom: 6px; margin-top: 4px;
     }
     .sidebar-btn {
       display: flex; align-items: center; justify-content: space-between;
@@ -140,7 +161,7 @@ const clientProducts = products.map(p => ({
     .sidebar-sub {
       display: flex; align-items: center; justify-content: space-between;
       width: 100%; padding: 5px 10px 5px 24px; border-radius: 6px;
-      font-size: 0.77rem; color: #7a8ba0;
+      font-size: 0.81rem; color: #4a5a6e;
       background: none; border: none; cursor: pointer; text-align: left;
       transition: background 0.12s, color 0.12s;
     }
@@ -149,7 +170,7 @@ const clientProducts = products.map(p => ({
     .sidebar-sub.is-active .s-badge { color: #4a94d4; }
 
     .s-badge {
-      font-size: 0.68rem; font-weight: 700; color: #aab5c3;
+      font-size: 0.75rem; font-weight: 700; color: #4a7fb0;
       background: #f0f4f8; border-radius: 999px; padding: 1px 7px; flex-shrink: 0;
     }
     .sidebar-divider { height: 1px; background: #f0f4f8; margin: 6px 0; }
@@ -210,7 +231,7 @@ const clientProducts = products.map(p => ({
       transition: background 0.14s, color 0.14s, border-color 0.14s;
     }
     .mob-pill.is-active { background: #6cace3; color: #fff; border-color: #6cace3; }
-    .mob-pill-n { font-size: 0.65rem; background: rgba(0,0,0,0.08); border-radius: 999px; padding: 0 5px; }
+    .mob-pill-n { font-size: 0.75rem; background: rgba(0,0,0,0.08); border-radius: 999px; padding: 0 5px; }
     .mob-pill.is-active .mob-pill-n { background: rgba(255,255,255,0.22); }
 
     /* ── Product grid — delivery style ───────────────────── */
@@ -221,6 +242,22 @@ const clientProducts = products.map(p => ({
     }
     @media (min-width: 768px) {
       .prod-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+    }
+
+    /* ── Category sections (semantic H2, cards flow in grid) ── */
+    .cat-section { display: contents; }
+    .cat-section.hidden { display: none; }
+    .cat-head {
+      grid-column: 1 / -1;
+      display: flex; align-items: center; gap: 8px;
+      margin: 2px 0 6px;
+      padding: 0 2px;
+      font-size: 1.05rem; font-weight: 800; color: #1a2e4a;
+      letter-spacing: -0.01em;
+    }
+    .cat-head::after {
+      content: ""; flex: 1; height: 1px;
+      background: linear-gradient(90deg, #dbe6f2 0%, rgba(219,230,242,0) 100%);
     }
 
     /* ── Product card ────────────────────────────────────── */
@@ -267,13 +304,13 @@ const clientProducts = products.map(p => ({
     .pc__body { padding: 10px 12px 12px; }
     .pc__sub {
       display: block;
-      font-size: 0.6rem; font-weight: 700;
+      font-size: 0.75rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.07em;
-      color: #aab5c3; margin-bottom: 3px;
+      color: #4a5a6e; margin-bottom: 3px;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .pc--blue .pc__sub { color: #6cace3; }
-    .pc--gold .pc__sub { color: #c98b00; }
+    .pc--blue .pc__sub { color: #4a7fb0; }
+    .pc--gold .pc__sub { color: #b97e00; }
     .pc__name {
       font-size: 0.82rem; font-weight: 600; color: #1a2e4a;
       margin: 0 0 8px; line-height: 1.3;
@@ -281,16 +318,16 @@ const clientProducts = products.map(p => ({
       overflow: hidden; min-height: 2.6em;
     }
 
-    .pc__foot { display: flex; align-items: center; justify-content: space-between; min-height: 34px; }
+    .pc__foot { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
     .pc__hint {
-      font-size: 0.66rem; font-weight: 700; color: #9aa8b9;
+      font-size: 0.75rem; font-weight: 700; color: #4a5a6e;
       display: inline-flex; align-items: center; gap: 4px;
     }
     .pc__hint i { font-size: 0.72rem; }
 
     /* Add button — Rappi style */
     .pc__add {
-      width: 34px; height: 34px; border-radius: 50%;
+      width: 44px; height: 44px; border-radius: 50%;
       background: #fff; border: 2px solid #6cace3; color: #6cace3;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; flex-shrink: 0;
@@ -310,16 +347,16 @@ const clientProducts = products.map(p => ({
     }
     .pc__stepper.on { display: inline-flex; }
     .pc__stepper button {
-      width: 30px; height: 34px;
+      width: 44px; height: 44px;
       background: none; border: none; color: #fff;
-      font-size: 1rem; font-weight: 800; cursor: pointer;
+      font-size: 1.15rem; font-weight: 800; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.12s;
     }
     .pc__stepper button:hover { background: rgba(255,255,255,0.16); }
     .pc__stepper span {
-      min-width: 22px; text-align: center;
-      color: #fff; font-size: 0.84rem; font-weight: 800;
+      min-width: 26px; text-align: center;
+      color: #fff; font-size: 0.9rem; font-weight: 800;
     }
 
     /* No results */
@@ -773,9 +810,15 @@ const clientProducts = products.map(p => ({
 
           <!-- Grid -->
           <div class="prod-grid" id="prodGrid">
-            {products.map(p => {
-              const hasVariants = !!p.variants && p.variants.length > 0;
+            {categoryMeta.map(cm => {
+              const catProducts = products.filter(p => p.categoryKey === cm.key);
+              if (catProducts.length === 0) return null;
               return (
+              <section class="cat-section" data-catkey={cm.key} aria-label={cm.label}>
+                <h2 class="cat-head">{cm.emoji} <span>{cm.label}</span></h2>
+                {catProducts.map(p => {
+                  const hasVariants = !!p.variants && p.variants.length > 0;
+                  return (
                 <div
                   class={`pc pc--${p.accent}`}
                   data-id={String(p.id)}
@@ -817,12 +860,15 @@ const clientProducts = products.map(p => ({
                   </div>
                 </div>
               );
+                })}
+              </section>
+              );
             })}
 
             <!-- No results slot -->
             <div class="no-results-msg" id="noResultsMsg">
               <span style="font-size:2.5rem;display:block;margin-bottom:0.75rem;">🔍</span>
-              <h5 class="fw-bold text-dark mb-2">Sin resultados</h5>
+              <h2 class="fw-bold text-dark mb-2" style="font-size:1.15rem;">Sin resultados</h2>
               <p class="text-body-secondary mb-4" style="font-size:0.9rem;">Intenta otra búsqueda o contáctanos.</p>
               <a href="https://wa.me/526681629654?text=%C2%A1Hola!+No+encontr%C3%A9+un+producto+en+el+cat%C3%A1logo.+%C2%BFMe+pueden+ayudar%3F" target="_blank" rel="noopener noreferrer" class="btn btn-sm fw-bold text-white lift" style="background:#6cace3;border-radius:999px;padding:8px 22px;">
                 <i class="fe fe-message-circle me-2"></i> Preguntar por WhatsApp
@@ -845,7 +891,7 @@ const clientProducts = products.map(p => ({
           <p class="text-body-secondary mb-0" style="max-width:440px;">Este catálogo es una muestra de nuestros productos más solicitados. Si necesitas algo específico, contáctanos.</p>
         </div>
         <div class="col-12 col-md-5 mt-6 mt-md-0 text-md-end">
-          <a href="/contacto" class="btn btn-lg fw-bold lift text-white" style="background-color:#6cace3;border-radius:999px;padding:14px 32px;">
+          <a href="/contacto/" class="btn btn-lg fw-bold lift text-white" style="background-color:#6cace3;border-radius:999px;padding:14px 32px;">
             Solicitar cotización <i class="fe fe-arrow-right ms-2"></i>
           </a>
         </div>
@@ -866,7 +912,7 @@ const clientProducts = products.map(p => ({
             <a href="https://wa.me/526681629654?text=%C2%A1Hola%21+Estoy+revisando+su+cat%C3%A1logo+y+me+gustar%C3%ADa+recibir+una+cotizaci%C3%B3n+personalizada.+%C2%BFEst%C3%A1n+disponibles%3F" target="_blank" rel="noopener noreferrer" class="btn btn-light fw-bold lift" style="border-radius:999px;padding:14px 28px;color:#1a2e4a;">
               <i class="fe fe-message-circle me-2"></i> WhatsApp
             </a>
-            <a href="/contacto" class="btn btn-outline-light fw-bold lift" style="border-radius:999px;padding:14px 28px;">
+            <a href="/contacto/" class="btn btn-outline-light fw-bold lift" style="border-radius:999px;padding:14px 28px;">
               Otras opciones <i class="fe fe-arrow-right ms-2"></i>
             </a>
           </div>
@@ -1040,6 +1086,7 @@ const clientProducts = products.map(p => ({
   const whatsappFloatBtn = document.getElementById('whatsapp-float-btn') as HTMLElement | null;
 
   const allCards      = Array.from(prodGrid.querySelectorAll<HTMLElement>('.pc'));
+  const allSections   = Array.from(prodGrid.querySelectorAll<HTMLElement>('.cat-section'));
   const allFilterBtns = Array.from(document.querySelectorAll<HTMLElement>('[data-fcat]'));
 
   // ── Persistence ────────────────────────────────────────
@@ -1373,6 +1420,14 @@ const clientProducts = products.map(p => ({
       const show   = catOk && subOk && nameOk;
       card.classList.toggle('hidden', !show);
       if (show) visible++;
+    });
+
+    // Hide empty category sections (heading + cards) when filtered out
+    allSections.forEach((sec: HTMLElement) => {
+      const hasVisible = Array.from(sec.querySelectorAll<HTMLElement>('.pc')).some(
+        (c: HTMLElement) => !c.classList.contains('hidden')
+      );
+      sec.classList.toggle('hidden', !hasVisible);
     });
 
     noResultsMsg.classList.toggle('visible', visible === 0);

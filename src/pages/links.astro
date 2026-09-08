@@ -1,7 +1,7 @@
 ---
 // Linktree page — klyn.com.mx/links
 // No usa Layout.astro para mantener diseño minimalista sin navbar/footer
-const canonicalURL = 'https://www.klyn.com.mx/links';
+const canonicalURL = 'https://www.klyn.com.mx/links/';
 ---
 <!doctype html>
 <html lang="es">
@@ -20,7 +20,7 @@ const canonicalURL = 'https://www.klyn.com.mx/links';
 
     <title>Klyn — Links</title>
     <meta name="description" content="Contacta a Klyn por WhatsApp, teléfono, correo o síguenos en redes sociales.">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="noindex, follow">
     <link rel="canonical" href={canonicalURL}>
 
     <!-- Open Graph -->
@@ -384,7 +384,5 @@ const canonicalURL = 'https://www.klyn.com.mx/links';
       import { hydrateEmail } from "../utils/email";
       hydrateEmail();
     </script>
-    <script defer is:inline src="/assets/js/vendor.bundle.js"></script>
-    <script defer is:inline src="/assets/js/theme.bundle.js"></script>
   </body>
 </html>

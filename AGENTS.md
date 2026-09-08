@@ -15,6 +15,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 - **Astro 6 static site** (`output: 'static'`). Deployed to Cloudflare Pages via Git integration (auto on `main` push) or `wrangler pages deploy`.
 - **CSS: Bootstrap 5 only** — pre-compiled bundles in `public/assets/css/`. Do NOT add Tailwind.
+- **JS: `public/assets/js/`** — `bootstrap.bundle.min.js` (solo Collapse: navbar + FAQ) + `aos.js` + `klyn.js` (init AOS `{duration:700, easing:'ease-out-quad', once:true, startEvent:'load'}` + countup ligero vía MutationObserver sobre `.aos-animate`). El legacy Landkit `vendor.bundle.js`/`theme.bundle.js` se eliminó (Fix 4) — no restaurarlo.
 - Brand colors via inline styles: `#6cace3` (blue), `#fab60a` (gold). No custom Bootstrap theme.
 
 ## Page structure

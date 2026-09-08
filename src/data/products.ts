@@ -59,7 +59,8 @@ export const products: Product[] = [
 
   // ── Químicos — Lavandería ────────────────────────────────────
   { id:  19, name: "Detergente Arcoíris 9kg",                                                    category: "Químicos", subcategory: "Lavandería", categoryKey: "quimicos", accent: "blue" },
-  { id:  20, name: "Detergente Blanca Nieves 10kg",                                              category: "Químicos", subcategory: "Lavandería", categoryKey: "quimicos", accent: "blue" },
+  { id:  20, name: "Detergente Blanca Nieves 10kg",                                              category: "Químicos", subcategory: "Lavandería", categoryKey: "quimicos", accent: "blue",
+    image: "/assets/img/products/blanca-nieves-10kg.webp" },
   { id:  21, name: "Detergente Liquido",                                                         category: "Químicos", subcategory: "Lavandería", categoryKey: "quimicos", accent: "blue",
     variants: [{ key: "presentacion", label: "Presentación", options: ["1L","5L","20L"] }] },
   { id:  22, name: "Detergente RUTH 10kg",                                                       category: "Químicos", subcategory: "Lavandería", categoryKey: "quimicos", accent: "blue" },

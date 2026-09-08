@@ -28,3 +28,8 @@ pnpm-debug.log*
 .claude
 # temp working files (CSV imports, ERP change notes)
 temp/
+
+.seo-audit
+
+# product photos not yet ready for commit
+public/assets/img/products/

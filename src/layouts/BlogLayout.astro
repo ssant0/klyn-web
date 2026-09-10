@@ -19,6 +19,7 @@ import Layout from './Layout.astro';
 
 const { title, description, article, bodyClass } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
+const ogImage = article?.image ? new URL(article.image, 'https://www.klyn.com.mx').href : undefined;
 const articleSchema = article ? JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -64,7 +65,7 @@ const breadcrumbSchema = article ? JSON.stringify({
 }, null, 2) : '';
 ---
 
-<Layout title={title} description={description} bodyClass={bodyClass}>
+<Layout title={title} description={description} bodyClass={bodyClass} ogImage={ogImage} ogType="article">
   {article && (
     <Fragment set:html={`<script type="application/ld+json">${articleSchema}</script><script type="application/ld+json">${breadcrumbSchema}</script>`} slot="head-schema" />
   )}

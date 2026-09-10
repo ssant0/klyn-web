@@ -30,11 +30,12 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 ## Blog
 
 - Content collection built with `@astrojs/mdx` + `astro/loaders` (glob loader).
-- Posts: `src/content/blog/*.mdx` — frontmatter: title, description, datePublished, author, tags, category.
+- Posts: `src/content/blog/*.mdx` — frontmatter: title, description, datePublished, author, image, tags, category.
 - `src/content.config.ts` defines the blog collection schema.
 - Blog post page: `src/pages/blog/posts/[slug].astro` — renders MDX with `<Content />` via `render()` from `astro:content`.
 - Blog listing: `src/pages/blog/index.astro` — sorted by date desc.
 - On each post: BlogPosting JSON-LD + BreadcrumbList, SEO meta, OG/Twitter, canonical, hreflang es-MX + x-default.
+- Imágenes: cada post tiene `image` (1200×630 en `public/assets/img/blog/`, JPG + WebP) que se renderiza como destacada en el post y en el listing, y alimenta `og:image` + BlogPosting.
 - Blog link added to Navbar and Footer.
 
 ## Conventions
@@ -71,13 +72,13 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 5 publicados). Leyenda: `[~]` en progreso · `[ ]` pendiente.
+- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 6 publicados). Leyenda: `[~]` en progreso · `[ ]` pendiente.
 
 ### Backlog SEO — fixes
 
 | # | Fix | Estado |
 |---|-----|--------|
-| 2 | De-orphan `/instituciones-educativas/`: el post de escuelas la enlaza · **pendiente sesión futura: sección "Sectores" en el Footer** (links a landings verticales) · CTA propio `#beneficios` → `/productos/` | [~] |
+| 2 | De-orphan `/instituciones-educativas/`: el post de escuelas ya la enlaza · **pendiente sesión futura: sección "Sectores" en el Footer** (links a landings verticales) · falta CTA propio `#beneficios` → `/productos/` | [~] |
 | 5 | `font-display: swap` + preload heading font — CSS bundle, `Layout.astro` | [ ] |
 | 8 | Autores humanos + personas reales en nosotros | [~] |
 | 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [ ] |
@@ -93,9 +94,8 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 28 | RSS feed del blog | [ ] |
 | 29 | Cache rule HTML — Cloudflare dashboard | [ ] |
 
-### Backlog SEO — artículos pendientes (7)
+### Backlog SEO — artículos pendientes (6)
 
-- [ ] 6. Limpieza para escuelas → cross-link a `/instituciones-educativas/` (Fix 2)
 - [ ] 7. Limpieza para restaurantes: desengrasantes y sanidad
 - [ ] 8. Trapos microfibra vs algodón
 - [ ] 9. Cómo calcular consumo mensual de suministros

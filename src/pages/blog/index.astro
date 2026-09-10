@@ -128,7 +128,20 @@ const availableCategories = [...new Set(posts.map(p => p.data.category))];
             data-aos-delay={String((i % 3) * 80)}
           >
             <a href={`/blog/posts/${post.id}/`} style="text-decoration: none; color: inherit;">
-              <div class="card blog-card h-100" style="border-radius: 1rem; border: none; box-shadow: 0 2px 18px rgba(108,172,227,0.1);">
+              <div class="card blog-card h-100" style="border-radius: 1rem; border: none; box-shadow: 0 2px 18px rgba(108,172,227,0.1); overflow: hidden;">
+                {post.data.image && (
+                  <picture>
+                    <source srcset={post.data.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                    <img
+                      src={post.data.image}
+                      alt={post.data.title}
+                      width="1200"
+                      height="630"
+                      loading="lazy"
+                      style="width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; display: block;"
+                    />
+                  </picture>
+                )}
                 <div class="card-body p-5">
                   <p class="small text-body-secondary mb-2">
                     {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}

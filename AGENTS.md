@@ -71,49 +71,30 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO:** 29 fixes del audit + plan de 12 artículos. Leyenda: `[x]` completo · `[~]` en progreso · `[ ]` pendiente.
+- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 5 publicados). Leyenda: `[~]` en progreso · `[ ]` pendiente.
 
 ### Backlog SEO — fixes
 
 | # | Fix | Estado |
 |---|-----|--------|
-| 1 | 301 apex `http://klyn.com.mx` → `https://www.` (522) — Cloudflare dashboard | [ ] |
-| 2 | De-orphan `/instituciones-educativas/` + CTA a `/productos/` | [ ] |
-| 3 | Trailing slashes en links internos | [x] |
-| 4 | `vendor.bundle.js` → bootstrap.bundle + AOS | [x] |
+| 2 | De-orphan `/instituciones-educativas/`: el post de escuelas la enlaza · **pendiente sesión futura: sección "Sectores" en el Footer** (links a landings verticales) · CTA propio `#beneficios` → `/productos/` | [~] |
 | 5 | `font-display: swap` + preload heading font — CSS bundle, `Layout.astro` | [ ] |
-| 6 | Tap targets catálogo ≥44px | [x] |
-| 7 | Titles ≤60 / descriptions ≤160 (5 posts) | [x] |
 | 8 | Autores humanos + personas reales en nosotros | [~] |
-| 9 | `/links/` noindex + fuera de sitemap | [x] |
-| 10 | Cache headers `/_astro/*` inmutable | [x] |
 | 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [ ] |
-| 12 | ItemList de Product quote-only en `/productos` | [x] |
 | 13 | Feather icon-font → SVGs inline | [ ] |
-| 14 | Categorías de `/productos` como H2 | [x] |
 | 15 | Related-posts + cross-links post→post — `[slug].astro` | [ ] |
 | 16 | Reconciliar trust numbers (200+ vs reales) | [~] |
 | 17 | FAQ diferenciado en `/` vs `/contacto/` | [ ] |
 | 18 | Expandir 2 posts <800w + tabla comparativa — MDX | [ ] |
-| 19 | Tipografía catálogo ≥12px y más oscura | [x] |
 | 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
-| 22 | `lastmod` en sitemap | [x] |
-| 23 | Imágenes por post (BlogPosting) | [ ] |
-| 24 | GBP en `sameAs` + address en Organization | [x] |
-| 25 | Preconnect GTM + PurgeCSS + patrón muerto 404 | [~] |
-| 26 | Colisión WhatsApp float en mobile | [ ] |
+| 25 | Patrón muerto `pattern-2.png` (404) | [ ] |
 | 27 | Contraste oro `#fab60a` sobre blanco → `#b97e00` | [ ] |
 | 28 | RSS feed del blog | [ ] |
 | 29 | Cache rule HTML — Cloudflare dashboard | [ ] |
 
-### Backlog SEO — artículos (12)
+### Backlog SEO — artículos pendientes (7)
 
-- [x] 1. Guía completa de productos de limpieza profesional — `guia-productos-limpieza-profesional`
-- [x] 2. ¿Cloro o desinfectante? — `cloro-o-desinfectante-cuando-usar`
-- [x] 3. Cómo elegir proveedor de suministros — `como-elegir-proveedor`
-- [x] 4. Suministros de papelería para oficina — `suministros-papeleria-oficina`
-- [x] 5. Guía de limpieza para hoteles — `guia-limpieza-hoteles`
 - [ ] 6. Limpieza para escuelas → cross-link a `/instituciones-educativas/` (Fix 2)
 - [ ] 7. Limpieza para restaurantes: desengrasantes y sanidad
 - [ ] 8. Trapos microfibra vs algodón

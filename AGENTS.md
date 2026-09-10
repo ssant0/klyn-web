@@ -66,7 +66,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Top ventas: cloro, limpiador multiusos, jabón líquido. Precios fijos que mejoran por volumen.
 - Competidores: Provelim, Cleep, Vima, Proveedora.
 - FAQs de clientes: ¿servicio a domicilio? · ¿aceptan tarjeta? · ¿facturan? · ¿dan crédito? · ¿mejoran precios?
-- Sin testimonios, certificaciones ni campañas pagadas aún. Única sucursal: Los Mochis.
+- Testimonios: 2 reales en `/instituciones-educativas/` (Daniel Moreno, Admin. CBTA 81 · Cristopher Camacho, Director CUCII Los Mochis). Sin certificaciones ni campañas pagadas. Única sucursal: Los Mochis.
 
 ## Content Strategy
 

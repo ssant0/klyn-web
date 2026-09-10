@@ -82,6 +82,7 @@ const clientProducts = products.map(p => ({
   title="Pide tus Productos de Limpieza — Klyn"
   description="Arma tu pedido como en una app de delivery: elige presentaciones, esencias y cantidades. Envíalo por WhatsApp y recibe tu cotización."
   bodyClass="preload"
+  hideWhatsappFloat
 >
   <script slot="head-schema" type="application/ld+json" is:inline>
   {
@@ -161,7 +162,6 @@ const clientProducts = products.map(p => ({
     /* ── Sticky tools bar (search + mobile pills) ────────── */
     .tools-bar {
       position: sticky; top: 0; z-index: 900;
-      background: #f5f9ff;
       padding: 12px 0 10px;
     }
 
@@ -174,7 +174,6 @@ const clientProducts = products.map(p => ({
       padding-left: 44px; padding-right: 44px; height: 48px;
       border: 2px solid #e4edf7; border-radius: 999px;
       font-size: 0.92rem; background: #fff;
-      box-shadow: 0 2px 10px rgba(13,35,65,0.05);
       transition: border-color 0.18s, box-shadow 0.18s;
     }
     #catalogSearch:focus {
@@ -1063,8 +1062,6 @@ const clientProducts = products.map(p => ({
   const cartWaBtn     = $<HTMLAnchorElement>('cartWaBtn');
   const cartMailBtn   = $<HTMLAnchorElement>('cartMailBtn');
 
-  const whatsappFloatBtn = document.getElementById('whatsapp-float-btn') as HTMLElement | null;
-
   const allCards      = Array.from(prodGrid.querySelectorAll<HTMLElement>('.pc'));
   const allSections   = Array.from(prodGrid.querySelectorAll<HTMLElement>('.cat-section'));
   const allFilterBtns = Array.from(document.querySelectorAll<HTMLElement>('[data-fcat]'));
@@ -1177,11 +1174,6 @@ const clientProducts = products.map(p => ({
     cartFab.classList.toggle('open', hasItems);
     cartFabBadge.textContent = String(total);
 
-    // Keep WhatsApp float above the FAB
-    if (whatsappFloatBtn) {
-      whatsappFloatBtn.style.bottom = hasItems ? '92px' : '24px';
-    }
-
     // Cards
     allCards.forEach((card) => {
       const id = Number(card.dataset.id);
@@ -1285,13 +1277,17 @@ const clientProducts = products.map(p => ({
 
   // ── Overlay helpers ────────────────────────────────────
   function lockScroll(lock: boolean): void {
+    const sbw = window.innerWidth - document.documentElement.clientWidth;
     if (lock) {
-      const sbw = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+      // Keep the centered FAB fixed: hiding the scrollbar widens the viewport
+      // and shifts left:50% to the right by half the scrollbar width.
+      if (sbw > 0) cartFab.style.left = `calc(50% - ${sbw / 2}px)`;
     } else {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
+      cartFab.style.left = '';
     }
   }
   function anyPanelOpen(): boolean {

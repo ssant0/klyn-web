@@ -76,24 +76,6 @@ const clientProducts = products.map(p => ({
   variants: p.variants ?? [],
 }));
 
-// ItemList JSON-LD (quote-only, no offers) — Product entities per item
-const itemListSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  '@id': 'https://www.klyn.com.mx/productos/#catalogo',
-  name: 'Catálogo de productos de limpieza, higiene y papelería Klyn',
-  numberOfItems: TOTAL,
-  itemListElement: products.map((p, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    item: {
-      '@type': 'Product',
-      '@id': `https://www.klyn.com.mx/productos/#p-${p.id}`,
-      name: p.name,
-      category: p.category,
-    },
-  })),
-}, null, 2);
 ---
 
 <Layout
@@ -112,7 +94,6 @@ const itemListSchema = JSON.stringify({
     "inLanguage": "es-MX",
     "isPartOf": { "@id": "https://www.klyn.com.mx/#website" },
     "provider": { "@id": "https://www.klyn.com.mx/#business" },
-    "mainEntity": { "@id": "https://www.klyn.com.mx/productos/#catalogo" },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -122,7 +103,6 @@ const itemListSchema = JSON.stringify({
     }
   }
   </script>
-  <script slot="head-schema" type="application/ld+json" is:inline set:html={itemListSchema} />
 
   <style>
     /* ── Layout ──────────────────────────────────────────── */

@@ -52,7 +52,7 @@ const { Content } = await render(post);
           </h1>
 
           {post.data.image && (
-            <picture>
+            <picture class="blog-hero">
               <source srcset={post.data.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
               <img
                 src={post.data.image}
@@ -60,6 +60,7 @@ const { Content } = await render(post);
                 width="1200"
                 height="630"
                 class="img-fluid mb-5"
+                data-aos="fade-up"
                 style="border-radius: 1rem; box-shadow: 0 8px 40px rgba(0,0,0,0.10); width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; display: block;"
               />
             </picture>
@@ -83,6 +84,12 @@ const { Content } = await render(post);
       </div>
     </div>
   </section>
+
+  <script>
+    document
+      .querySelectorAll<HTMLElement>('.blog-content > *:not(script)')
+      .forEach((el) => el.setAttribute('data-aos', 'fade-up'));
+  </script>
 </BlogLayout>
 
 <style is:global>
@@ -95,4 +102,8 @@ const { Content } = await render(post);
   .blog-content blockquote { border-left: 4px solid #6cace3; padding-left: 1rem; margin: 1.5rem 0; color: #5a6880; font-style: italic; }
   .blog-content .key-takeaway { background: rgba(108,172,227,0.08); border-radius: 1rem; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border-left: 4px solid #6cace3; }
   .blog-content .key-takeaway p:last-child { margin-bottom: 0; }
+  .blog-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  .blog-content th, .blog-content td { border: 1px solid rgba(108,172,227,0.4); padding: 0.65rem 0.9rem; text-align: left; vertical-align: top; }
+  .blog-content th { background: #f5f9ff; color: #1a2e4a; font-weight: 700; }
+  .blog-content tbody tr:nth-child(even) { background: #fafcff; }
 </style>

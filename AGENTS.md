@@ -36,6 +36,8 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Blog listing: `src/pages/blog/index.astro` — sorted by date desc.
 - On each post: BlogPosting JSON-LD + BreadcrumbList, SEO meta, OG/Twitter, canonical, hreflang es-MX + x-default.
 - Imágenes: cada post tiene `image` (1200×630 en `public/assets/img/blog/`, JPG + WebP) que se renderiza como destacada en el post y en el listing, y alimenta `og:image` + BlogPosting.
+- Animación de entradas: AOS (`data-aos="fade-up"`, config global en `klyn.js`). La imagen destacada lo lleva en el markup y un script en `[slug].astro` etiqueta `.blog-content > *` antes de que AOS inicialice. Sin JS el contenido queda visible.
+- Tablas de `.blog-content`: bordes en `th`/`td` + zebra (estilos globales en `[slug].astro`). No dependen de clases Bootstrap `.table`.
 - Blog link added to Navbar and Footer.
 
 ## Conventions

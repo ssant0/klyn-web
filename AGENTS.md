@@ -14,7 +14,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 ## Architecture
 
 - **Astro 6 static site** (`output: 'static'`). Deployed to Cloudflare Pages via Git integration (auto on `main` push) or `wrangler pages deploy`.
-- **CSS: Bootstrap 5 only** — pre-compiled bundles in `public/assets/css/`. Do NOT add Tailwind.
+- **CSS: Bootstrap 5 only** — bundles purgados en `public/assets/css/` (`theme.bundle.css` ~36KB, `libs.bundle.css` ~3KB AOS). Do NOT add Tailwind.
 - **JS: `public/assets/js/`** — `bootstrap.bundle.min.js` (solo Collapse: navbar + FAQ) + `aos.js` + `klyn.js` (init AOS `{duration:700, easing:'ease-out-quad', once:true, startEvent:'load'}` + countup ligero vía MutationObserver sobre `.aos-animate`). El legacy Landkit `vendor.bundle.js`/`theme.bundle.js` se eliminó (Fix 4) — no restaurarlo.
 - Brand colors via inline styles: `#6cace3` (blue), `#fab60a` (gold). No custom Bootstrap theme.
 
@@ -151,6 +151,9 @@ Main catalog at `src/pages/productos.astro`. UX modeled after Uber Eats / Rappi.
 ## Misc
 
 - `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `package-lock.json` also present.
+- **CSS purgado:** `theme.bundle.css` (398KB→36KB) vía PurgeCSS — config en `purgecss.config.cjs` (safelist con clases dinámicas de Bootstrap Collapse/AOS + resets). Para re-purgar: `npm run build && npx purgecss@7 --config purgecss.config.cjs --content 'dist/**/*.html' 'dist/_astro/*.js' --css public/assets/css/theme.bundle.css --output public/assets/css/theme.bundle.css`. Los estilos de páginas (.astro) NO viven aquí.
+- **`libs.bundle.css`** es solo AOS podado (fade-up/right/left, duration 700, ease-out-quad, delays 60–240). Flickity/Quill eliminados. Si se usa un `data-aos` o `data-aos-delay` nuevo en markup, agregar su regla ahí (patrón del AOS original).
+- `.map` files de CSS eliminados — no restaurarlos.
 - Wrangler: `pages_build_output_dir: ./dist`, compat `2026-02-18`, `nodejs_compat`.
 - Astro `is:inline` used for bundled JS in `public/assets/js/`.
 - Logo SVG `viewBox="0 0 536 301"`, rendered at `height="72" width="128"`.

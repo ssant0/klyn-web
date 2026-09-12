@@ -74,7 +74,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 6 publicados). Leyenda: `[~]` en progreso · `[ ]` pendiente.
+- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 7 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
 
 ### Backlog SEO — fixes
 
@@ -98,7 +98,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 ### Backlog SEO — artículos pendientes (6)
 
-- [ ] 7. Limpieza para restaurantes: desengrasantes y sanidad
+- [x] 7. Limpieza para restaurantes: desengrasantes y sanidad
 - [ ] 8. Trapos microfibra vs algodón
 - [ ] 9. Cómo calcular consumo mensual de suministros
 - [ ] 10. Químicos de limpieza industrial en México

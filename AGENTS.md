@@ -85,13 +85,13 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 8 | Autores humanos + personas reales en nosotros | [~] |
 | 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [ ] |
 | 13 | Feather icon-font → SVGs inline | [ ] |
-| 15 | Related-posts + cross-links post→post — `[slug].astro` | [ ] |
+| 15 | Related-posts + cross-links post→post — `[slug].astro` | [x] |
 | 16 | Reconciliar trust numbers (200+ vs reales) | [~] |
 | 17 | FAQ diferenciado en `/` vs `/contacto/` | [ ] |
 | 18 | Expandir 2 posts <800w + tabla comparativa — MDX | [ ] |
 | 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
-| 25 | Patrón muerto `pattern-2.png` (404) | [ ] |
+| 25 | Patrón muerto `pattern-2.png` (404) | [x] |
 | 27 | Contraste oro `#fab60a` sobre blanco → `#b97e00` | [ ] |
 | 28 | RSS feed del blog | [ ] |
 | 29 | Cache rule HTML — Cloudflare dashboard | [ ] |

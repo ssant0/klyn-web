@@ -4,14 +4,39 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
+
+  const relatedFor = (current: (typeof posts)[number]) =>
+    posts
+      .filter((p) => p.id !== current.id)
+      .map((p) => {
+        const sharedTags = (p.data.tags ?? []).filter((t) => (current.data.tags ?? []).includes(t)).length;
+        const sameCategory = p.data.category === current.data.category ? 2 : 0;
+        return { post: p, score: sharedTags + sameCategory };
+      })
+      .filter((entry) => entry.score > 0)
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          b.post.data.datePublished.getTime() - a.post.data.datePublished.getTime(),
+      )
+      .slice(0, 3)
+      .map((entry) => entry.post);
+
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { post, related: relatedFor(post) },
   }));
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
+
+const categoryLabels: Record<string, string> = {
+  limpieza: 'Limpieza',
+  papeleria: 'Papelería',
+  industrias: 'Industrias',
+  guias: 'Guías',
+};
 ---
 
 <BlogLayout
@@ -85,12 +110,114 @@ const { Content } = await render(post);
     </div>
   </section>
 
+  {related.length > 0 && (
+    <section class="py-10 py-md-13" style="background: #ffffff; border-top: 1px solid #e8eef7;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <span class="section-eyebrow eyebrow-blue">Sigue leyendo</span>
+            <h2 class="fw-bold text-dark mb-6" style="font-size: clamp(1.4rem, 2.4vw, 1.8rem); letter-spacing: -0.02em;">
+              Artículos relacionados
+            </h2>
+            <div class="row g-4">
+              {related.map((r, i) => (
+                <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay={String(i * 60)}>
+                  <a href={`/blog/posts/${r.id}/`} class="related-card">
+                    {r.data.image && (
+                      <picture>
+                        <source srcset={r.data.image.replace(/\.(jpe?g|png)$/i, '.webp')} type="image/webp" />
+                        <img src={r.data.image} alt={r.data.title} width="1200" height="630" loading="lazy" />
+                      </picture>
+                    )}
+                    <div class="related-card__body">
+                      <span class="related-card__cat">{categoryLabels[r.data.category] ?? r.data.category}</span>
+                      <span class="related-card__title">{r.data.title}</span>
+                      <span class="related-card__desc">{r.data.description}</span>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <script>
     document
       .querySelectorAll<HTMLElement>('.blog-content > *:not(script)')
       .forEach((el) => el.setAttribute('data-aos', 'fade-up'));
   </script>
 </BlogLayout>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0.75rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .eyebrow-blue {
+    background: rgba(108, 172, 227, 0.12);
+    color: #6cace3;
+  }
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 18px rgba(108, 172, 227, 0.1);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  .related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(108, 172, 227, 0.18);
+  }
+  .related-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    display: block;
+  }
+  .related-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem 1.15rem 1.25rem;
+  }
+  .related-card__cat {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6cace3;
+    margin-bottom: 0.4rem;
+  }
+  .related-card__title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1a2e4a;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .related-card__desc {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.6;
+  }
+</style>
 
 <style is:global>
   .blog-content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #1a2e4a; }

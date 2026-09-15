@@ -39,6 +39,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Animación de entradas: AOS (`data-aos="fade-up"`, config global en `klyn.js`). La imagen destacada lo lleva en el markup y un script en `[slug].astro` etiqueta `.blog-content > *` antes de que AOS inicialice. Sin JS el contenido queda visible.
 - Tablas de `.blog-content`: bordes en `th`/`td` + zebra (estilos globales en `[slug].astro`). No dependen de clases Bootstrap `.table`.
 - Blog link added to Navbar and Footer.
+- RSS: `src/pages/rss.xml.ts` con `@astrojs/rss` (feed de todos los posts, `es-MX`), enlazado en `Layout.astro` vía `<link rel="alternate" type="application/rss+xml">`.
 
 ## Conventions
 
@@ -93,7 +94,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
 | 25 | Patrón muerto `pattern-2.png` (404) | [x] |
 | 27 | Contraste oro `#fab60a` sobre blanco → `#b97e00` | [ ] |
-| 28 | RSS feed del blog | [ ] |
+| 28 | RSS feed del blog | [x] |
 | 29 | Cache rule HTML — Cloudflare dashboard | [ ] |
 
 ### Backlog SEO — artículos pendientes (6)

@@ -39,6 +39,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Animación de entradas: AOS (`data-aos="fade-up"`, config global en `klyn.js`). La imagen destacada lo lleva en el markup y un script en `[slug].astro` etiqueta `.blog-content > *` antes de que AOS inicialice. Sin JS el contenido queda visible.
 - Tablas de `.blog-content`: bordes en `th`/`td` + zebra (estilos globales en `[slug].astro`). No dependen de clases Bootstrap `.table`.
 - Blog link added to Navbar and Footer.
+- Schema: `/blog/` define el nodo `Blog` (`@id .../blog/#blog` con `blogPost`); los `BlogPosting` lo referencian vía `isPartOf`. URLs de schema con slash.
 - RSS: `src/pages/rss.xml.ts` con `@astrojs/rss` (feed de todos los posts, `es-MX`), enlazado en `Layout.astro` vía `<link rel="alternate" type="application/rss+xml">`.
 
 ## Conventions
@@ -84,7 +85,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 2 | De-orphan `/instituciones-educativas/`: el post de escuelas ya la enlaza · **pendiente sesión futura: sección "Sectores" en el Footer** (links a landings verticales) · falta CTA propio `#beneficios` → `/productos/` | [~] |
 | 5 | `font-display: swap` + preload heading font — CSS bundle, `Layout.astro` | [ ] |
 | 8 | Autores humanos + personas reales en nosotros | [~] |
-| 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [ ] |
+| 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [x] |
 | 13 | Feather icon-font → SVGs inline | [ ] |
 | 15 | Related-posts + cross-links post→post — `[slug].astro` | [x] |
 | 16 | Reconciliar trust numbers (200+ vs reales) | [~] |

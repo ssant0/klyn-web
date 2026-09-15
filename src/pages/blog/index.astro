@@ -12,6 +12,27 @@ const categoryLabels: Record<string, string> = {
 };
 
 const availableCategories = [...new Set(posts.map(p => p.data.category))];
+
+const blogSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': 'https://www.klyn.com.mx/blog/#blog',
+  name: 'Blog Klyn',
+  description: 'Guías, consejos y recursos sobre suministros de limpieza, papelería y abastecimiento B2B para empresas en México.',
+  url: 'https://www.klyn.com.mx/blog/',
+  inLanguage: 'es-MX',
+  publisher: { '@id': 'https://www.klyn.com.mx/#organization' },
+  isPartOf: { '@id': 'https://www.klyn.com.mx/#website' },
+  blogPost: posts.map((post) => ({
+    '@type': 'BlogPosting',
+    '@id': `https://www.klyn.com.mx/blog/posts/${post.id}/#blogposting`,
+    headline: post.data.title,
+    url: `https://www.klyn.com.mx/blog/posts/${post.id}/`,
+    datePublished: post.data.datePublished.toISOString(),
+    dateModified: (post.data.dateModified ?? post.data.datePublished).toISOString(),
+    ...(post.data.image ? { image: new URL(post.data.image, 'https://www.klyn.com.mx').href } : {}),
+  })),
+});
 ---
 
 <style>
@@ -52,6 +73,7 @@ const availableCategories = [...new Set(posts.map(p => p.data.category))];
   description="Artículos, guías y consejos sobre suministros de limpieza, papelería y abastecimiento B2B para empresas en México."
   bodyClass=""
 >
+  <Fragment set:html={`<script type="application/ld+json">${blogSchema}</script>`} slot="head-schema" />
 
   <!-- ═══════════════════════════════════
        HERO

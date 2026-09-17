@@ -82,7 +82,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 | # | Fix | Estado |
 |---|-----|--------|
-| 2 | De-orphan `/instituciones-educativas/`: el post de escuelas ya la enlaza · **pendiente sesión futura: sección "Sectores" en el Footer** (links a landings verticales) · falta CTA propio `#beneficios` → `/productos/` | [~] |
+| 2 | De-orphan `/instituciones-educativas/`: el post de escuelas la enlaza + sección "Sectores" en el Footer + CTA `#beneficios` → `/productos/` | [x] |
 | 5 | `font-display: swap` + preload heading font — CSS bundle, `Layout.astro` | [ ] |
 | 8 | Autores humanos + personas reales en nosotros | [~] |
 | 11 | Schema URLs con slash + nodo `Blog` en `/blog/` | [x] |

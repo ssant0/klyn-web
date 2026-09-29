@@ -86,10 +86,8 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
 
-### Backlog SEO — artículos pendientes (5)
+### Backlog SEO — artículos pendientes (3)
 
-- [ ] 8. Trapos microfibra vs algodón
-- [ ] 9. Cómo calcular consumo mensual de suministros
 - [ ] 10. Químicos de limpieza industrial en México
 - [ ] 11. Importancia de la limpieza profesional en espacios de trabajo
 - [ ] 12. Cómo organizar el almacén de suministros

@@ -40,6 +40,9 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
 
+    <!-- Preload heading font (HKGroteskPro Medium, weight 600 — above-the-fold headings) -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/HK%20Grotesk%20Pro/HKGroteskPro-Medium.woff2" crossorigin>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48.png">

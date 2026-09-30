@@ -30,6 +30,3 @@ pnpm-debug.log*
 temp/
 
 .seo-audit
-
-# product photos not yet ready for commit
-public/assets/img/products/

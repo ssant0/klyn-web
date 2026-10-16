@@ -76,7 +76,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 7 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
+- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 8 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
 
 ### Backlog SEO — fixes
 
@@ -86,17 +86,17 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
 
-### Backlog SEO — artículos pendientes (3)
+### Backlog SEO — artículos pendientes (2)
 
-- [ ] 10. Químicos de limpieza industrial en México
+- [x] 10. Químicos de limpieza industrial en México
 - [ ] 11. Importancia de la limpieza profesional en espacios de trabajo
 - [ ] 12. Cómo organizar el almacén de suministros
 
 ## Productos data (`src/data/products.ts`)
 
-- Standalone data file exporting `Product` interface and `products` array (119 items).
+- Standalone data file exporting `Product` interface and `products` array (190 items).
 - Fields: `id`, `name`, `category`, `subcategory`, `categoryKey` (`quimicos|herramientas|higienicos|papeleria`), `accent` (`blue|gold`).
-- Optional fields: `image` (future photo path, placeholder emoji shown until set), `variants` (`ProductVariant[]` — `{ key, label, options[] }`; 23 products have them, e.g. presentación 1L/3.75L/5L/20L, esencia, talla, color).
+- Optional fields: `image` (future photo path, placeholder emoji shown until set), `variants` (`ProductVariant[]` — `{ key, label, options[] }`; 15 products have them, e.g. presentación 1L/3.75L/5L/20L, esencia, talla, color).
 - Reusable presets at top of file: `PRES_LIQUIDO`, `PRES_POLVO`.
 - Imported by `src/pages/productos.astro`. Ready to reuse in other pages.
 

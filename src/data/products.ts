@@ -104,8 +104,6 @@ export const products: Product[] = [
   { id:  35, name: "Pastilla WEISE para WC 60gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastilla-aromatizante-wiese.webp" },
   { id:  36, name: "Pastilla Weise para WC 70gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue" },
-  { id:  37, name: "Pastillas Harpic",                                                           category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
-    image: "/assets/img/products/pastillas-harpic.webp" },
   { id:  38, name: "Pastillas Sanitarias ALEN, GREAT VALUE",                                     category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastillas-great-value.webp" },
   { id:  39, name: "Tapete para Mingitorio C/10pzs",                                             category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",

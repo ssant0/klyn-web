@@ -94,9 +94,9 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 ## Productos data (`src/data/products.ts`)
 
-- Standalone data file exporting `Product` interface and `products` array (119 items).
+- Standalone data file exporting `Product` interface and `products` array (190 items).
 - Fields: `id`, `name`, `category`, `subcategory`, `categoryKey` (`quimicos|herramientas|higienicos|papeleria`), `accent` (`blue|gold`).
-- Optional fields: `image` (future photo path, placeholder emoji shown until set), `variants` (`ProductVariant[]` — `{ key, label, options[] }`; 23 products have them, e.g. presentación 1L/3.75L/5L/20L, esencia, talla, color).
+- Optional fields: `image` (future photo path, placeholder emoji shown until set), `variants` (`ProductVariant[]` — `{ key, label, options[] }`; 15 products have them, e.g. presentación 1L/3.75L/5L/20L, esencia, talla, color).
 - Reusable presets at top of file: `PRES_LIQUIDO`, `PRES_POLVO`.
 - Imported by `src/pages/productos.astro`. Ready to reuse in other pages.
 

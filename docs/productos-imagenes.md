@@ -26,7 +26,7 @@ Las fotos ya están versionadas en el repo (se eliminó la regla de `.gitignore`
 | --- | --- |
 | `aromatizante-maquiaroma.webp` | 3 · Aromatizante MAQUIAROMA |
 | `aromatizante-wiese.webp` | 8 · Aromatizante WIESE Aerosol 400 ml |
-| `desinfectante-lysol.webp` | 13 · Lyson Aerosol ⚠️ |
+| `desinfectante-lysol.webp` | 13 · Desinfectante LYSOL Aerosol |
 | `pastillas-de-cloro.webp` | 14 · Pastilla de cloro |
 | `toallitas-desinfectantes-membersmark.webp` | 17 · Toalla Desinfectante MM |
 | `desengrasante.webp` | 18 · Desengrasante |
@@ -61,7 +61,7 @@ Las fotos ya están versionadas en el repo (se eliminó la regla de `.gitignore`
 
 ## Decisiones y notas
 
-- **Lysol**: la foto `desinfectante-lysol.webp` (aerosol) se asignó a `13 · Lyson Aerosol` (el nombre en el dato tiene un typo: "Lyson"). La variante `11 · Desinfectante LYSOL` es líquido, no aerosol.
+- **Lysol**: la foto `desinfectante-lysol.webp` (aerosol) se asignó a `13 · Desinfectante LYSOL Aerosol`. La variante `11 · Desinfectante LYSOL` es líquido, no aerosol.
 - **Detergente UTIL**: la foto muestra **1 kg**, el producto dice **11 kg**. Se asignó igual (misma marca/línea); conviene corregir el dato o la foto.
 - **Pastilla WIESE**: la foto es WIESE WC Citrus **56 g**; se asignó a `35 · Pastilla WIESE para WC 60gr` (tamaño más cercano). `36 · ...70gr` queda sin foto.
 - **Clorox vs Cloralex**: no se asignó. El producto 16 queda sin foto.

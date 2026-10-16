@@ -48,7 +48,7 @@ export const products: Product[] = [
   { id:  11, name: "Desinfectante LYSOL",                                                        category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     variants: [{ key: "presentacion", label: "Presentación", options: ["1L","5L","20L"] }] },
   { id:  12, name: "Hipoclorito de Sodio - Garrafa 24Kg",                                        category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue" },
-  { id:  13, name: "Lyson Aerosol",                                                              category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
+  { id:  13, name: "Desinfectante LYSOL Aerosol",                                                category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/desinfectante-lysol.webp" },
   { id:  14, name: "Pastilla de cloro",                                                          category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastillas-de-cloro.webp" },

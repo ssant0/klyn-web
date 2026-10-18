@@ -166,7 +166,7 @@ const blogSchema = JSON.stringify({
                 )}
                 <div class="card-body p-5">
                   <p class="small text-body-secondary mb-2">
-                    {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
                   </p>
                   <h2 class="fw-bold text-dark mb-2" style="font-size: 1.15rem;">
                     {post.data.title}

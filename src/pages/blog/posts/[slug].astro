@@ -58,7 +58,7 @@ const categoryLabels: Record<string, string> = {
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
           <p class="small text-body-secondary mb-2">
-            {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {post.data.datePublished.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
             {post.data.tags && post.data.tags.length > 0 && (
               <> · {post.data.tags.map((t) => <span class="badge bg-light text-dark me-1">{t}</span>)}</>
             )}

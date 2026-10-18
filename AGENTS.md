@@ -76,7 +76,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 8 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
+- **Backlog SEO pendiente:** fixes del audit + artículos por publicar (12 totales, 11 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
 
 ### Backlog SEO — fixes
 
@@ -86,10 +86,10 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 | 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
 | 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
 
-### Backlog SEO — artículos pendientes (2)
+### Backlog SEO — artículos pendientes (1)
 
 - [x] 10. Químicos de limpieza industrial en México
-- [ ] 11. Importancia de la limpieza profesional en espacios de trabajo
+- [x] 11. Importancia de la limpieza profesional en espacios de trabajo
 - [ ] 12. Cómo organizar el almacén de suministros
 
 ## Productos data (`src/data/products.ts`)

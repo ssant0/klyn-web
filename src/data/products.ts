@@ -40,7 +40,7 @@ export const products: Product[] = [
   { id:   7, name: "Repuestos Airwick",                                                          category: "Químicos", subcategory: "Limpieza General", categoryKey: "quimicos", accent: "blue" },
 
   // ── Químicos — Desinfección y Sanitización ───────────────────
-  { id:   8, name: "Aromatizante WEISE Aerosol 400 ml",                                          category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
+  { id:   8, name: "Aromatizante WIESE Aerosol 400 ml",                                          category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/aromatizante-wiese.webp" },
   { id:   9, name: "Cloro",                                                                      category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     variants: [PRES_LIQUIDO] },
@@ -48,7 +48,7 @@ export const products: Product[] = [
   { id:  11, name: "Desinfectante LYSOL",                                                        category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     variants: [{ key: "presentacion", label: "Presentación", options: ["1L","5L","20L"] }] },
   { id:  12, name: "Hipoclorito de Sodio - Garrafa 24Kg",                                        category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue" },
-  { id:  13, name: "Lyson Aerosol",                                                              category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
+  { id:  13, name: "Desinfectante LYSOL Aerosol",                                                category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/desinfectante-lysol.webp" },
   { id:  14, name: "Pastilla de cloro",                                                          category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastillas-de-cloro.webp" },
@@ -101,9 +101,9 @@ export const products: Product[] = [
   { id:  34, name: "Mata Moscos Urbano",                                                         category: "Químicos", subcategory: "Especializados", categoryKey: "quimicos", accent: "blue" },
 
   // ── Químicos — Cuidado de Baños ──────────────────────────────
-  { id:  35, name: "Pastilla WEISE para WC 60gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
+  { id:  35, name: "Pastilla WIESE para WC 60gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastilla-aromatizante-wiese.webp" },
-  { id:  36, name: "Pastilla Weise para WC 70gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue" },
+  { id:  36, name: "Pastilla WIESE para WC 70gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue" },
   { id:  38, name: "Pastillas Sanitarias ALEN, GREAT VALUE",                                     category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastillas-great-value.webp" },
   { id:  39, name: "Tapete para Mingitorio C/10pzs",                                             category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",

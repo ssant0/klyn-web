@@ -94,6 +94,8 @@ Estas no son posts del blog: son páginas o formatos que amplían el embudo y co
 - **Estacionalidad:** regreso a clases (julio-agosto), influenza (octubre-noviembre), cierre de año (noviembre-diciembre).
 - **B2B2C:** clínicas, gimnasios y escuelas compran por temporada o por norma; un post por giro con checklist descargable puede alimentar campañas de WhatsApp.
 
+El detalle de URLs, briefs y prueba local está en `docs/locallendings.md`.
+
 ## Briefs listos (prioridad A)
 
 ### L1. Ácido muriático: usos, dilución y riesgos

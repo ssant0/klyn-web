@@ -3,13 +3,13 @@
 ## Commands
 
 ```bash
-npm run dev        # localhost:4321
-npm run build      # output ./dist/
-npm run preview    # preview production build
-npm run astro      # Astro CLI
+pnpm dev        # localhost:4321
+pnpm build      # output ./dist/
+pnpm preview    # preview production build
+pnpm astro      # Astro CLI
 ```
 
-No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but no config file — not wired.
+No test/lint/typecheck commands configured. Biome 2.5.15 in devDependencies but no config file — not wired.
 
 ## Architecture
 
@@ -112,7 +112,7 @@ Main catalog at `src/pages/productos.astro`. UX modeled after Uber Eats / Rappi.
 
 ## Misc
 
-- `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `package-lock.json` also present.
+- `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `pnpm-lock.yaml` is the only lockfile — do not reintroduce `package-lock.json`.
 - **CSS purgado:** `theme.bundle.css` (398KB→36KB) vía PurgeCSS — config en `purgecss.config.cjs` (safelist con clases dinámicas de Bootstrap Collapse/AOS + resets). Para re-purgar: `npm run build && npx purgecss@7 --config purgecss.config.cjs --content 'dist/**/*.html' 'dist/_astro/*.js' --css public/assets/css/theme.bundle.css --output public/assets/css/theme.bundle.css`. Los estilos de páginas (.astro) NO viven aquí.
 - **`libs.bundle.css`** es solo AOS podado (fade-up/right/left, duration 700, ease-out-quad, delays 60–240). Flickity/Quill eliminados. Si se usa un `data-aos` o `data-aos-delay` nuevo en markup, agregar su regla ahí (patrón del AOS original).
 - `.map` files de CSS eliminados — no restaurarlos.

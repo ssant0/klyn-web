@@ -81,6 +81,7 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 
 - `docs/blog-ideas.md` — banco de temas por categoría con keyword, intención, prioridad, briefs listos, reglas de producción y orden sugerido.
 - `docs/fixes.md` — fixes SEO pendientes (16, 20, 21) con problema, criterio de aceptación y estado.
+- `docs/locallendings.md` — plan de landings locales para Los Mochis: arquitectura, briefs, prueba local, Google Business Profile, medición y datos por confirmar.
 - `docs/productos-imagenes.md` — inventario de fotos de producto, convención de nombres y decisiones de asignación.
 
 ## Productos data (`src/data/products.ts`)

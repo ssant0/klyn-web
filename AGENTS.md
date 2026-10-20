@@ -76,21 +76,12 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos del backlog (12 totales, 12 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
 
-### Backlog SEO — fixes
+## Docs (`docs/`)
 
-| # | Fix | Estado |
-|---|-----|--------|
-| 16 | Reconciliar trust numbers (200+ vs reales) | [~] |
-| 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
-| 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
-
-### Backlog SEO — artículos publicados (12)
-
-- [x] 10. Químicos de limpieza industrial en México
-- [x] 11. Importancia de la limpieza profesional en espacios de trabajo
-- [x] 12. Cómo organizar el almacén de suministros
+- `docs/blog-ideas.md` — banco de temas por categoría con keyword, intención, prioridad, briefs listos, reglas de producción y orden sugerido.
+- `docs/fixes.md` — fixes SEO pendientes (16, 20, 21) con problema, criterio de aceptación y estado.
+- `docs/productos-imagenes.md` — inventario de fotos de producto, convención de nombres y decisiones de asignación.
 
 ## Productos data (`src/data/products.ts`)
 

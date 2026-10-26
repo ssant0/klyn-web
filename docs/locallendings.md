@@ -196,14 +196,21 @@ Revisión mensual: posición de las 5 consultas objetivo, clics, conversiones y 
 
 | Dato | Estado |
 |---|---|
-| Colonias o sectores con cobertura | [confirmar] |
-| Días y horario de reparto | [confirmar] |
-| Tiempo de entrega real | [confirmar] |
-| Pedido mínimo local | [confirmar] |
-| Facturación y datos fiscales | [confirmar] |
-| Clientes mencionables y permiso | [confirmar] |
+| Colonias o sectores con cobertura | Confirmado: toda la ciudad de Los Mochis |
+| Días y horario de reparto | Confirmado: lunes a sábado, 9:00–18:00 |
+| Tiempo de entrega real | Confirmado: 24–48 h o la fecha que se pacte |
+| Pedido mínimo local | Confirmado: no hay mínimo; envío gratis desde $500 y $50 en compras menores |
+| Facturación y datos fiscales | Confirmado: CFDI 4.0 con RFC y régimen fiscal del cliente |
+| Clientes mencionables y permiso | Confirmado: CBTA 81 y CUCII Los Mochis |
 | Reseñas actuales en Google | [confirmar] |
-| Fotos disponibles de almacén y reparto | [confirmar] |
+| Fotos disponibles de almacén y reparto | Pendiente: el hero del hub reserva el marco para la foto del almacén |
 | Responsable de contenido y aprobación | [confirmar] |
+
+## Estado de publicación
+
+- `/suministros-de-limpieza-los-mochis/` publicado con los datos operativos confirmados arriba.
+- Schema `WholesaleStore` actualizado: `areaServed` incluye `City` Los Mochis además del país.
+- La landing emite `Service` con `areaServed` City, `WebPage`, `BreadcrumbList` y `FAQPage`.
+- Enlazada desde el footer, la tarjeta "Entrega en Los Mochis" de la home y el bloque de guías del blog.
 
 Este archivo se actualiza cuando esos datos estén definidos. Las landings se trabajan después, una por una, empezando por el hub.

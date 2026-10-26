@@ -19,7 +19,7 @@ export interface Product {
 const PRES_LIQUIDO: ProductVariant = {
   key: "presentacion",
   label: "Presentación",
-  options: ["1L", "3.75L", "5L", "20L"],
+  options: ["1L", "3.75L", "20L"],
 };
 
 export const products: Product[] = [

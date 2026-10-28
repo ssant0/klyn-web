@@ -100,11 +100,11 @@ Bajar nodos a costa de esconder todo el catálogo puede perder tráfico de cola 
 
 ## Fix 21 — Fotos reales en los 20 productos de mayor rotación
 
-**Estado:** en progreso. Hay 23 productos con `image` en `src/data/products.ts` y 26 archivos en `public/assets/img/products/` (23 referenciados + 3 huérfanos); faltan decisiones y correcciones de ficha.
+**Estado:** en progreso. Hay 26 productos con `image` en `src/data/products.ts` y 27 archivos en `public/assets/img/products/` (26 referenciados + 1 huérfano). Faltan el ranking del top 20 y dos fotos que no coinciden con la presentación.
 
 **Problema**
 
-El catálogo sigue mostrando emoji en la mayoría de las tarjetas. La foto real mejora conversión y confianza, sobre todo en los productos que sostienen la venta. Quedan además tres archivos sin producto y dos fotos que no coinciden con la presentación.
+El catálogo sigue mostrando emoji en la mayoría de las tarjetas. La foto real mejora conversión y confianza, sobre todo en los productos que sostienen la venta. Queda un archivo sin producto y dos fotos que no coinciden con la presentación.
 
 **Dónde**
 
@@ -124,10 +124,8 @@ El catálogo sigue mostrando emoji en la mayoría de las tarjetas. La foto real 
 
 - **Definir el top 20:** pedir el ranking de ventas o rotación; no elegirlo por intuición.
 - **Detergente UTIL:** la foto muestra 1 kg y la ficha dice 11 kg. Corregir foto o presentación.
-- **Pastilla WIESE:** la foto es de 56 g y la ficha dice 60 g. Ajustar el dato o conseguir la foto correcta.
-- **Cloralex:** la toalla desinfectante de Cloralex no tiene foto; la imagen disponible es de Clorox y no se asignó.
-- **Tres archivos sin producto:** `blanqueador-klyn.webp`, `desinfectante-lysol-pro-spray.webp` y `toallitas-desinfectantes-clorox.webp`. Decidir si se dan de alta como productos o se eliminan.
-- **Conteo desactualizado:** `docs/productos-imagenes.md` habla de 27 archivos y 24 productos con foto. Hoy son 26 archivos y 23 productos: la imagen de Pastillas Harpic ya no está y el producto se eliminó. Actualizar el doc al cerrar.
+- **Pastilla WIESE 60gr:** la foto es de 56 g y la ficha dice 60 g. Ajustar el dato o conseguir la foto correcta.
+- **Archivo sin producto:** `desinfectante-lysol-pro-spray.webp`. Decidir si se da de alta la variante PRO o se elimina.
 
 **Cómo cerrar**
 
@@ -135,7 +133,7 @@ El catálogo sigue mostrando emoji en la mayoría de las tarjetas. La foto real 
 2. Cruzar contra `products.ts` y marcar los que ya tienen foto.
 3. Fotografiar o conseguir las faltantes con la misma luz y fondo.
 4. Optimizar a WebP y asignar `image`.
-5. Corregir UTIL y WIESE; decidir los tres archivos huérfanos.
+5. Corregir UTIL y WIESE 60gr; decidir el archivo huérfano de Lysol PRO.
 6. Build, revisar tarjetas en `/productos/` y actualizar `docs/productos-imagenes.md`.
 
 ---

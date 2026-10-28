@@ -17,7 +17,7 @@ Concentrar toda la autoridad local en **Los Mochis** y no crear páginas por ciu
 - Fuera de la ciudad solo existe envío por paquetería; eso no es presencia local y no justifica una landing por ciudad.
 - Empresa fundada en 2025, con poco reconocimiento fuera de Sinaloa.
 - Hay permiso para nombrar clientes, pero la lista es corta y sin marcas de alto prestigio.
-- El catálogo tiene 190 productos y 23 con foto real; la mayoría de las tarjetas usa placeholder.
+- El catálogo tiene 190 productos y 26 con foto real; la mayoría de las tarjetas usa placeholder.
 - El sitio no tiene ninguna landing local dedicada. La home, `/nosotros/`, `/contacto/` y `/links/` mencionan Los Mochis, pero compiten por muchas intenciones a la vez.
 
 ## Inventario actual

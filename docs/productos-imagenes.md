@@ -16,18 +16,20 @@ Las fotos ya están versionadas en el repo (se eliminó la regla de `.gitignore`
 | Concepto | Total |
 | --- | --- |
 | Imágenes en la carpeta | 27 |
-| Asignadas a un producto | 24 |
-| Sin producto registrado | 3 |
+| Asignadas a un producto | 26 |
+| Sin producto registrado | 1 |
 | Eliminadas | 1 (`24.png`) |
 
-## Imágenes asignadas (24)
+## Imágenes asignadas (26)
 
 | Archivo | Producto (`id`) |
 | --- | --- |
 | `aromatizante-maquiaroma.webp` | 3 · Aromatizante MAQUIAROMA |
 | `aromatizante-wiese.webp` | 8 · Aromatizante WIESE Aerosol 400 ml |
+| `cloro-klyn-20l.webp` | 9 · Cloro |
 | `desinfectante-lysol.webp` | 13 · Desinfectante LYSOL Aerosol |
 | `pastillas-de-cloro.webp` | 14 · Pastilla de cloro |
+| `toalla-desinfectante-clorox.webp` | 16 · Toalla Desinfectante Clorox |
 | `toallitas-desinfectantes-membersmark.webp` | 17 · Toalla Desinfectante MM |
 | `desengrasante.webp` | 18 · Desengrasante |
 | `detergente-arcoiris-9kg.webp` | 19 · Detergente Arcoíris 9kg |
@@ -45,33 +47,35 @@ Las fotos ya están versionadas en el repo (se eliminó la regla de `.gitignore`
 | `limpiador-acero-inoxidable-klyn.webp` | 31 · Limpiador de Acero Inoxidable |
 | `limpiador-acero-inoxidable-diversey.webp` | 32 · Limpiador de Acero Inoxidable, 5L, DIVERSEY |
 | `pastilla-aromatizante-wiese.webp` | 35 · Pastilla WIESE para WC 60gr ⚠️ |
-| `pastillas-harpic.webp` | 37 · Pastillas Harpic |
+| `pastilla-wiese-70gr.webp` | 36 · Pastilla WIESE para WC 70gr |
 | `pastillas-great-value.webp` | 38 · Pastillas Sanitarias ALEN, GREAT VALUE |
 | `tapete-para-mingitorio-wiese.webp` | 39 · Tapete para Mingitorio C/10pzs |
 
-## Imágenes SIN producto registrado (3)
-
-**No se dieron de alta** (no se creó ningún producto nuevo) y quedan pendientes de decisión.
+## Imágenes SIN producto registrado (1)
 
 | Archivo | Qué es | Estado |
 | --- | --- | --- |
-| `blanqueador-klyn.webp` | Klyn **Blanqueador Multiusos** 20 L | No existe un producto "Blanqueador". Lo más cercano es `9 · Cloro` (20 L), pero es otro artículo. |
 | `desinfectante-lysol-pro-spray.webp` | **Lysol PRO** Commercial Disinfectant Spray | No existe la variante PRO. `11 · Desinfectante LYSOL` solo maneja líquido 1L/5L/20L. |
-| `toallitas-desinfectantes-clorox.webp` | **Clorox** Disinfecting Wipes | **Decisión: no asignar.** El producto 16 es "Toalla Desinfectante Cloralex" (marca distinta). |
 
 ## Decisiones y notas
 
 - **Lysol**: la foto `desinfectante-lysol.webp` (aerosol) se asignó a `13 · Desinfectante LYSOL Aerosol`. La variante `11 · Desinfectante LYSOL` es líquido, no aerosol.
 - **Detergente UTIL**: la foto muestra **1 kg**, el producto dice **11 kg**. Se asignó igual (misma marca/línea); conviene corregir el dato o la foto.
-- **Pastilla WIESE**: la foto es WIESE WC Citrus **56 g**; se asignó a `35 · Pastilla WIESE para WC 60gr` (tamaño más cercano). `36 · ...70gr` queda sin foto.
-- **Clorox vs Cloralex**: no se asignó. El producto 16 queda sin foto.
+- **Pastilla WIESE**: `35 · Pastilla WIESE para WC 60gr` usa la foto de WIESE WC Citrus **56 g** (tamaño más cercano). `36 · ...70gr` ya tiene su propia foto de 70 g.
+- **Cloro**: `9 · Cloro` usa la foto del envase Klyn **Blanqueador Multiusos 20 L**, que es la presentación de 20 L que se vende en el catálogo. El archivo se llamaba `blanqueador-klyn.webp`.
+- **Toalla desinfectante**: el producto 16 se llamaba "Toalla Desinfectante Cloralex", pero la foto y el artículo real son **Clorox Disinfecting Wipes**. Se renombró la ficha a "Toalla Desinfectante Clorox" y se asignó `toalla-desinfectante-clorox.webp`.
+- **Nombre de archivo heredado**: `toallitas-desinfectantes-membersmark.webp` conserva el plural y el guion bajo de marca; no se renombró para no romper referencias.
 
 ## Cambios aplicados
 
-- Campo `image` agregado a 23 productos en `src/data/products.ts` (el id 20 ya lo tenía): total **24 productos con foto**.
+- Tres fotos nuevas asignadas: `9 · Cloro`, `16 · Toalla Desinfectante Clorox` y `36 · Pastilla WIESE para WC 70gr`.
+- `blanqueador-klyn.webp` → `cloro-klyn-20l.webp` (la foto es la misma, en mejor calidad).
+- `toallitas-desinfectantes-clorox.webp` → `toalla-desinfectante-clorox.webp`.
+- Ficha 16 renombrada de "Toalla Desinfectante Cloralex" a "Toalla Desinfectante Clorox".
+- Total: **26 productos con foto** de 190.
 - Eliminada la regla `public/assets/img/products/` de `.gitignore` para versionar las fotos.
 - Eliminado `24.png` (Wiese Potpourri, no servía).
 - `blanca-nieves-10kg.webp` → `detergente-blanca-nieves-10kg.webp` (marca primero → tipo primero).
 - Marca movida al final en: `diversey-acero-inoxidable` → `limpiador-acero-inoxidable-diversey`, `wiese-aromatizante` → `aromatizante-wiese`, `caja-jabon-zote` → `jabon-zote-caja-25pzs`.
-- Prefijo genérico agregado donde solo había marca: `lysol` → `desinfectante-lysol`, `lysol-pro-desinfectante-spray` → `desinfectante-lysol-pro-spray`, `blanqueador` → `blanqueador-klyn`.
+- Prefijo genérico agregado donde solo había marca: `lysol` → `desinfectante-lysol`, `lysol-pro-desinfectante-spray` → `desinfectante-lysol-pro-spray`.
 - Todas las `.png` convertidas a `.webp` con `magick` y se eliminó el `.png` original.

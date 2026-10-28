@@ -2,7 +2,7 @@
 
 > Sitio informativo B2B para **Klyn**, empresa mexicana de suministros de limpieza y papelería con sede en Los Mochis, Sinaloa.
 
-![Astro](https://img.shields.io/badge/Astro-6.x-FF5D01?logo=astro&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-7.x-FF5D01?logo=astro&logoColor=white)
 ![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/CSS-Bootstrap_5-7952B3?logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-Privado-lightgrey)
@@ -31,20 +31,21 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Stack
 
-- **Framework:** [Astro 6](https://astro.build) — salida estática (`output: 'static'`)
+- **Framework:** [Astro 7](https://astro.build) (`astro@^7.4.1`) — salida estática (`output: 'static'`)
+- **Contenido:** `@astrojs/mdx` + content collections
 - **CSS:** Bootstrap 5 (bundles pre-compilados en `public/assets/`)
-- **Linter:** [Biome](https://biomejs.dev)
-- **Adapter:** `@astrojs/cloudflare` (`mode: 'directory'`)
+- **Linter:** [Biome](https://biomejs.dev) (en `devDependencies`, aún sin configurar)
 - **Sitemap:** `@astrojs/sitemap` — generado automáticamente en build
-- **Deploy:** [Cloudflare Pages](https://pages.cloudflare.com)
+- **RSS:** `@astrojs/rss` — feed en `/rss.xml`
+- **Deploy:** [Cloudflare Pages](https://pages.cloudflare.com) — solo assets estáticos, sin adapter
 - **Dominio:** [www.klyn.com.mx](https://www.klyn.com.mx)
 
 ---
 
 ## Requisitos
 
-- **Node.js** >= 18.x
-- **npm** >= 9.x
+- **Node.js** >= 22.22.0
+- **pnpm** >= 10
 - **Wrangler CLI** >= 3.x (solo para deploy manual)
 
 ---
@@ -52,9 +53,9 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 ## Instalación
 
 ```bash
-git clone https://github.com/<org>/klyn.com.mx.git
-cd klyn.com.mx
-npm install
+git clone https://github.com/ssant0/klyn-web.git
+cd klyn-web
+pnpm install
 ```
 
 ---
@@ -63,10 +64,10 @@ npm install
 
 | Comando           | Acción                                    |
 | :---------------- | :---------------------------------------- |
-| `npm run dev`     | Servidor local en `http://localhost:4321` |
-| `npm run build`   | Build de producción en `./dist/`          |
-| `npm run preview` | Vista previa del build local              |
-| `npm run astro`   | CLI de Astro                              |
+| `pnpm dev`        | Servidor local en `http://localhost:4321` |
+| `pnpm build`      | Build de producción en `./dist/`          |
+| `pnpm preview`    | Vista previa del build local              |
+| `pnpm astro`      | CLI de Astro                              |
 
 ---
 
@@ -83,23 +84,43 @@ npm install
 │       │   ├── libs.bundle.css
 │       │   └── theme.bundle.css
 │       ├── js/
-│       │   ├── vendor.bundle.js
-│       │   └── theme.bundle.js
+│       │   ├── aos.js
+│       │   ├── bootstrap.bundle.min.js
+│       │   └── klyn.js
 │       ├── favicon/
+│       ├── fonts/
+│       ├── img/
 │       └── logo/
 │           └── klyn-logotipo.svg
 ├── src/
+│   ├── components/
+│   │   ├── blog/BlogFaq.astro
+│   │   ├── FAQ.astro
+│   │   ├── Footer.astro
+│   │   └── Navbar.astro
+│   ├── content/blog/          # Posts .mdx (content collection)
+│   ├── data/
+│   │   ├── config.ts
+│   │   └── products.ts        # Catálogo (~190 productos)
 │   ├── layouts/
-│   │   └── Layout.astro      # Layout base: navbar, footer, modales, GTM
+│   │   ├── Layout.astro       # Layout base: navbar, footer, GTM, schema
+│   │   └── BlogLayout.astro   # Wrapper con BlogPosting + BreadcrumbList
 │   ├── pages/
+│   │   ├── blog/
 │   │   ├── index.astro
 │   │   ├── nosotros.astro
 │   │   ├── productos.astro
 │   │   ├── contacto.astro
+│   │   ├── instituciones-educativas.astro
 │   │   ├── aviso-de-privacidad.astro
-│   │   └── links.astro       # Linktree standalone (noindex)
-│   └── styles/
-│       └── global.css        # Utilidades custom (.shadow-soft, accordion)
+│   │   ├── links.astro        # Linktree standalone (noindex)
+│   │   ├── 404.astro
+│   │   └── rss.xml.ts
+│   ├── styles/
+│   │   └── global.css         # Utilidades custom (.shadow-soft, accordion)
+│   ├── utils/
+│   │   └── email.ts
+│   └── content.config.ts
 ├── astro.config.mjs
 └── wrangler.jsonc
 ```
@@ -112,10 +133,14 @@ npm install
 | :----------------------- | :--------------------------------------------------- |
 | `/`                      | Home — propuesta de valor, categorías, testimonios   |
 | `/nosotros`              | Historia, equipo y valores de Klyn                   |
-| `/productos`             | Catálogo de categorías (sin precios)                 |
+| `/productos`             | Catálogo interactivo de productos (sin precios)      |
+| `/instituciones-educativas` | Landing B2B para escuelas                         |
 | `/contacto`              | Formulario + datos de contacto directo               |
+| `/blog/`                 | Listado de artículos                                 |
+| `/blog/posts/[slug]/`    | Artículo individual (MDX) con FAQ y schema           |
 | `/aviso-de-privacidad`   | Aviso de privacidad LFPDPPP                          |
 | `/links`                 | Linktree de marca (sin navbar/footer, con `noindex`) |
+| `/rss.xml`               | Feed RSS del blog                                    |
 
 ---
 
@@ -143,11 +168,11 @@ El proyecto se despliega automáticamente en **Cloudflare Pages** vía la integr
 **Deploy manual:**
 
 ```bash
-npm run build
+pnpm build
 wrangler pages deploy
 ```
 
-El adapter `@astrojs/cloudflare` en `mode: 'directory'` genera `dist/_worker.js/index.js`, que Cloudflare Pages detecta automáticamente.
+El build genera sitios estáticos en `dist/`, que Cloudflare Pages publica directamente. No hay adapter SSR ni worker (`_worker.js`).
 
 ---
 

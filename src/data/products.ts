@@ -43,6 +43,7 @@ export const products: Product[] = [
   { id:   8, name: "Aromatizante WIESE Aerosol 400 ml",                                          category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/aromatizante-wiese.webp" },
   { id:   9, name: "Cloro",                                                                      category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
+    image: "/assets/img/products/cloro-klyn-20l.webp",
     variants: [PRES_LIQUIDO] },
   { id:  10, name: "Cloro Seco Granulado",                                                       category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue" },
   { id:  11, name: "Desinfectante LYSOL",                                                        category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
@@ -54,7 +55,8 @@ export const products: Product[] = [
     image: "/assets/img/products/pastillas-de-cloro.webp" },
   { id:  15, name: "Pinol Lechoso",                                                              category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     variants: [{ key: "presentacion", label: "Presentación", options: ["1L","5L","20L"] }] },
-  { id:  16, name: "Toalla Desinfectante Cloralex",                                              category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue" },
+  { id:  16, name: "Toalla Desinfectante Clorox",                                                category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
+    image: "/assets/img/products/toalla-desinfectante-clorox.webp" },
   { id:  17, name: "Toalla Desinfectante MM",                                                    category: "Químicos", subcategory: "Desinfección y Sanitización", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/toallitas-desinfectantes-membersmark.webp" },
 
@@ -103,7 +105,8 @@ export const products: Product[] = [
   // ── Químicos — Cuidado de Baños ──────────────────────────────
   { id:  35, name: "Pastilla WIESE para WC 60gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastilla-aromatizante-wiese.webp" },
-  { id:  36, name: "Pastilla WIESE para WC 70gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue" },
+  { id:  36, name: "Pastilla WIESE para WC 70gr",                                                category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
+    image: "/assets/img/products/pastilla-wiese-70gr.webp" },
   { id:  38, name: "Pastillas Sanitarias ALEN, GREAT VALUE",                                     category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",
     image: "/assets/img/products/pastillas-great-value.webp" },
   { id:  39, name: "Tapete para Mingitorio C/10pzs",                                             category: "Químicos", subcategory: "Cuidado de Baños", categoryKey: "quimicos", accent: "blue",

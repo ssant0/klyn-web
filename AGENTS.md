@@ -3,13 +3,13 @@
 ## Commands
 
 ```bash
-npm run dev        # localhost:4321
-npm run build      # output ./dist/
-npm run preview    # preview production build
-npm run astro      # Astro CLI
+pnpm dev        # localhost:4321
+pnpm build      # output ./dist/
+pnpm preview    # preview production build
+pnpm astro      # Astro CLI
 ```
 
-No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but no config file — not wired.
+No test/lint/typecheck commands configured. Biome 2.5.15 in devDependencies but no config file — not wired.
 
 ## Architecture
 
@@ -76,21 +76,13 @@ No test/lint/typecheck commands configured. Biome 2.4.9 in devDependencies but n
 - Categorías (`content.config.ts` enum): `limpieza`, `papeleria`, `industrias`, `guias`.
 - **GEO optimization:** answer-first format en H2, tablas para datos comparativos (citables por LLMs), headings con preguntas naturales, datos específicos/estadísticas.
 - **SEO on-page:** keyword principal en title, description, H2s, primer párrafo visible; internal links contextuales a `/productos/` y WhatsApp; BlogPosting + BreadcrumbList + FAQPage schema vía BlogLayout.
-- **Backlog SEO pendiente:** fixes del audit + artículos del backlog (12 totales, 12 publicados). Leyenda: `[x]` hecho · `[~]` en progreso · `[ ]` pendiente.
 
-### Backlog SEO — fixes
+## Docs (`docs/`)
 
-| # | Fix | Estado |
-|---|-----|--------|
-| 16 | Reconciliar trust numbers (200+ vs reales) | [~] |
-| 20 | Reducir DOM de `/productos/` <1,500 nodos | [ ] |
-| 21 | Fotos reales de producto (top 20) — `products.ts` `image` | [~] |
-
-### Backlog SEO — artículos publicados (12)
-
-- [x] 10. Químicos de limpieza industrial en México
-- [x] 11. Importancia de la limpieza profesional en espacios de trabajo
-- [x] 12. Cómo organizar el almacén de suministros
+- `docs/blog-ideas.md` — banco de temas por categoría con keyword, intención, prioridad, briefs listos, reglas de producción y orden sugerido.
+- `docs/fixes.md` — fixes SEO pendientes (16, 20, 21) con problema, criterio de aceptación y estado.
+- `docs/locallendings.md` — plan de landings locales para Los Mochis: arquitectura, briefs, prueba local, Google Business Profile, medición y datos por confirmar.
+- `docs/productos-imagenes.md` — inventario de fotos de producto, convención de nombres y decisiones de asignación.
 
 ## Productos data (`src/data/products.ts`)
 
@@ -120,7 +112,7 @@ Main catalog at `src/pages/productos.astro`. UX modeled after Uber Eats / Rappi.
 
 ## Misc
 
-- `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `package-lock.json` also present.
+- `pnpm-workspace.yaml` has `allowBuilds` for esbuild, sharp, workerd. `pnpm-lock.yaml` is the only lockfile — do not reintroduce `package-lock.json`.
 - **CSS purgado:** `theme.bundle.css` (398KB→36KB) vía PurgeCSS — config en `purgecss.config.cjs` (safelist con clases dinámicas de Bootstrap Collapse/AOS + resets). Para re-purgar: `npm run build && npx purgecss@7 --config purgecss.config.cjs --content 'dist/**/*.html' 'dist/_astro/*.js' --css public/assets/css/theme.bundle.css --output public/assets/css/theme.bundle.css`. Los estilos de páginas (.astro) NO viven aquí.
 - **`libs.bundle.css`** es solo AOS podado (fade-up/right/left, duration 700, ease-out-quad, delays 60–240). Flickity/Quill eliminados. Si se usa un `data-aos` o `data-aos-delay` nuevo en markup, agregar su regla ahí (patrón del AOS original).
 - `.map` files de CSS eliminados — no restaurarlos.

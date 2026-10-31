@@ -403,6 +403,30 @@ const faqSchema = {
       overflow: hidden;
     }
 
+    .ld-media--photo {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .ld-media--photo::before {
+      display: none;
+    }
+
+    .ld-media--photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .ld-media--photo .ld-media__tag {
+      background: rgba(13, 35, 65, 0.72);
+    }
+
     .ld-media::before {
       content: '';
       position: absolute;
@@ -1033,20 +1057,18 @@ const faqSchema = {
           </ul>
         </div>
 
-        <!-- Foto pendiente: reemplazar este bloque por
-             <img src="/assets/img/landings/suministros-los-mochis/almacen.webp" alt="Almacén de Klyn en Los Mochis, Sinaloa" width="720" height="540" loading="eager">
-             cuando exista la foto real del almacén. -->
-        <div class="ld-media" role="img" aria-label="Almacén y centro de distribución de Klyn en Los Mochis, Sinaloa">
-          <span class="ld-media__tag">Almacén local</span>
-          <svg class="ld-media__icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 21V9l9-6 9 6v12"/>
-            <path d="M3 21h18"/>
-            <path d="M8 21v-8h8v8"/>
-            <path d="M8 17h8"/>
-          </svg>
-          <p class="ld-media__title">Almacén y centro de distribución</p>
-          <p class="ld-media__sub">Los Mochis, Sinaloa</p>
-        </div>
+        <figure class="ld-media ld-media--photo">
+          <img
+            src="/assets/img/landings/suministros-los-mochis/almacen.webp"
+            alt="Almacén de Klyn en Los Mochis con producto listo para entrega"
+            width="960"
+            height="720"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+          <figcaption class="ld-media__tag">Almacén local</figcaption>
+        </figure>
       </div>
     </div>
   </section>

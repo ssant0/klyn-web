@@ -203,7 +203,7 @@ Revisión mensual: posición de las 5 consultas objetivo, clics, conversiones y 
 | Facturación y datos fiscales | Confirmado: CFDI 4.0 con RFC y régimen fiscal del cliente |
 | Clientes mencionables y permiso | Confirmado: CBTA 81 y CUCII Los Mochis |
 | Reseñas actuales en Google | [confirmar] |
-| Fotos disponibles de almacén y reparto | Pendiente: el hero del hub reserva el marco para la foto del almacén |
+| Fotos disponibles de almacén y reparto | Confirmado: foto del almacén en el hero del hub (`public/assets/img/landings/suministros-los-mochis/almacen.webp`) |
 | Responsable de contenido y aprobación | [confirmar] |
 
 ## Estado de publicación

@@ -1,0 +1,1395 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const pageUrl = new URL(Astro.url.pathname, "https://www.klyn.com.mx").href;
+const siteUrl = "https://www.klyn.com.mx";
+
+const waMessage =
+  "Hola, vengo de la página de suministros en Los Mochis. Quiero una cotización.";
+const waHref = `https://wa.me/526681629654?text=${encodeURIComponent(waMessage)}`;
+
+const destacados = [
+  {
+    producto: "Cloro",
+    presentacion: "1 L, 3.75 L y 20 L",
+    uso: "Pisos, baños y superficies de contacto",
+  },
+  {
+    producto: "Limpiador multiusos",
+    presentacion: "1 L, 5 L y 20 L · cuatro esencias",
+    uso: "Mostradores, mesas y áreas comunes",
+  },
+  {
+    producto: "Desengrasante",
+    presentacion: "1 L, 3.75 L y 20 L",
+    uso: "Cocinas, campanas y parrillas",
+  },
+  {
+    producto: "Detergente líquido",
+    presentacion: "1 L, 5 L y 20 L",
+    uso: "Uniformes, trapos y lavandería",
+  },
+  {
+    producto: "Papel higiénico institucional",
+    presentacion: "Caja con 12 rollos",
+    uso: "Baños de personal y de clientes",
+  },
+];
+
+const entrega = [
+  { concepto: "Cobertura", detalle: "Toda la ciudad de Los Mochis, Sinaloa" },
+  { concepto: "Días de reparto", detalle: "Lunes a sábado" },
+  { concepto: "Horario", detalle: "9:00 a 18:00" },
+  {
+    concepto: "Costo de envío",
+    detalle: "Gratis en pedidos desde $500 MXN. En compras menores, $50",
+  },
+  {
+    concepto: "Tiempo de entrega",
+    detalle: "De 24 a 48 horas o la fecha que se acuerde al confirmar",
+  },
+  { concepto: "Facturación", detalle: "CFDI 4.0 con tus datos fiscales" },
+];
+
+const categorias = [
+  {
+    titulo: "Químicos de limpieza",
+    texto:
+      "Cloro, limpiador multiusos, desengrasante, detergente líquido, aromatizante y pinol. Presentaciones de 1 L a 20 L y garrafa de hipoclorito de 24 kg.",
+    icon: "bottle",
+  },
+  {
+    titulo: "Higiénicos e institucional",
+    texto:
+      "Papel higiénico por caja, toallas de manos, jabón, bolsas para basura en todos los calibres y pastillas sanitarias para baños.",
+    icon: "paper",
+  },
+  {
+    titulo: "Herramientas y equipo",
+    texto:
+      "Trapeadores, escobas, jaladores, cepillos, cubetas y dispensadores para uso continuo.",
+    icon: "broom",
+  },
+  {
+    titulo: "Papelería de oficina",
+    texto:
+      "Hoja blanca bond, rollo térmico, cinta masking, pizarrones y consumibles de impresión para la operación diaria.",
+    icon: "clipboard",
+  },
+];
+
+const pasos = [
+  {
+    titulo: "Manda tu lista",
+    texto:
+      "Escríbenos los productos, cantidades y presentaciones. Si no tienes la lista completa, cuéntanos qué usas y te ayudamos a armarla.",
+  },
+  {
+    titulo: "Recibe la cotización",
+    texto:
+      "Te respondemos con precio, disponibilidad y costo de envío en días hábiles.",
+  },
+  {
+    titulo: "Confirma fecha y pago",
+    texto:
+      "Acordamos el día de entrega dentro del horario de reparto y la forma de pago.",
+  },
+  {
+    titulo: "Recibe y factura",
+    texto:
+      "Entregamos en tu negocio y emitimos CFDI 4.0 con los datos fiscales que nos compartas.",
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Entregan en mi colonia?",
+    a: "Sí. Cubrimos toda la ciudad de Los Mochis. Mándanos tu dirección por WhatsApp y confirmamos el día de reparto que corresponde a tu zona.",
+  },
+  {
+    q: "¿Cuánto cuesta el envío?",
+    a: "El envío es gratis en pedidos desde $500 MXN. En compras menores el costo es de $50. No manejamos un pedido mínimo: puedes pedir desde una pieza.",
+  },
+  {
+    q: "¿Cuánto tarda la entrega?",
+    a: "De 24 a 48 horas, o en la fecha que acordemos al confirmar el pedido. Repartimos de lunes a sábado, de 9:00 a 18:00.",
+  },
+  {
+    q: "¿Facturan?",
+    a: "Sí. Emitimos CFDI 4.0. Comparte tu RFC, razón social y régimen fiscal al confirmar el pedido y te enviamos la factura por correo.",
+  },
+  {
+    q: "¿Puedo pedir solo papelería?",
+    a: "Sí. El catálogo se concentra en limpieza, pero también surtimos higiénicos, herramientas y papelería de oficina. Puedes combinar categorías en un mismo pedido.",
+  },
+];
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${pageUrl}#breadcrumb`,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: `${siteUrl}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Suministros de limpieza en Los Mochis",
+      item: pageUrl,
+    },
+  ],
+};
+
+const service = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  name: "Suministros de limpieza en Los Mochis",
+  serviceType:
+    "Suministro de productos de limpieza, higiénicos, herramientas y papelería para negocios",
+  url: pageUrl,
+  provider: { "@id": `${siteUrl}/#business` },
+  areaServed: {
+    "@type": "City",
+    name: "Los Mochis",
+    containedInPlace: {
+      "@type": "AdministrativeArea",
+      name: "Sinaloa",
+    },
+  },
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: waHref,
+    servicePhone: {
+      "@type": "ContactPoint",
+      telephone: "+526681629654",
+      contactType: "sales",
+      availableLanguage: "Spanish",
+    },
+  },
+};
+
+const webPage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: "Suministros de limpieza en Los Mochis | Klyn",
+  description:
+    "Cloro, limpiador multiusos, desengrasante, higiénicos y papelería para negocios de Los Mochis. Entrega local en 24 a 48 horas y factura CFDI.",
+  inLanguage: "es-MX",
+  isPartOf: { "@id": `${siteUrl}/#website` },
+  about: { "@id": `${pageUrl}#service` },
+  breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/assets/img/og/og-image.png`,
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${pageUrl}#faq`,
+  url: pageUrl,
+  inLanguage: "es-MX",
+  isPartOf: { "@id": `${pageUrl}#webpage` },
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+
+<Layout
+  title="Suministros de limpieza en Los Mochis | Klyn"
+  description="Cloro, limpiador multiusos, higiénicos y papelería para negocios de Los Mochis. Entrega en 24 a 48 h, envío gratis desde $500 y factura CFDI."
+>
+  <Fragment slot="head-schema">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(service)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(webPage)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <style>
+    .ld-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 0 4rem;
+      background: linear-gradient(145deg, #0d2341 0%, #173a60 52%, #2f6ea5 100%);
+      color: #fff;
+    }
+
+    .ld-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .ld-hero::after {
+      content: '';
+      position: absolute;
+      top: -140px;
+      right: -120px;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      background: rgba(108, 172, 227, 0.22);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .ld-hero__grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .ld-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(250, 182, 10, 0.16);
+      color: #fab60a;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .ld-eyebrow--blue {
+      background: rgba(108, 172, 227, 0.14);
+      color: #2a6ea6;
+    }
+
+    .ld-eyebrow__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .ld-hero h1 {
+      font-size: clamp(2.1rem, 3.9vw, 3.35rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .ld-hl {
+      white-space: nowrap;
+      border-bottom: 4px solid #fab60a;
+      padding-bottom: 0.02em;
+    }
+
+    .ld-hero__lead {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 34rem;
+      margin-bottom: 1.9rem;
+    }
+
+    .ld-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .ld-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.7rem;
+      border-radius: 999px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .ld-btn--gold {
+      background: #fab60a;
+      color: #1a2e4a;
+      box-shadow: 0 6px 18px rgba(250, 182, 10, 0.28);
+    }
+
+    .ld-btn--gold:hover {
+      background: #ffc93c;
+      color: #1a2e4a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(250, 182, 10, 0.38);
+    }
+
+    .ld-btn--ghost {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+    }
+
+    .ld-btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .ld-btn--navy {
+      background: #1a2e4a;
+      color: #fff;
+    }
+
+    .ld-btn--navy:hover {
+      background: #24406a;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .ld-hero__points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.4rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .ld-hero__points li {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .ld-hero__points svg {
+      color: #fab60a;
+      flex-shrink: 0;
+    }
+
+    /* Marco reservado para la foto del almacén */
+    .ld-media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 20px;
+      border: 1px dashed rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .ld-media--photo {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .ld-media--photo::before {
+      display: none;
+    }
+
+    .ld-media--photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .ld-media--photo .ld-media__tag {
+      background: rgba(13, 35, 65, 0.72);
+    }
+
+    .ld-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(108, 172, 227, 0.18), rgba(13, 35, 65, 0.1));
+      pointer-events: none;
+    }
+
+    .ld-media__icon {
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .ld-media__title {
+      position: relative;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .ld-media__sub {
+      position: relative;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.74);
+      margin: 0;
+    }
+
+    .ld-media__tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    .ld-trust {
+      position: relative;
+      z-index: 2;
+      margin-top: -2.1rem;
+    }
+
+    .ld-trust__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      background: #fff;
+      border: 1px solid #e6eef7;
+      border-radius: 18px;
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 14px 40px rgba(13, 35, 65, 0.09);
+    }
+
+    .ld-trust__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0 0.6rem;
+    }
+
+    .ld-trust__item + .ld-trust__item {
+      border-left: 1px solid #edf3fa;
+    }
+
+    .ld-trust__icon {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: #f1f7fe;
+      color: #2a6ea6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ld-trust__label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #1a2e4a;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .ld-trust__text {
+      font-size: 0.8rem;
+      color: #5b708c;
+      margin: 0.2rem 0 0;
+      line-height: 1.4;
+    }
+
+    .ld-section {
+      padding: 4.5rem 0;
+    }
+
+    .ld-section--tint {
+      background: #f5f9ff;
+    }
+
+    .ld-section__head {
+      max-width: 44rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .ld-section__head--center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .ld-section h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.16;
+      color: #1a2e4a;
+      margin-bottom: 0.85rem;
+    }
+
+    .ld-section__lead {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #5b708c;
+      margin: 0;
+    }
+
+    .ld-section__lead a {
+      color: #2a6ea6;
+      font-weight: 600;
+    }
+
+    .ld-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ld-card {
+      background: #fff;
+      border: 1px solid #e6eef7;
+      border-radius: 16px;
+      padding: 1.7rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .ld-card:hover {
+      transform: translateY(-4px);
+      border-color: #cfe2f4;
+      box-shadow: 0 14px 32px rgba(13, 35, 65, 0.08);
+    }
+
+    .ld-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #f1f7fe;
+      color: #2a6ea6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .ld-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a2e4a;
+      margin-bottom: 0.5rem;
+    }
+
+    .ld-card p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #5b708c;
+      margin: 0;
+    }
+
+    .ld-table-wrap {
+      overflow-x: auto;
+      border: 1px solid #e3ecf6;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .ld-table {
+      width: 100%;
+      min-width: 34rem;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+
+    .ld-table--facts {
+      min-width: 0;
+    }
+
+    .ld-table--facts td:first-child {
+      white-space: normal;
+      width: 38%;
+    }
+
+    .ld-table caption {
+      caption-side: top;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #6b7f99;
+      padding: 1rem 1.25rem 0.5rem;
+    }
+
+    .ld-table th {
+      background: #1a2e4a;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: left;
+      padding: 0.85rem 1.25rem;
+      white-space: nowrap;
+    }
+
+    .ld-table td {
+      padding: 0.85rem 1.25rem;
+      border-top: 1px solid #e9f1f9;
+      color: #40536e;
+      line-height: 1.5;
+      vertical-align: top;
+    }
+
+    .ld-table tbody tr:nth-child(even) {
+      background: #f8fbff;
+    }
+
+    .ld-table td:first-child {
+      color: #1a2e4a;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ld-table-note {
+      font-size: 0.86rem;
+      color: #5b708c;
+      margin: 0.9rem 0 0;
+      line-height: 1.6;
+    }
+
+    .ld-split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .ld-steps {
+      list-style: none;
+      counter-reset: step;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .ld-steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 3.4rem;
+    }
+
+    .ld-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fab60a;
+      color: #1a2e4a;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .ld-steps h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a2e4a;
+      margin: 0.25rem 0 0.3rem;
+    }
+
+    .ld-steps p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #5b708c;
+      margin: 0;
+    }
+
+    .ld-quotes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ld-quote {
+      background: #fff;
+      border: 1px solid #e6eef7;
+      border-left: 4px solid #fab60a;
+      border-radius: 16px;
+      padding: 1.7rem;
+    }
+
+    .ld-quote p {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: #33475f;
+      margin: 0 0 1.1rem;
+    }
+
+    .ld-quote footer {
+      font-size: 0.85rem;
+      color: #5b708c;
+    }
+
+    .ld-quote strong {
+      display: block;
+      color: #1a2e4a;
+      font-size: 0.9rem;
+    }
+
+    .ld-faq {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .ld-faq details {
+      background: #fff;
+      border: 1px solid #e3ecf6;
+      border-radius: 14px;
+      padding: 0 1.35rem;
+    }
+
+    .ld-faq details[open] {
+      border-color: #cfe2f4;
+      box-shadow: 0 10px 26px rgba(13, 35, 65, 0.06);
+    }
+
+    .ld-faq summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      padding: 1.05rem 0;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1a2e4a;
+      list-style: none;
+    }
+
+    .ld-faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .ld-faq summary::after {
+      content: '+';
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: #f1f7fe;
+      color: #2a6ea6;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .ld-faq details[open] summary::after {
+      content: '−';
+    }
+
+    .ld-faq p {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: #5b708c;
+      margin: 0;
+      padding: 0 0 1.2rem;
+    }
+
+    .ld-cta {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 3.4rem 2rem;
+      text-align: center;
+      background: linear-gradient(145deg, #0d2341 0%, #173a60 55%, #2f6ea5 100%);
+      color: #fff;
+    }
+
+    .ld-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .ld-cta > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ld-cta h2 {
+      color: #fff;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      margin-bottom: 0.7rem;
+    }
+
+    .ld-cta p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.02rem;
+      line-height: 1.65;
+      max-width: 34rem;
+      margin: 0 auto 1.7rem;
+    }
+
+    .ld-cta .ld-actions {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .ld-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .ld-links a {
+      display: block;
+      background: #fff;
+      border: 1px solid #e6eef7;
+      border-radius: 14px;
+      padding: 1.15rem 1.3rem;
+      color: #1a2e4a;
+      font-weight: 600;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ld-links a:hover {
+      border-color: #cfe2f4;
+      box-shadow: 0 10px 24px rgba(13, 35, 65, 0.07);
+      color: #1a2e4a;
+    }
+
+    .ld-links span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2a6ea6;
+      margin-bottom: 0.3rem;
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #fab60a;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 1199px) {
+      .ld-trust__inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.4rem 1rem;
+      }
+
+      .ld-trust__item + .ld-trust__item {
+        border-left: 0;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .ld-hero__grid,
+      .ld-split {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+      }
+
+      .ld-media {
+        aspect-ratio: 16 / 9;
+        max-width: 34rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .ld-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .ld-hero {
+        padding: 3rem 0 3.2rem;
+      }
+
+      .ld-section {
+        padding: 3.2rem 0;
+      }
+
+      .ld-table {
+        min-width: 0;
+        font-size: 0.86rem;
+      }
+
+      .ld-table th,
+      .ld-table td {
+        padding: 0.7rem 0.8rem;
+      }
+
+      .ld-table th,
+      .ld-table td:first-child {
+        white-space: normal;
+      }
+
+      .ld-table--facts td:first-child {
+        width: 42%;
+      }
+
+      .ld-table--products th:nth-child(3),
+      .ld-table--products td:nth-child(3) {
+        display: none;
+      }
+
+      .ld-trust__item {
+        padding: 0;
+      }
+
+      .ld-trust__inner {
+        padding: 1.25rem 1.1rem;
+      }
+
+      .ld-actions .ld-btn {
+        flex: 1 1 100%;
+      }
+
+      .ld-cta {
+        padding: 2.6rem 1.4rem;
+        border-radius: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ld-btn,
+      .ld-card,
+      .ld-faq summary::after {
+        transition: none !important;
+      }
+
+      .ld-btn:hover,
+      .ld-card:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="ld-hero">
+    <div class="container">
+      <div class="ld-hero__grid">
+        <div>
+          <span class="ld-eyebrow">
+            <span class="ld-eyebrow__dot"></span>
+            Los Mochis, Sinaloa · Entrega local
+          </span>
+
+          <h1>Suministros de limpieza en <span class="ld-hl">Los Mochis</span> para tu negocio</h1>
+
+          <p class="ld-hero__lead">
+            Cloro, limpiador multiusos, desengrasante, papel higiénico y papelería de oficina
+            en un solo pedido. Repartimos en toda la ciudad de lunes a sábado, con factura CFDI.
+          </p>
+
+          <div class="ld-actions">
+            <a class="ld-btn ld-btn--gold" href={waHref} target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar por WhatsApp
+            </a>
+            <a class="ld-btn ld-btn--ghost" href="/productos/">Ver catálogo</a>
+          </div>
+
+          <ul class="ld-hero__points">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Envío gratis desde $500
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Entrega en 24 a 48 h
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Factura CFDI 4.0
+            </li>
+          </ul>
+        </div>
+
+        <figure class="ld-media ld-media--photo">
+          <img
+            src="/assets/img/landings/suministros-los-mochis/almacen.webp"
+            alt="Almacén de Klyn en Los Mochis con producto listo para entrega"
+            width="960"
+            height="720"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+          <figcaption class="ld-media__tag">Almacén local</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRA DE CONFIANZA -->
+  <div class="ld-trust">
+    <div class="container">
+      <div class="ld-trust__inner">
+        <div class="ld-trust__item">
+          <span class="ld-trust__icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <p class="ld-trust__label">Toda la ciudad</p>
+            <p class="ld-trust__text">Cobertura en Los Mochis</p>
+          </div>
+        </div>
+        <div class="ld-trust__item">
+          <span class="ld-trust__icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="6" width="14" height="12" rx="2"/><path d="M15 10h4l3 3v5h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          </span>
+          <div>
+            <p class="ld-trust__label">Envío gratis desde $500</p>
+            <p class="ld-trust__text">$50 en compras menores</p>
+          </div>
+        </div>
+        <div class="ld-trust__item">
+          <span class="ld-trust__icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>
+          </span>
+          <div>
+            <p class="ld-trust__label">Lun a sáb · 9 a 18 h</p>
+            <p class="ld-trust__text">Entrega en 24 a 48 h</p>
+          </div>
+        </div>
+        <div class="ld-trust__item">
+          <span class="ld-trust__icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+          </span>
+          <div>
+            <p class="ld-trust__label">Factura CFDI 4.0</p>
+            <p class="ld-trust__text">Con tus datos fiscales</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUÉ SURTIMOS -->
+  <section class="ld-section" id="que-surtimos">
+    <div class="container">
+      <div class="ld-section__head">
+        <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Qué surtimos</span>
+        <h2>Qué surtimos en Los Mochis</h2>
+        <p class="ld-section__lead">
+          Klyn surte limpieza, higiénicos, herramientas y papelería para negocios de la ciudad.
+          El <a href="/productos/">catálogo tiene 190 productos</a> y puedes pedirlos por pieza,
+          caja o garrafa.
+        </p>
+      </div>
+
+      <div class="ld-grid">
+        {categorias.map((cat) => (
+          <article class="ld-card" data-aos="fade-up">
+            <span class="ld-card__icon">
+              {cat.icon === "bottle" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4v3h-4z"/><path d="M9 5h6v3l2 3v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-9l2-3z"/><path d="M7 14h10"/></svg>
+              )}
+              {cat.icon === "paper" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+              )}
+              {cat.icon === "broom" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3l7 7"/><path d="M11 6l7 7"/><path d="M4 21c2-4 5-7 8-8l3 3c-1 3-4 6-8 8z"/></svg>
+              )}
+              {cat.icon === "clipboard" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+              )}
+            </span>
+            <h3>{cat.titulo}</h3>
+            <p>{cat.texto}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="ld-table-wrap" style="margin-top: 2.4rem;">
+        <table class="ld-table ld-table--products">
+          <caption>Lo que más piden los negocios de Los Mochis</caption>
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Presentación</th>
+              <th scope="col">Uso principal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {destacados.map((item) => (
+              <tr>
+                <td>{item.producto}</td>
+                <td>{item.presentacion}</td>
+                <td>{item.uso}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="ld-table-note">
+        ¿Buscas algo que no aparece? <a href={waHref} target="_blank" rel="noopener noreferrer">Pregúntanos por WhatsApp</a>:
+        el catálogo completo se cotiza sobre pedido.
+      </p>
+    </div>
+  </section>
+
+  <!-- ENTREGA -->
+  <section class="ld-section ld-section--tint" id="entrega">
+    <div class="container">
+      <div class="ld-section__head">
+        <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Entrega local</span>
+        <h2>Entrega en toda la ciudad de Los Mochis</h2>
+        <p class="ld-section__lead">
+          Repartimos de lunes a sábado, de 9:00 a 18:00. El envío es gratis en pedidos desde
+          $500 MXN; en compras menores cuesta $50.
+        </p>
+      </div>
+
+      <div class="ld-table-wrap">
+        <table class="ld-table ld-table--facts">
+          <caption>Cobertura y condiciones de entrega</caption>
+          <tbody>
+            {entrega.map((row) => (
+              <tr>
+                <td>{row.concepto}</td>
+                <td>{row.detalle}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ld-table-note">
+        La entrega se hace de 24 a 48 horas o en la fecha que acuerdes al confirmar el pedido.
+        Si tu negocio necesita un horario específico, lo coordinamos por WhatsApp antes de cerrar
+        la compra.
+      </p>
+    </div>
+  </section>
+
+  <!-- CÓMO PEDIR -->
+  <section class="ld-section" id="como-pedir">
+    <div class="container">
+      <div class="ld-split">
+        <div>
+          <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Cómo pedir</span>
+          <h2>Cómo hacer tu pedido</h2>
+          <p class="ld-section__lead">
+            El pedido se cierra por WhatsApp o por correo. Estos son los cuatro pasos,
+            de la lista a la factura.
+          </p>
+          <div class="ld-actions" style="margin-top: 1.8rem; margin-bottom: 0;">
+            <a class="ld-btn ld-btn--navy" href={waHref} target="_blank" rel="noopener noreferrer">
+              Mandar mi lista
+            </a>
+          </div>
+        </div>
+
+        <ol class="ld-steps">
+          {pasos.map((paso) => (
+            <li>
+              <h3>{paso.titulo}</h3>
+              <p>{paso.texto}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ LOCAL -->
+  <section class="ld-section ld-section--tint" id="por-que-local">
+    <div class="container">
+      <div class="ld-section__head">
+        <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Compra local</span>
+        <h2>Por qué comprar en Los Mochis</h2>
+        <p class="ld-section__lead">
+          Comprar en la ciudad cambia los tiempos de respuesta y el trato. El inventario está
+          aquí y la persona que te atiende también.
+        </p>
+      </div>
+
+      <div class="ld-grid">
+        <article class="ld-card">
+          <span class="ld-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12"/><path d="M3 21h18"/><path d="M8 21v-8h8v8"/></svg>
+          </span>
+          <h3>Almacén en la ciudad</h3>
+          <p>El inventario está en Los Mochis. No esperas un envío de otra ciudad para reponer lo que se terminó.</p>
+        </article>
+        <article class="ld-card">
+          <span class="ld-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>
+          </span>
+          <h3>Reposición en 24 a 48 horas</h3>
+          <p>Programa pedidos semanales o quincenales y ajusta la fecha de entrega según tu operación.</p>
+        </article>
+        <article class="ld-card">
+          <span class="ld-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/><path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 13h6"/></svg>
+          </span>
+          <h3>Un proveedor para todo</h3>
+          <p>Limpieza, higiénicos y papelería en un solo pedido y una sola factura. Menos llamadas y menos comprobantes.</p>
+        </article>
+        <article class="ld-card">
+          <span class="ld-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.8-.9L3 21l2-4.8A8.4 8.4 0 1 1 21 11.5z"/></svg>
+          </span>
+          <h3>Trato directo</h3>
+          <p>Hablas con la persona que surte tu pedido, de la cotización a la entrega.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRUEBA LOCAL -->
+  <section class="ld-section" id="clientes">
+    <div class="container">
+      <div class="ld-section__head">
+        <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Clientes</span>
+        <h2>Negocios de Los Mochis que ya compran aquí</h2>
+        <p class="ld-section__lead">
+          Dos instituciones de la ciudad autorizaron compartir su experiencia con el
+          abastecimiento local.
+        </p>
+      </div>
+
+      <div class="ld-quotes">
+        <blockquote class="ld-quote">
+          <p>
+            "En el CBTA 81 necesitábamos dejar de perseguir a varios proveedores para lo básico.
+            Con Klyn tenemos limpieza y papelería en un solo pedido, con entregas puntuales y
+            factura clara."
+          </p>
+          <footer>
+            <strong>Daniel Moreno</strong>
+            Administrador · CBTA 81
+          </footer>
+        </blockquote>
+        <blockquote class="ld-quote">
+          <p>
+            "Klyn entiende el ritmo de una institución: cotiza rápido, responde por WhatsApp y
+            ajusta las entregas cuando lo necesitamos."
+          </p>
+          <footer>
+            <strong>Cristopher Camacho</strong>
+            Director · CUCII Los Mochis
+          </footer>
+        </blockquote>
+      </div>
+
+      <p class="ld-table-note">
+        Conoce también la <a href="/instituciones-educativas/">landing para instituciones educativas</a>
+        y el <a href="/blog/posts/limpieza-escuelas-seguridad-eficiencia/">artículo sobre limpieza en escuelas</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="ld-section ld-section--tint" id="preguntas">
+    <div class="container">
+      <div class="ld-section__head ld-section__head--center">
+        <span class="ld-eyebrow ld-eyebrow--blue"><span class="ld-eyebrow__dot"></span>Dudas frecuentes</span>
+        <h2>Preguntas sobre entregas en Los Mochis</h2>
+        <p class="ld-section__lead">
+          Lo que más nos preguntan antes de la primera compra. Si tu duda no está aquí,
+          escríbenos por WhatsApp.
+        </p>
+      </div>
+
+      <div class="ld-faq">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ld-section" id="cotizar">
+    <div class="container">
+      <div class="ld-cta">
+        <h2>Arma tu pedido de limpieza para esta semana</h2>
+        <p>
+          Mándanos tu lista por WhatsApp y recibe precio, disponibilidad y fecha de entrega.
+          Atendemos negocios de toda la ciudad de Los Mochis.
+        </p>
+        <div class="ld-actions">
+          <a class="ld-btn ld-btn--gold" href={waHref} target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Cotizar por WhatsApp
+          </a>
+          <a class="ld-btn ld-btn--ghost" href="/contacto/">Ver datos de contacto</a>
+        </div>
+      </div>
+
+      <div class="ld-links">
+        <a href="/blog/posts/como-elegir-proveedor-suministros-limpieza/">
+          <span>Guía</span>
+          Cómo elegir un proveedor de suministros de limpieza
+        </a>
+        <a href="/blog/posts/como-calcular-consumo-mensual-suministros/">
+          <span>Guía</span>
+          Cómo calcular el consumo mensual de suministros
+        </a>
+        <a href="/blog/posts/quimicos-limpieza-industrial-mexico/">
+          <span>Guía</span>
+          Químicos de limpieza industrial en México
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

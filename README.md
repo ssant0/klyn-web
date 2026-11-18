@@ -2,7 +2,8 @@
 
 > Sitio informativo B2B para **Klyn**, empresa mexicana de suministros de limpieza y papelería con sede en Los Mochis, Sinaloa.
 
-![Astro](https://img.shields.io/badge/Astro-7.x-FF5D01?logo=astro&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-7.4.13-FF5D01?logo=astro&logoColor=white)
+![Node](https://img.shields.io/badge/Node-26.x_%28LTS%29-5FA04E?logo=nodedotjs&logoColor=white)
 ![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/CSS-Bootstrap_5-7952B3?logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-Privado-lightgrey)
@@ -31,7 +32,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Stack
 
-- **Framework:** [Astro 7](https://astro.build) (`astro@^7.4.1`) — salida estática (`output: 'static'`)
+- **Framework:** [Astro 7](https://astro.build) (`astro@7.4.13`) — salida estática (`output: 'static'`)
 - **Contenido:** `@astrojs/mdx` + content collections
 - **CSS:** Bootstrap 5 (bundles pre-compilados en `public/assets/`)
 - **Linter:** [Biome](https://biomejs.dev) (en `devDependencies`, aún sin configurar)
@@ -44,7 +45,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Requisitos
 
-- **Node.js** >= 22.22.0
+- **Node.js** 26.x (LTS) — fijado en `package.json` (`engines`), `.nvmrc` y `.node-version` para fnm
 - **pnpm** >= 10
 - **Wrangler CLI** >= 3.x (solo para deploy manual)
 

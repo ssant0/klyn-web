@@ -45,7 +45,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Requisitos
 
-- **Node.js** 26.x (LTS) — fijado en `package.json` (`engines`), `.nvmrc` y `.node-version` para fnm
+- **Node.js** 26.x (LTS) — fijado en `.nvmrc` y `.node-version` (fnm local y build de Cloudflare Pages) y en `package.json` (`engines`)
 - **pnpm** >= 10
 - **Wrangler CLI** >= 3.x (solo para deploy manual)
 
@@ -56,6 +56,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 ```bash
 git clone https://github.com/ssant0/klyn-web.git
 cd klyn-web
+fnm use         # Node 26 desde .nvmrc (con use-on-cd es automático al entrar)
 pnpm install
 ```
 
@@ -174,6 +175,9 @@ wrangler pages deploy
 ```
 
 El build genera sitios estáticos en `dist/`, que Cloudflare Pages publica directamente. No hay adapter SSR ni worker (`_worker.js`).
+
+> [!NOTE]
+> **Versión de Node en el build:** el build image v3 de Cloudflare Pages **no** lee `engines` de `package.json`. Toma la versión de `.nvmrc` / `.node-version` (aquí `26`); si necesitas forzarla, define `NODE_VERSION=26` en las variables de entorno del proyecto.
 
 ---
 

@@ -11,7 +11,7 @@ pnpm astro      # Astro CLI
 
 No test/lint/typecheck commands configured. Biome 2.6.8 in devDependencies but no config file — not wired.
 
-**Node 26.x (LTS)** es obligatorio. `.nvmrc` y `.node-version` alimentan el auto-switching de fnm (`use-on-cd`); `engines.node` en `package.json` es lo que respeta Cloudflare Pages al construir.
+**Node 26.x (LTS)** es obligatorio. `.nvmrc` y `.node-version` alimentan el auto-switching de fnm (`use-on-cd`) y son también lo que lee Cloudflare Pages al construir (Pages v3 **no** detecta la versión desde `engines`; el override manual es `NODE_VERSION=26`). `engines.node` aplica a local/CI.
 
 ## Architecture
 

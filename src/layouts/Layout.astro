@@ -164,11 +164,21 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.klyn.com.mx');
         }
       ],
       "foundingDate": "2025",
-      "areaServed": {
-        "@type": "Country",
-        "name": "México",
-        "sameAs": "https://www.wikidata.org/wiki/Q96"
-      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Los Mochis",
+          "containedInPlace": {
+            "@type": "AdministrativeArea",
+            "name": "Sinaloa"
+          }
+        },
+        {
+          "@type": "Country",
+          "name": "México",
+          "sameAs": "https://www.wikidata.org/wiki/Q96"
+        }
+      ],
       "currenciesAccepted": "MXN",
       "priceRange": "$$",
       "sameAs": [

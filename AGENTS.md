@@ -9,11 +9,13 @@ pnpm preview    # preview production build
 pnpm astro      # Astro CLI
 ```
 
-No test/lint/typecheck commands configured. Biome 2.5.15 in devDependencies but no config file — not wired.
+No test/lint/typecheck commands configured. Biome 2.6.8 in devDependencies but no config file — not wired.
+
+**Node 26.x (LTS)** es obligatorio. `.nvmrc` y `.node-version` alimentan el auto-switching de fnm (`use-on-cd`) y son también lo que lee Cloudflare Pages al construir (Pages v3 **no** detecta la versión desde `engines`; el override manual es `NODE_VERSION=26`). `engines.node` aplica a local/CI.
 
 ## Architecture
 
-- **Astro 7 static site** (`output: 'static'`, Node ≥ 22.22). Deployed to Cloudflare Pages via Git integration (auto on `main` push) or `wrangler pages deploy`.
+- **Astro 7 static site** (`output: 'static'`, `astro@7.4.13`, Node 26.x). Deployed to Cloudflare Pages via Git integration (auto on `main` push) or `wrangler pages deploy`.
 - **CSS: Bootstrap 5 only** — bundles purgados en `public/assets/css/` (`theme.bundle.css` ~36KB, `libs.bundle.css` ~3KB AOS). Do NOT add Tailwind.
 - **JS: `public/assets/js/`** — `bootstrap.bundle.min.js` (solo Collapse: navbar + FAQ) + `aos.js` + `klyn.js` (init AOS `{duration:700, easing:'ease-out-quad', once:true, startEvent:'load'}` + countup ligero vía MutationObserver sobre `.aos-animate`). El legacy Landkit `vendor.bundle.js`/`theme.bundle.js` se eliminó (Fix 4) — no restaurarlo.
 - Brand colors via inline styles: `#6cace3` (blue), `#fab60a` (gold). No custom Bootstrap theme.

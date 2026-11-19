@@ -2,7 +2,8 @@
 
 > Sitio informativo B2B para **Klyn**, empresa mexicana de suministros de limpieza y papelería con sede en Los Mochis, Sinaloa.
 
-![Astro](https://img.shields.io/badge/Astro-7.x-FF5D01?logo=astro&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-7.4.13-FF5D01?logo=astro&logoColor=white)
+![Node](https://img.shields.io/badge/Node-26.x_%28LTS%29-5FA04E?logo=nodedotjs&logoColor=white)
 ![Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/CSS-Bootstrap_5-7952B3?logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-Privado-lightgrey)
@@ -31,7 +32,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Stack
 
-- **Framework:** [Astro 7](https://astro.build) (`astro@^7.4.1`) — salida estática (`output: 'static'`)
+- **Framework:** [Astro 7](https://astro.build) (`astro@7.4.13`) — salida estática (`output: 'static'`)
 - **Contenido:** `@astrojs/mdx` + content collections
 - **CSS:** Bootstrap 5 (bundles pre-compilados en `public/assets/`)
 - **Linter:** [Biome](https://biomejs.dev) (en `devDependencies`, aún sin configurar)
@@ -44,7 +45,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 
 ## Requisitos
 
-- **Node.js** >= 22.22.0
+- **Node.js** 26.x (LTS) — fijado en `.nvmrc` y `.node-version` (fnm local y build de Cloudflare Pages) y en `package.json` (`engines`)
 - **pnpm** >= 10
 - **Wrangler CLI** >= 3.x (solo para deploy manual)
 
@@ -55,6 +56,7 @@ Klyn vende y entrega suministros de limpieza y papelería (cloro, limpiadores, p
 ```bash
 git clone https://github.com/ssant0/klyn-web.git
 cd klyn-web
+fnm use         # Node 26 desde .nvmrc (con use-on-cd es automático al entrar)
 pnpm install
 ```
 
@@ -173,6 +175,9 @@ wrangler pages deploy
 ```
 
 El build genera sitios estáticos en `dist/`, que Cloudflare Pages publica directamente. No hay adapter SSR ni worker (`_worker.js`).
+
+> [!NOTE]
+> **Versión de Node en el build:** el build image v3 de Cloudflare Pages **no** lee `engines` de `package.json`. Toma la versión de `.nvmrc` / `.node-version` (aquí `26`); si necesitas forzarla, define `NODE_VERSION=26` en las variables de entorno del proyecto.
 
 ---
 
